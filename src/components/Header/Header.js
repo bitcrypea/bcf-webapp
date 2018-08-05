@@ -13,7 +13,7 @@ import {
   Register,
   MenuTitle
 } from "./styled";
-import logo from "../../logo.png";
+import logo from "../../logo-bitcrypea.png";
 
 const menuTokenTrading = (
   <Menu>
@@ -40,7 +40,7 @@ class Header extends Component {
         <NewNav>
           <NavLeft>
             <TagA href="/">
-              <Logo src={logo} width="104" height="32" />
+              <Logo src={logo} width="104" height="40" />
             </TagA>
             <Dropdown overlay={menuTokenTrading} placement="bottomLeft">
               <MenuTitle>Token Trading</MenuTitle>
