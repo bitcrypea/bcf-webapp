@@ -1,0 +1,22 @@
+{
+  "name": "bcf-webapp",
+  "description": "bcf-webapp",
+  "keywords": ["reactjs", "nodejs"],
+  "success_url": "/",
+  "scripts": {},
+  "env": {},
+  "formation": {},
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
+}
