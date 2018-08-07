@@ -72,9 +72,9 @@ class TableBTC extends Component {
           </TableRow>
           <TableRow>
             <TD1 />
-            <TD2 style={{textAlign: 'center'}}>EOS/BTC</TD2>
+            <TD2>EOS/BTC</TD2>
             <TD1 />
-            <TD2>{coinEOSBTC.c}</TD2>
+            <TD2 style={{textAlign: 'center'}}>{coinEOSBTC.c}</TD2>
             <TD3>{Math.round(parseFloat(coinEOSBTC.P) * 100) / 100}%</TD3>
             <TD4>{coinEOSBTC.h}</TD4>
             <TD4>{coinEOSBTC.l}</TD4>
@@ -82,9 +82,9 @@ class TableBTC extends Component {
           </TableRow>
           <TableRow>
             <TD1 />
-            <TD2 style={{textAlign: 'center'}}>XRP/BTC</TD2>
+            <TD2>XRP/BTC</TD2>
             <TD1 />
-            <TD2>{coinXRPBTC.c}</TD2>
+            <TD2 style={{textAlign: 'center'}}>{coinXRPBTC.c}</TD2>
             <TD3>{Math.round(parseFloat(coinXRPBTC.P) * 100) / 100}%</TD3>
             <TD4>{coinXRPBTC.h}</TD4>
             <TD4>{coinXRPBTC.l}</TD4>
@@ -92,9 +92,9 @@ class TableBTC extends Component {
           </TableRow>
           <TableRow>
             <TD1 />
-            <TD2 style={{textAlign: 'center'}}>BNB/BTC</TD2>
+            <TD2>BNB/BTC</TD2>
             <TD1 />
-            <TD2>{coinBNBBTC.c}</TD2>
+            <TD2 style={{textAlign: 'center'}}>{coinBNBBTC.c}</TD2>
             <TD3>{Math.round(parseFloat(coinBNBBTC.P) * 100) / 100}%</TD3>
             <TD4>{coinBNBBTC.h}</TD4>
             <TD4>{coinBNBBTC.l}</TD4>
@@ -102,9 +102,9 @@ class TableBTC extends Component {
           </TableRow>
           <TableRow>
             <TD1 />
-            <TD2 style={{textAlign: 'center'}}>OST/BTC</TD2>
+            <TD2>OST/BTC</TD2>
             <TD1 />
-            <TD2>{coinOSTBTC.c}</TD2>
+            <TD2 style={{textAlign: 'center'}}>{coinOSTBTC.c}</TD2>
             <TD3>{Math.round(parseFloat(coinOSTBTC.P) * 100) / 100}%</TD3>
             <TD4>{coinOSTBTC.h}</TD4>
             <TD4>{coinOSTBTC.l}</TD4>
@@ -112,9 +112,9 @@ class TableBTC extends Component {
           </TableRow>
           <TableRow>
             <TD1 />
-            <TD2 style={{textAlign: 'center'}}>XLM/BTC</TD2>
+            <TD2>XLM/BTC</TD2>
             <TD1 />
-            <TD2>{coinXLMBTC.c}</TD2>
+            <TD2 style={{textAlign: 'center'}}>{coinXLMBTC.c}</TD2>
             <TD3>{Math.round(parseFloat(coinXLMBTC.P) * 100) / 100}%</TD3>
             <TD4>{coinXLMBTC.h}</TD4>
             <TD4>{coinXLMBTC.l}</TD4>
@@ -122,9 +122,9 @@ class TableBTC extends Component {
           </TableRow>
           <TableRow>
             <TD1 />
-            <TD2 style={{textAlign: 'center'}}>BCC/BTC</TD2>
+            <TD2>BCC/BTC</TD2>
             <TD1 />
-            <TD2>{coinBCCBTC.c}</TD2>
+            <TD2 style={{textAlign: 'center'}}>{coinBCCBTC.c}</TD2>
             <TD3>{Math.round(parseFloat(coinBCCBTC.P) * 100) / 100}%</TD3>
             <TD4>{coinBCCBTC.h}</TD4>
             <TD4>{coinBCCBTC.l}</TD4>
@@ -132,19 +132,19 @@ class TableBTC extends Component {
           </TableRow>
           <TableRow>
             <TD1 />
-            <TD2 style={{textAlign: 'center'}}>LTC/BTC</TD2>
+            <TD2>LTC/BTC</TD2>
             <TD1 />
-            <TD2>{coinLTCBTC.c}</TD2>
+            <TD2 style={{textAlign: 'center'}}>{coinLTCBTC.c}</TD2>
             <TD3>{Math.round(parseFloat(coinLTCBTC.P) * 100) / 100}%</TD3>
             <TD4>{coinLTCBTC.h}</TD4>
             <TD4>{coinLTCBTC.l}</TD4>
             <TD4>{coinLTCBTC.q}</TD4>
           </TableRow>
           <TableRow>
+            <TD1/>
+            <TD2>ADA/BTC</TD2>
             <TD1 />
-            <TD2 style={{textAlign: 'center'}}>ADA/BTC</TD2>
-            <TD1 />
-            <TD2>{coinADABTC.c}</TD2>
+            <TD2 style={{textAlign: 'center'}}>{coinADABTC.c}</TD2>
             <TD3>{Math.round(parseFloat(coinADABTC.P) * 100) / 100}%</TD3>
             <TD4>{coinADABTC.h}</TD4>
             <TD4>{coinADABTC.l}</TD4>
