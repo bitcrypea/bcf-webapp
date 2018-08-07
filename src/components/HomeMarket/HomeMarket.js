@@ -9,7 +9,6 @@ import {
   NewInput,
   BoxInputBox,
   BoxInputPrefix,
-  IconMySearch,
   InputSearch,
   Table,
   THead,
@@ -19,13 +18,10 @@ import {
   Column2,
   Column3,
   Column4,
-  TBody,
-  TableRow,
-  TD1,
-  TD2,
-  TD3,
-  TD4
 } from "./styled";
+import TableETH from "./TableETH";
+import TableBTC from "./TableBTC";
+import TableUSDT from "./TableUSDT";
 
 const active = {
   color: "#659aea",
@@ -38,11 +34,12 @@ class HomeMarket extends Component {
 
     this.state = {
       styleFavorites: {},
-      styleBIXMarket: {},
-      styleETHMarket: {},
+      styleETHMarket: active,
       styleBTCMarket: {},
       styleUSTDTMarket: {},
-      styleDAIMarket: {}
+      isETHClicked: true,
+      isBTCClicked: false,
+      isUSDTClicked: false,
     };
   }
   clickTabFavorites = () => {
@@ -52,59 +49,46 @@ class HomeMarket extends Component {
       styleETHMarket: {},
       styleBTCMarket: {},
       styleUSTDTMarket: {},
-      styleDAIMarket: {}
-    });
-  };
-  clickTabBIXMarket = () => {
-    this.setState({
-      styleBIXMarket: active,
-      styleFavorites: {},
-      styleETHMarket: {},
-      styleBTCMarket: {},
-      styleUSTDTMarket: {},
-      styleDAIMarket: {}
+      styleDAIMarket: {},
+      isETHClicked: false,
+      isBTCClicked: false,
+      isUSDTClicked: false,
     });
   };
   clickTabETHMarket = () => {
     this.setState({
       styleETHMarket: active,
       styleFavorites: {},
-      styleBIXMarket: {},
       styleBTCMarket: {},
       styleUSTDTMarket: {},
-      styleDAIMarket: {}
+      isETHClicked: true,
+      isBTCClicked: false,
+      isUSDTClicked: false,
     });
   };
   clickTabBTCMarket = () => {
     this.setState({
       styleBTCMarket: active,
       styleFavorites: {},
-      styleBIXMarket: {},
       styleETHMarket: {},
       styleUSTDTMarket: {},
-      styleDAIMarket: {}
+      isETHClicked: false,
+      isBTCClicked: true,
+      isUSDTClicked: false,
     });
   };
-  clickTabUSTDTMarket = () => {
+  clickTabUSDTMarket = () => {
     this.setState({
       styleUSTDTMarket: active,
       styleFavorites: {},
-      styleBIXMarket: {},
       styleETHMarket: {},
       styleBTCMarket: {},
-      styleDAIMarket: {}
+      isETHClicked: false,
+      isBTCClicked: false,
+      isUSDTClicked: true,
     });
   };
-  clickTabDaiMarket = () => {
-    this.setState({
-      styleDAIMarket: active,
-      styleFavorites: {},
-      styleBIXMarket: {},
-      styleETHMarket: {},
-      styleBTCMarket: {},
-      styleUSTDTMarket: {}
-    });
-  };
+  
   render() {
     return (
       <Container>
@@ -120,12 +104,6 @@ class HomeMarket extends Component {
                     Favorites
                   </Tab>
                   <Tab
-                    onClick={this.clickTabBIXMarket}
-                    style={this.state.styleBIXMarket}
-                  >
-                    BIX Market
-                  </Tab>
-                  <Tab
                     onClick={this.clickTabETHMarket}
                     style={this.state.styleETHMarket}
                   >
@@ -138,16 +116,10 @@ class HomeMarket extends Component {
                     BTC Market
                   </Tab>
                   <Tab
-                    onClick={this.clickTabUSTDTMarket}
+                    onClick={this.clickTabUSDTMarket}
                     style={this.state.styleUSTDTMarket}
                   >
                     USTDT Market
-                  </Tab>
-                  <Tab
-                    onClick={this.clickTabDaiMarket}
-                    style={this.state.styleDAIMarket}
-                  >
-                    DAI Market
                   </Tab>
                 </BoxTabsContent>
                 <div>
@@ -181,7 +153,7 @@ class HomeMarket extends Component {
                       <span>Pair</span>
                     </Column2>
                     <Column1 />
-                    <Column2>
+                    <Column2 style={{textAlign: 'center'}}>
                       <span>Last Price</span>
                     </Column2>
                     <Column3>24h Change</Column3>
@@ -193,102 +165,9 @@ class HomeMarket extends Component {
               </Table>
             </div>
           </div>
-
-          <Table>
-            <Colgroup>
-              <col width="48" />
-              <col width="92" />
-              <col width="40" />
-              <col width="200" />
-              <col width="198" />
-              <col width="188" />
-              <col width="188" />
-              <col width="198" />
-              <col width="48" />
-            </Colgroup>
-            <TBody>
-              <TableRow>
-                <TD1></TD1>
-                <TD2>ETD/DAI</TD2>
-                <TD1></TD1>
-                <TD2>412.7249/412.51USD</TD2>
-                <TD3>-9.6063 -2.27%</TD3>
-                <TD4>424.8338</TD4>
-                <TD4>399.9998</TD4>
-                <TD4>134</TD4>
-              </TableRow>
-              <TableRow>
-                <TD1></TD1>
-                <TD2>ETD/DAI</TD2>
-                <TD1></TD1>
-                <TD2>412.7249/412.51USD</TD2>
-                <TD3>-9.6063 -2.27%</TD3>
-                <TD4>424.8338</TD4>
-                <TD4>399.9998</TD4>
-                <TD4>134</TD4>
-              </TableRow>
-              <TableRow>
-                <TD1></TD1>
-                <TD2>ETD/DAI</TD2>
-                <TD1></TD1>
-                <TD2>412.7249/412.51USD</TD2>
-                <TD3>-9.6063 -2.27%</TD3>
-                <TD4>424.8338</TD4>
-                <TD4>399.9998</TD4>
-                <TD4>134</TD4>
-              </TableRow>
-              <TableRow>
-                <TD1></TD1>
-                <TD2>ETD/DAI</TD2>
-                <TD1></TD1>
-                <TD2>412.7249/412.51USD</TD2>
-                <TD3>-9.6063 -2.27%</TD3>
-                <TD4>424.8338</TD4>
-                <TD4>399.9998</TD4>
-                <TD4>134</TD4>
-              </TableRow>
-              <TableRow>
-                <TD1></TD1>
-                <TD2>ETD/DAI</TD2>
-                <TD1></TD1>
-                <TD2>412.7249/412.51USD</TD2>
-                <TD3>-9.6063 -2.27%</TD3>
-                <TD4>424.8338</TD4>
-                <TD4>399.9998</TD4>
-                <TD4>134</TD4>
-              </TableRow>
-              <TableRow>
-                <TD1></TD1>
-                <TD2>ETD/DAI</TD2>
-                <TD1></TD1>
-                <TD2>412.7249/412.51USD</TD2>
-                <TD3>-9.6063 -2.27%</TD3>
-                <TD4>424.8338</TD4>
-                <TD4>399.9998</TD4>
-                <TD4>134</TD4>
-              </TableRow>
-              <TableRow>
-                <TD1></TD1>
-                <TD2>ETD/DAI</TD2>
-                <TD1></TD1>
-                <TD2>412.7249/412.51USD</TD2>
-                <TD3>-9.6063 -2.27%</TD3>
-                <TD4>424.8338</TD4>
-                <TD4>399.9998</TD4>
-                <TD4>134</TD4>
-              </TableRow>
-              <TableRow>
-                <TD1></TD1>
-                <TD2>ETD/DAI</TD2>
-                <TD1></TD1>
-                <TD2>412.7249/412.51USD</TD2>
-                <TD3>-9.6063 -2.27%</TD3>
-                <TD4>424.8338</TD4>
-                <TD4>399.9998</TD4>
-                <TD4>134</TD4>
-              </TableRow>
-            </TBody>
-          </Table>
+          {this.state.isETHClicked && (<TableETH />)}
+          {this.state.isBTCClicked && (<TableBTC />)}
+          {this.state.isUSDTClicked && (<TableUSDT />)}
         </MaxWidth>
       </Container>
     );

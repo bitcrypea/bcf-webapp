@@ -5,13 +5,8 @@ import HomeBanner from "../../components/HomeBanner/HomeBanner";
 import PriceCoin from "../../components/PriceCoin/PriceCoin";
 import HomeMarket from "../../components/HomeMarket/HomeMarket";
 import Footer from "../../components/Footer/Footer";
-import socketIOClient from "socket.io-client";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
