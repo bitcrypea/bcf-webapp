@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../../components/Header/Header";
+import socketIOClient from "socket.io-client";
 import TradingViewWidget, { Themes } from "react-tradingview-widget";
 import {
   Main,
@@ -26,7 +27,21 @@ import PriceTable from "../../components/PriceTable/PriceTable";
 import TradeHistory from "../../components/TradeHistory/TradeHistory";
 
 class Exchange extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cartBTCUSDT: {},
+      endpoint: "https://socketbitchip.herokuapp.com/"
+    };
+  }
+  componentDidMount() {
+    const { endpoint } = this.state;
+    const socket = socketIOClient(endpoint);
+    socket.on("cartBTCUSDT", data => this.setState({ cartBTCUSDT: JSON.parse(data) }));  
+  }
   render() {
+    const {cartBTCUSDT} = this.state;
     return (
       <div>
         <Header />
@@ -36,29 +51,29 @@ class Exchange extends Component {
               <ExchangeHeader>
                 <RowFlex>
                   <ColumnFlex>
-                    <HeaderTitle1>ETH / DAI</HeaderTitle1>
+                    <HeaderTitle1>BTC / USDT</HeaderTitle1>
                     <HeaderContent1>Pair Markets</HeaderContent1>
                   </ColumnFlex>
                   <ColumnFlex style={{ marginLeft: 50 }}>
-                    <HeaderTitle2>415.6000 $415.59</HeaderTitle2>
+                    <HeaderTitle2>{cartBTCUSDT.c}</HeaderTitle2>
                     <HeaderContent2>Last Price</HeaderContent2>
                   </ColumnFlex>
                   <ColumnFlex style={{ marginLeft: 50 }}>
-                    <HeaderTitle2 style={{ color: "#66f282" }}>
-                      3.2957 +0.80%
+                    <HeaderTitle2>
+                    {Math.round(parseFloat(cartBTCUSDT.P) * 100) / 100}%
                     </HeaderTitle2>
                     <HeaderContent2>24h Change</HeaderContent2>
                   </ColumnFlex>
                   <ColumnFlex style={{ marginLeft: 50 }}>
-                    <HeaderTitle2>420.4301 $420.42</HeaderTitle2>
+                    <HeaderTitle2>{cartBTCUSDT.h}</HeaderTitle2>
                     <HeaderContent2>24h High</HeaderContent2>
                   </ColumnFlex>
                   <ColumnFlex style={{ marginLeft: 50 }}>
-                    <HeaderTitle2>397.7163 $397.71</HeaderTitle2>
+                    <HeaderTitle2>{cartBTCUSDT.h}</HeaderTitle2>
                     <HeaderContent2>24h Low</HeaderContent2>
                   </ColumnFlex>
                   <ColumnFlex style={{ marginLeft: 50 }}>
-                    <HeaderTitle2>46 ETH</HeaderTitle2>
+                    <HeaderTitle2>{cartBTCUSDT.h}</HeaderTitle2>
                     <HeaderContent2>24h Volume</HeaderContent2>
                   </ColumnFlex>
                 </RowFlex>
@@ -76,9 +91,10 @@ class Exchange extends Component {
                 <ChartContainer>
                   <Chart>
                     <TradingViewWidget
-                      symbol="NASDAQ:AAPL"
+                      symbol="BTCUSDT"
                       theme={Themes.DARK}
                       locale="en"
+                      interval="1"
                       autosize
                     />
                   </Chart>
