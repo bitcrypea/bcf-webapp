@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Dropdown, Button } from "antd";
+import { Menu, Dropdown } from "antd";
 import { Link } from "react-router-dom";
 
 import {
@@ -19,15 +19,6 @@ const menuTokenTrading = (
   <Menu>
     <Menu.Item>
       <Link to="/exchange">Exchange</Link>
-    </Menu.Item>
-    <Menu.Item>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="#"
-      >
-        Full Screen
-      </a>
     </Menu.Item>
   </Menu>
 );
