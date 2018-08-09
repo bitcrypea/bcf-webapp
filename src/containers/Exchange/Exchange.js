@@ -32,6 +32,8 @@ class Exchange extends Component {
 
     this.state = {
       cartBTCUSDT: {},
+      orderBook: {},
+      trades: [],
       endpoint: "https://socketbitchip.herokuapp.com/"
     };
   }
@@ -39,9 +41,11 @@ class Exchange extends Component {
     const { endpoint } = this.state;
     const socket = socketIOClient(endpoint);
     socket.on("cartBTCUSDT", data => this.setState({ cartBTCUSDT: JSON.parse(data) }));  
+    socket.on("orderBook", data => this.setState({ orderBook: JSON.parse(data) }));  
+    socket.on("trades", data => this.setState({ trades: data.reverse() }));  
   }
   render() {
-    const {cartBTCUSDT} = this.state;
+    const {cartBTCUSDT, orderBook, trades} = this.state;
     return (
       <div>
         <Header />
@@ -85,7 +89,7 @@ class Exchange extends Component {
                     Price
                   </HeaderDepth>
                   <ContainerPrice>
-                    <PriceTable />
+                    <PriceTable orderBook={orderBook} />
                   </ContainerPrice>
                 </DepthMain>
                 <ChartContainer>
@@ -104,7 +108,7 @@ class Exchange extends Component {
                     Trading History
                   </HeaderDepth>
                   <ContainerTradeHistory>
-                    <TradeHistory />
+                    <TradeHistory trades={trades}/>
                   </ContainerTradeHistory>
                 </LastestPriceMain>
               </Content>
