@@ -25,7 +25,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "lint": "standard",
-    "test": "react-app-rewired test --env=jsdom",
+    "test": "npm run lint && react-scripts test --env-jsdom",
     "eject": "react-scripts eject",
     "postinstall": "react-app-rewired build"
   },
