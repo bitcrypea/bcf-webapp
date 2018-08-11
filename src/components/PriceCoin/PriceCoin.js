@@ -19,9 +19,6 @@ class PriceCoin extends Component {
     }
   }
   componentDidMount () {
-    
-  }
-  render () {
     const { endpoint } = this.state
     const socket = socketIOClient(endpoint)
     socket.on('cartETHBTC', data => this.setState({ cartETHBTC: JSON.parse(data) }))
@@ -30,6 +27,8 @@ class PriceCoin extends Component {
     socket.on('cartADABTC', data => this.setState({ cartADABTC: JSON.parse(data) }))
     socket.on('cartXRPBTC', data => this.setState({ cartXRPBTC: JSON.parse(data) }))
     socket.on('cartBCCBTC', data => this.setState({ cartBCCBTC: JSON.parse(data) }))
+  }
+  render () {
     const { cartETHBTC, cartBTCUSDT, cartETCBTC, cartADABTC, cartBCCBTC, cartXRPBTC } = this.state
     return (
       <div style={{width: '100vw'}}>
