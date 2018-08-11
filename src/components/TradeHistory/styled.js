@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   box-shadow: inset 0 -1px 0 0 #363c47;
@@ -14,7 +14,7 @@ export const Container = styled.div`
     margin-bottom: 8px;
     margin-left: 8px;
     margin-right: 12px;
-`;
+`
 
 export const BoxTabContent = styled.div`
     width: 100%;
@@ -30,4 +30,4 @@ export const Tab = styled.span`
     cursor: pointer;
     padding-top: 4px;
     padding-bottom: 4px;
-`   
+`

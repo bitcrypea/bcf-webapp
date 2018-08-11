@@ -1,16 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
   padding: 40px 0;
   background-color: #f8f8fb;
-`;
+`
 
 export const MaxWidth = styled.div`
   width: 1200px;
   padding: 0 30px;
   margin: 0 auto;
-`;
+`
 
 export const TabContainer = styled.div`
   box-shadow: inset 0 -1px 0 0 #e6eaf0;
@@ -22,11 +22,11 @@ export const TabContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 16px;
-`;
+`
 
 export const BoxTabsContent = styled.div`
   display: block;
-`;
+`
 
 export const Tab = styled.span`
   padding: 8px 8px 6px;
@@ -41,28 +41,28 @@ export const Tab = styled.span`
   &:hover {
     color: #659aea;
   }
-`;
+`
 
 export const TableHeaderInput = styled.div`
   color: #666;
   list-style-type: none;
-`;
+`
 
 export const NewInput = styled.div`
   width: 200px;
   font-size: 14px;
-`;
+`
 
 export const BoxInputBox = styled.div`
   position: relative;
-`;
+`
 
 export const BoxInputPrefix = styled.span`
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-`;
+`
 
 export const IconMySearch = styled.div`
   color: #a5adb8;
@@ -82,7 +82,7 @@ export const IconMySearch = styled.div`
     line-height: 1em;
     -webkit-font-smoothing: antialiased;
   }
-`;
+`
 
 export const InputSearch = styled.input`
   padding: 0 8px 0 22px;
@@ -99,7 +99,7 @@ export const InputSearch = styled.input`
   font-size: 100%;
   line-height: 1.15;
   margin-bottom: 8px;
-`;
+`
 
 export const Table = styled.table`
   table-layout: fixed;
@@ -113,12 +113,12 @@ export const Table = styled.table`
   display: table;
   border-collapse: separate;
   border-color: grey;
-`;
+`
 
 export const Colgroup = styled.colgroup`
   display: table-column-group;
   text-align: right;
-`;
+`
 
 export const THead = styled.thead`
   font-size: 12px;
@@ -128,7 +128,7 @@ export const THead = styled.thead`
   text-align: right;
   border-collapse: separate;
   border-spacing: 2px;
-`;
+`
 
 export const HomeTH = styled.tr`
   font-weight: 400;
@@ -137,14 +137,14 @@ export const HomeTH = styled.tr`
   vertical-align: inherit;
   border-color: inherit;
   font-size: 12px;
-`;
+`
 
 export const Column1 = styled.th`
   padding: inherit;
   color: #9aa9ba;
   font-weight: 400;
   text-align: left;
-`;
+`
 
 export const Column2 = styled.th`
   padding: inherit;
@@ -152,27 +152,27 @@ export const Column2 = styled.th`
   font-weight: 400;
   text-align: left;
   cursor: pointer;
-`;
+`
 
 export const Column3 = styled.th`
   padding: inherit;
   color: #9aa9ba;
   font-weight: 400;
   cursor: pointer;
-`;
+`
 
 export const Column4 = styled.th`
   padding: inherit;
   color: #9aa9ba;
   font-weight: 400;
-`;
+`
 
-export const JSTableBox = styled.div``;
+export const JSTableBox = styled.div``
 
 export const TBody = styled.tbody`
   font-size: 14px;
   text-align: right;
-`;
+`
 
 export const TableRow = styled.tr`
   padding: 8px 0;
@@ -183,7 +183,7 @@ export const TableRow = styled.tr`
   &:nth-child(2n-1) {
     background-color: #fff;
   }
-`;
+`
 
 export const TD1 = styled.td`
   cursor: pointer;
@@ -191,7 +191,7 @@ export const TD1 = styled.td`
   padding: inherit;
   font-size: 18px;
   text-align: center;
-`;
+`
 
 export const TD2 = styled.td`
   padding: inherit;

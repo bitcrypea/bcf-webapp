@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import socketIOClient from "socket.io-client";
-import { TD1, TD2, TD3, TD4, Colgroup, Table, TBody, TableRow } from "./styled";
+import React, { Component } from 'react'
+import socketIOClient from 'socket.io-client'
+import { TD1, TD2, TD3, TD4, Colgroup, Table, TBody, TableRow } from './styled'
 
 class TableETH extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       coinHOTETH: {},
@@ -17,37 +17,37 @@ class TableETH extends Component {
       coinEOSETH: {},
       coinTRXETH: {},
       coinZILETH: {},
-      endpoint: "https://socketbitchip.herokuapp.com/"
-    };
+      endpoint: 'https://socketbitchip.herokuapp.com/'
+    }
   }
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("coinHOTETH", data => this.setState({ coinHOTETH: JSON.parse(data) }));
-    socket.on("coinNASETH", data => this.setState({ coinNASETH: JSON.parse(data) }));
-    socket.on("coinETCETH", data => this.setState({ coinETCETH: JSON.parse(data) }));
-    socket.on("coinVETETH", data => this.setState({ coinVETETH: JSON.parse(data) }));
-    socket.on("coinADAETH", data => this.setState({ coinADAETH: JSON.parse(data) }));
-    socket.on("coinBNBETH", data => this.setState({ coinBNBETH: JSON.parse(data) }));
-    socket.on("coinXRPETH", data => this.setState({ coinXRPETH: JSON.parse(data) }));
-    socket.on("coinEOSETH", data => this.setState({ coinEOSETH: JSON.parse(data) }));
-    socket.on("coinTRXETH", data => this.setState({ coinTRXETH: JSON.parse(data) }));
-    socket.on("coinZILETH", data => this.setState({ coinZILETH: JSON.parse(data) }));
+  componentDidMount () {
+    const { endpoint } = this.state
+    const socket = socketIOClient(endpoint)
+    socket.on('coinHOTETH', data => this.setState({ coinHOTETH: JSON.parse(data) }))
+    socket.on('coinNASETH', data => this.setState({ coinNASETH: JSON.parse(data) }))
+    socket.on('coinETCETH', data => this.setState({ coinETCETH: JSON.parse(data) }))
+    socket.on('coinVETETH', data => this.setState({ coinVETETH: JSON.parse(data) }))
+    socket.on('coinADAETH', data => this.setState({ coinADAETH: JSON.parse(data) }))
+    socket.on('coinBNBETH', data => this.setState({ coinBNBETH: JSON.parse(data) }))
+    socket.on('coinXRPETH', data => this.setState({ coinXRPETH: JSON.parse(data) }))
+    socket.on('coinEOSETH', data => this.setState({ coinEOSETH: JSON.parse(data) }))
+    socket.on('coinTRXETH', data => this.setState({ coinTRXETH: JSON.parse(data) }))
+    socket.on('coinZILETH', data => this.setState({ coinZILETH: JSON.parse(data) }))
   }
-  render() {
-    const { coinHOTETH, coinNASETH, coinETCETH, coinVETETH, coinADAETH, coinBNBETH, coinXRPETH, coinEOSETH, coinTRXETH, coinZILETH } = this.state;
+  render () {
+    const { coinHOTETH, coinNASETH, coinETCETH, coinVETETH, coinADAETH, coinBNBETH, coinXRPETH, coinEOSETH, coinTRXETH, coinZILETH } = this.state
     return (
       <Table>
         <Colgroup>
-          <col width="48" />
-          <col width="92" />
-          <col width="40" />
-          <col width="200" />
-          <col width="198" />
-          <col width="188" />
-          <col width="188" />
-          <col width="198" />
-          <col width="48" />
+          <col width='48' />
+          <col width='92' />
+          <col width='40' />
+          <col width='200' />
+          <col width='198' />
+          <col width='188' />
+          <col width='188' />
+          <col width='198' />
+          <col width='48' />
         </Colgroup>
         <TBody>
           <TableRow>
@@ -152,8 +152,8 @@ class TableETH extends Component {
           </TableRow>
         </TBody>
       </Table>
-    );
+    )
   }
 }
 
-export default TableETH;
+export default TableETH

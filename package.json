@@ -2,6 +2,13 @@
   "name": "design",
   "version": "0.1.0",
   "private": true,
+  "standard": {
+    "globals": [
+      "fetch",
+      "it",
+      "URL"
+    ]
+  },
   "dependencies": {
     "antd": "^3.7.3",
     "express": "^4.16.3",
@@ -17,6 +24,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "lint": "standard",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "postinstall": "react-app-rewired build"
@@ -24,6 +32,7 @@
   "devDependencies": {
     "babel-plugin-import": "^1.8.0",
     "react-app-rewire-less": "^2.1.2",
-    "react-app-rewired": "^1.5.2"
+    "react-app-rewired": "^1.5.2",
+    "standard": "^11.0.1"
   }
 }

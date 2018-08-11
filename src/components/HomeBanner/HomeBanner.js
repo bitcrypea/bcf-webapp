@@ -1,17 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
-  Container,
-} from "./styled";
-
+  Container
+} from './styled'
 
 class HomeBanner extends Component {
-  render() {
+  render () {
     return (
-      <Container>
-        
-      </Container>
-    );
+      <Container />
+    )
   }
 }
 
-export default HomeBanner;
+export default HomeBanner

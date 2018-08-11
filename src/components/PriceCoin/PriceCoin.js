@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
-  Container, HomeNewMarket, Item, Column, Name, Percent, Row, Span1, Span2, Volumn,
-} from "./styled";
-import socketIOClient from "socket.io-client";
+  Container, HomeNewMarket, Item, Column, Name, Percent, Row, Span1, Span2, Volumn
+} from './styled'
+import socketIOClient from 'socket.io-client'
 
 class PriceCoin extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       cartETHBTC: {},
@@ -15,21 +15,22 @@ class PriceCoin extends Component {
       cartADABTC: {},
       cartXRPBTC: {},
       cartBCCBTC: {},
-      endpoint: "https://socketbitchip.herokuapp.com/"
-    };
+      endpoint: 'https://socketbitchip.herokuapp.com/'
+    }
   }
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("cartETHBTC", data => this.setState({ cartETHBTC: JSON.parse(data) }));
-    socket.on("cartBTCUSDT", data => this.setState({ cartBTCUSDT: JSON.parse(data) }));
-    socket.on("cartETCBTC", data => this.setState({ cartETCBTC: JSON.parse(data) }));
-    socket.on("cartADABTC", data => this.setState({ cartADABTC: JSON.parse(data) }));
-    socket.on("cartXRPBTC", data => this.setState({ cartXRPBTC: JSON.parse(data) }));
-    socket.on("cartBCCBTC", data => this.setState({ cartBCCBTC: JSON.parse(data) }));
+  componentDidMount () {
+    
   }
-  render() {
-    const { cartETHBTC, cartBTCUSDT, cartETCBTC, cartADABTC, cartBCCBTC, cartXRPBTC } = this.state;
+  render () {
+    const { endpoint } = this.state
+    const socket = socketIOClient(endpoint)
+    socket.on('cartETHBTC', data => this.setState({ cartETHBTC: JSON.parse(data) }))
+    socket.on('cartBTCUSDT', data => this.setState({ cartBTCUSDT: JSON.parse(data) }))
+    socket.on('cartETCBTC', data => this.setState({ cartETCBTC: JSON.parse(data) }))
+    socket.on('cartADABTC', data => this.setState({ cartADABTC: JSON.parse(data) }))
+    socket.on('cartXRPBTC', data => this.setState({ cartXRPBTC: JSON.parse(data) }))
+    socket.on('cartBCCBTC', data => this.setState({ cartBCCBTC: JSON.parse(data) }))
+    const { cartETHBTC, cartBTCUSDT, cartETCBTC, cartADABTC, cartBCCBTC, cartXRPBTC } = this.state
     return (
       <div style={{width: '100vw'}}>
         <Container>
@@ -38,7 +39,7 @@ class PriceCoin extends Component {
               <Column>
                 <Row>
                   <Name>ETH/BTC</Name>
-                  <Percent>{Math.round(cartETHBTC["P"] * 100) / 100}%</Percent>
+                  <Percent>{Math.round(cartETHBTC['P'] * 100) / 100}%</Percent>
                 </Row>
                 <Row style={{paddingTop: 5}}>
                   <Span1>{cartETHBTC.c}</Span1>
@@ -53,7 +54,7 @@ class PriceCoin extends Component {
               <Column>
                 <Row>
                   <Name>ETC/BTC</Name>
-                  <Percent>{Math.round(cartETCBTC["P"] * 100) / 100}%</Percent>
+                  <Percent>{Math.round(cartETCBTC['P'] * 100) / 100}%</Percent>
                 </Row>
                 <Row style={{paddingTop: 5}}>
                   <Span1>{cartETCBTC.c}</Span1>
@@ -68,7 +69,7 @@ class PriceCoin extends Component {
               <Column>
                 <Row>
                   <Name>ADA/BTC</Name>
-                  <Percent>{Math.round(cartADABTC["P"] * 100) / 100}%</Percent>
+                  <Percent>{Math.round(cartADABTC['P'] * 100) / 100}%</Percent>
                 </Row>
                 <Row style={{paddingTop: 5}}>
                   <Span1>{cartADABTC.c}</Span1>
@@ -83,7 +84,7 @@ class PriceCoin extends Component {
               <Column>
                 <Row>
                   <Name>XRB/BTC</Name>
-                  <Percent>{Math.round(cartXRPBTC["P"] * 100) / 100}%</Percent>
+                  <Percent>{Math.round(cartXRPBTC['P'] * 100) / 100}%</Percent>
                 </Row>
                 <Row style={{paddingTop: 5}}>
                   <Span1>{cartXRPBTC.c}</Span1>
@@ -98,7 +99,7 @@ class PriceCoin extends Component {
               <Column>
                 <Row>
                   <Name>ADA/BTC</Name>
-                  <Percent>{Math.round(cartBCCBTC["P"] * 100) / 100}%</Percent>
+                  <Percent>{Math.round(cartBCCBTC['P'] * 100) / 100}%</Percent>
                 </Row>
                 <Row style={{paddingTop: 5}}>
                   <Span1>{cartBCCBTC.c}</Span1>
@@ -112,8 +113,8 @@ class PriceCoin extends Component {
           </HomeNewMarket>
         </Container>
       </div>
-    );
+    )
   }
 }
 
-export default PriceCoin;
+export default PriceCoin

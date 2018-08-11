@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const TradingContainer = styled.div`
   margin-top: 8px;
   padding-bottom: 16px;
   line-height: 1.5;
-`;
+`
 
 export const TabHeader = styled.div`
   font-size: 14px;
-`;
+`
 
 export const Content = styled.div`
   list-style-type: none;
@@ -18,7 +18,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-top: 16px;
-`;
+`
 
 export const ColumnOne = styled.div`
   color: #fff;
@@ -28,7 +28,7 @@ export const ColumnOne = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 export const ColumnTwo = styled.div`
   box-shadow: inset 0 -2px 0 0 #363c47;
@@ -41,19 +41,19 @@ export const ColumnTwo = styled.div`
   justify-content: space-between;
   margin-left: 16px;
   margin-right: 16px;
-`;
+`
 
 export const ContainerColumnOne = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-`;
+`
 
 export const ContainerColumnTwo = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 100%;
-`;
+`
 
 export const Span = styled.span`
   width: 50%;
@@ -65,7 +65,7 @@ export const Span = styled.span`
   box-sizing: border-box;
   display: inline-block;
   cursor: pointer;
-`;
+`
 
 export const SpanTwo = styled.span`
   padding: 8px 8px 6px;
@@ -74,7 +74,7 @@ export const SpanTwo = styled.span`
   cursor: pointer;
   padding-left: 20px;
   padding-right: 20px;
-`;
+`
 
 export const LeftColumn = styled.div`
   flex: 1;
@@ -82,20 +82,20 @@ export const LeftColumn = styled.div`
   padding-right: 16px;
   padding-left: 16px;
   border-right: 1px dashed #363c47;
-`;
+`
 
 export const RightColumn = styled.div`
   flex: 1;
   width: 300px;
   padding-left: 16px;
   padding-right: 16px;
-`;
+`
 
 export const TraderBoxList = styled.ul`
   padding: 0;
   margin: 0;
   list-style-type: none;
-`;
+`
 
 export const LimitColumnOne = styled.li`
   justify-content: space-between;
@@ -107,22 +107,22 @@ export const LimitColumnOne = styled.li`
   align-items: center;
   white-space: nowrap;
   padding-bottom: 16px;
-`;
+`
 
 export const LimitColumnOneLeft = styled.div`
   font-size: 14px;
   font-weight: 700px;
-`;
+`
 
 export const LimitColumnOneRight = styled.div`
   font-size: 12px;
   color: #a5adb8;
-`;
+`
 
 export const LimitColumnTwo = styled.li`
   font-size: 14px;
   color: #a5adb8;
-`;
+`
 
 export const LimitColumnTwoLeft = styled.span`
   position: absolute;
@@ -130,7 +130,7 @@ export const LimitColumnTwoLeft = styled.span`
   top: 50%;
   transform: translateY(-50%);
   padding-left: 8px;
-`;
+`
 
 export const LimitColumnTwoRight = styled.div`
   z-index: 1;
@@ -139,7 +139,7 @@ export const LimitColumnTwoRight = styled.div`
   right: 0;
   transform: translateY(-50%);
   padding-right: 8px;
-`;
+`
 
 export const InputLimitTwo = styled.input`
   padding-left: 80px;
@@ -154,7 +154,7 @@ export const InputLimitTwo = styled.input`
   box-sizing: border-box;
   width: 100%;
   border-radius: 3px;
-`;
+`
 
 export const LimitColumnThree = styled.li`
   padding-left: 80px;
@@ -162,7 +162,7 @@ export const LimitColumnThree = styled.li`
   font-size: 12px;
   color: #a5adb8;
   padding-bottom: 24px;
-`;
+`
 
 export const LimitColumnFive = styled.li`
   list-style-type: none;
