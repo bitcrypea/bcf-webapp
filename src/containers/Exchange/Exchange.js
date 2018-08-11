@@ -20,11 +20,12 @@ import {
   Chart,
   HeaderDepth,
   ContainerPrice,
-  ContainerTradeHistory
+  ContainerTradeHistory,
 } from "./styled";
 import Footer from "../../components/Footer/Footer";
 import PriceTable from "../../components/PriceTable/PriceTable";
 import TradeHistory from "../../components/TradeHistory/TradeHistory";
+import Trading from "../../components/Trading/Trading";
 
 class Exchange extends Component {
   constructor(props) {
@@ -95,13 +96,14 @@ class Exchange extends Component {
                 <ChartContainer>
                   <Chart>
                     <TradingViewWidget
-                      symbol="BTCUSDT"
+                      symbol="BINANCE:BTCUSDT"
                       theme={Themes.DARK}
                       locale="en"
                       interval="1"
                       autosize
                     />
                   </Chart>
+                  <Trading/>
                 </ChartContainer>
                 <LastestPriceMain>
                   <HeaderDepth>

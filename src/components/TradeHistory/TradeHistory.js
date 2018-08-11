@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, BoxTabContent, Tab } from "./styled";
+import { Container, BoxTabContent } from "./styled";
 import { Table, TdContent } from "../PriceTable/styled";
 
 const active = {

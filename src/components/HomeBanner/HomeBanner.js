@@ -3,6 +3,7 @@ import {
   Container,
 } from "./styled";
 
+
 class HomeBanner extends Component {
   render() {
     return (

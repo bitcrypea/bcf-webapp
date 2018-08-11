@@ -132,3 +132,4 @@ export const ContainerTradeHistory = styled.div`
   color: #fff;
   font-size: 12px;
 `
+
