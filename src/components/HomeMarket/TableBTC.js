@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import socketIOClient from "socket.io-client";
-import { TD1, TD2, TD3, TD4, Colgroup, Table, TBody, TableRow } from "./styled";
+import React, { Component } from 'react'
+import socketIOClient from 'socket.io-client'
+import { TD1, TD2, TD3, TD4, Colgroup, Table, TBody, TableRow } from './styled'
 
 class TableBTC extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       coinETCBTC: {},
@@ -17,37 +17,37 @@ class TableBTC extends Component {
       coinBCCBTC: {},
       coinLTCBTC: {},
       coinADABTC: {},
-      endpoint: "https://socketbitchip.herokuapp.com/"
-    };
+      endpoint: 'https://socketbitchip.herokuapp.com/'
+    }
   }
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("coinETCBTC", data => this.setState({ coinETCBTC: JSON.parse(data) }));
-    socket.on("coinETHBTC", data => this.setState({ coinETHBTC: JSON.parse(data) }));
-    socket.on("coinEOSBTC", data => this.setState({ coinEOSBTC: JSON.parse(data) }));
-    socket.on("coinXRPBTC", data => this.setState({ coinXRPBTC: JSON.parse(data) }));
-    socket.on("coinBNBBTC", data => this.setState({ coinBNBBTC: JSON.parse(data) }));
-    socket.on("coinOSTBTC", data => this.setState({ coinOSTBTC: JSON.parse(data) }));
-    socket.on("coinXLMBTC", data => this.setState({ coinXLMBTC: JSON.parse(data) }));
-    socket.on("coinBCCBTC", data => this.setState({ coinBCCBTC: JSON.parse(data) }));
-    socket.on("coinLTCBTC", data => this.setState({ coinLTCBTC: JSON.parse(data) }));
-    socket.on("coinADABTC", data => this.setState({ coinADABTC: JSON.parse(data) }));
+  componentDidMount () {
+    const { endpoint } = this.state
+    const socket = socketIOClient(endpoint)
+    socket.on('coinETCBTC', data => this.setState({ coinETCBTC: JSON.parse(data) }))
+    socket.on('coinETHBTC', data => this.setState({ coinETHBTC: JSON.parse(data) }))
+    socket.on('coinEOSBTC', data => this.setState({ coinEOSBTC: JSON.parse(data) }))
+    socket.on('coinXRPBTC', data => this.setState({ coinXRPBTC: JSON.parse(data) }))
+    socket.on('coinBNBBTC', data => this.setState({ coinBNBBTC: JSON.parse(data) }))
+    socket.on('coinOSTBTC', data => this.setState({ coinOSTBTC: JSON.parse(data) }))
+    socket.on('coinXLMBTC', data => this.setState({ coinXLMBTC: JSON.parse(data) }))
+    socket.on('coinBCCBTC', data => this.setState({ coinBCCBTC: JSON.parse(data) }))
+    socket.on('coinLTCBTC', data => this.setState({ coinLTCBTC: JSON.parse(data) }))
+    socket.on('coinADABTC', data => this.setState({ coinADABTC: JSON.parse(data) }))
   }
-  render() {
-    const { coinETCBTC, coinETHBTC, coinEOSBTC, coinXRPBTC, coinBNBBTC, coinOSTBTC, coinXLMBTC, coinBCCBTC, coinLTCBTC, coinADABTC } = this.state;
+  render () {
+    const { coinETCBTC, coinETHBTC, coinEOSBTC, coinXRPBTC, coinBNBBTC, coinOSTBTC, coinXLMBTC, coinBCCBTC, coinLTCBTC, coinADABTC } = this.state
     return (
       <Table>
         <Colgroup>
-          <col width="48" />
-          <col width="92" />
-          <col width="40" />
-          <col width="200" />
-          <col width="198" />
-          <col width="188" />
-          <col width="188" />
-          <col width="198" />
-          <col width="48" />
+          <col width='48' />
+          <col width='92' />
+          <col width='40' />
+          <col width='200' />
+          <col width='198' />
+          <col width='188' />
+          <col width='188' />
+          <col width='198' />
+          <col width='48' />
         </Colgroup>
         <TBody>
           <TableRow>
@@ -141,7 +141,7 @@ class TableBTC extends Component {
             <TD4>{coinLTCBTC.q}</TD4>
           </TableRow>
           <TableRow>
-            <TD1/>
+            <TD1 />
             <TD2>ADA/BTC</TD2>
             <TD1 />
             <TD2 style={{textAlign: 'center'}}>{coinADABTC.c}</TD2>
@@ -152,8 +152,8 @@ class TableBTC extends Component {
           </TableRow>
         </TBody>
       </Table>
-    );
+    )
   }
 }
 
-export default TableBTC;
+export default TableBTC

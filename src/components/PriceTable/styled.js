@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Header = styled.div`
   color: #fff;
   font-size: 12px;
-`;
+`
 
 export const Table = styled.table`
   font-family: Roboto, sans-serif;
@@ -11,11 +11,11 @@ export const Table = styled.table`
   table-layout: fixed;
   width: 100%;
   text-align: right;
-`;
+`
 
 export const TdTable = styled.td`
   color: #8a9099;
-`;
+`
 
 export const Content = styled.div`
   transition: height 0.3s;
@@ -23,7 +23,7 @@ export const Content = styled.div`
   position: relative;
   color: #fff;
   font-size: 12px;
-`;
+`
 
 export const TdContent = styled.td`
     cursor: pointer;

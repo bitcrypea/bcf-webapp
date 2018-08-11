@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.footer`
   min-width: 1260px;
@@ -6,7 +6,7 @@ export const Container = styled.footer`
   background-color: #0a1833;
   font-family: Open Sans, SF Pro Text, Helvetica Neue, Helvetica, Arial,
     sans-serif;
-`;
+`
 
 export const HomeFooter = styled.div`
   box-sizing: border-box;
@@ -14,14 +14,14 @@ export const HomeFooter = styled.div`
   color: #a5adb8;
   width: 1200px;
   margin: 0 auto;
-`;
+`
 
 export const HomeFooterT = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 40px;
   color: #a5adb8;
-`;
+`
 
 export const NewFooter = styled.div`
   width: 100%;
@@ -31,12 +31,12 @@ export const NewFooter = styled.div`
   padding: 0;
   margin: 0;
   display: flex;
-`;
+`
 
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 export const LinkColor = styled.a`
     font-weight: 500;
@@ -45,7 +45,7 @@ export const LinkColor = styled.a`
     margin: 0 0 8px;
     display: block;
     background-color: transparent;
-`;
+`
 
 export const H6 = styled.h6`
     margin: 0 0 8px;

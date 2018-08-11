@@ -2,15 +2,26 @@
   "name": "design",
   "version": "0.1.0",
   "private": true,
+  "standard": {
+    "globals": [
+      "fetch",
+      "it",
+      "URL"
+    ]
+  },
   "dependencies": {
     "antd": "^3.7.3",
     "express": "^4.16.3",
+    "lodash": "^4.17.10",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-tradingview-widget": "^1.2.5",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "socket.io-client": "^2.1.1",
     "styled-components": "^3.3.3"
   },
