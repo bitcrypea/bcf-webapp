@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from '../../components/Header/Header'
+import Header from '../../components/Common/Header/Header'
 import socketIOClient from 'socket.io-client'
 import TradingViewWidget, { Themes } from 'react-tradingview-widget'
 import {
@@ -22,10 +22,10 @@ import {
   ContainerPrice,
   ContainerTradeHistory
 } from './styled'
-import Footer from '../../components/Footer/Footer'
-import PriceTable from '../../components/PriceTable/PriceTable'
-import TradeHistory from '../../components/TradeHistory/TradeHistory'
-import Trading from '../../components/Trading/Trading'
+import Footer from '../../components/Common/Footer/Footer'
+import PriceTable from '../../components/Exchange/PriceTable/PriceTable'
+import TradeHistory from '../../components/Exchange/TradeHistory/TradeHistory'
+import Trading from '../../components/Exchange/Trading/Trading'
 
 class Exchange extends Component {
   constructor (props) {
