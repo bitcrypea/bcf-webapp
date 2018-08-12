@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.css";
-import Home from "./containers/Home/Home";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Exchange from "./containers/Exchange/Exchange";
-import { simpleAction } from "./redux/actions/simpleAction";
+import { BrowserRouter as Router } from "react-router-dom";
+import { simpleAction } from "../redux/actions/simpleAction";
+import RouterApp from "./routes";
 
 class App extends Component {
   simpleAction = event => {
@@ -13,10 +12,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Route exact path="/" component={Home} />
-          <Route path="/exchange" component={Exchange} />
-        </div>
+        <RouterApp />
       </Router>
     );
   }
