@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Dropdown } from 'antd'
 import { Link } from 'react-router-dom'
-
 import {
   NewNav,
   Container,
@@ -13,7 +12,7 @@ import {
   Register,
   MenuTitle
 } from './styled'
-import logo from '../../logo-bitcrypea.png'
+import logo from '../../../assets/images/logo-bitcrypea.png'
 
 const menuTokenTrading = (
   <Menu>
@@ -37,8 +36,8 @@ class Header extends Component {
             </Dropdown>
           </NavLeft>
           <NavRight>
-            <LoginButton>Login</LoginButton>
-            <Register>Sign up</Register>
+            <LoginButton href='/login'>Login</LoginButton>
+            <Register href='/register'>Sign up</Register>
           </NavRight>
         </NewNav>
       </Container>
