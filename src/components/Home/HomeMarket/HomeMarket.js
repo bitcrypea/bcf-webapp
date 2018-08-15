@@ -36,20 +36,22 @@ class HomeMarket extends Component {
       styleFavorites: {},
       styleETHMarket: active,
       styleBTCMarket: {},
-      styleUSTDTMarket: {},
+      styleUSDTMarket: {},
+      styleBCPMarket: {},
       isETHClicked: true,
       isBTCClicked: false,
       isUSDTClicked: false,
+      isBCPClicked: false,
     };
   }
+
   clickTabFavorites = () => {
     this.setState({
       styleFavorites: active,
-      styleBIXMarket: {},
       styleETHMarket: {},
       styleBTCMarket: {},
-      styleUSTDTMarket: {},
-      styleDAIMarket: {},
+      styleUSDTMarket: {},
+      styleBCPMarket: {},
       isETHClicked: false,
       isBTCClicked: false,
       isUSDTClicked: false,
@@ -60,7 +62,8 @@ class HomeMarket extends Component {
       styleETHMarket: active,
       styleFavorites: {},
       styleBTCMarket: {},
-      styleUSTDTMarket: {},
+      styleUSDTMarket: {},
+      styleBCPMarket: {},
       isETHClicked: true,
       isBTCClicked: false,
       isUSDTClicked: false,
@@ -71,7 +74,8 @@ class HomeMarket extends Component {
       styleBTCMarket: active,
       styleFavorites: {},
       styleETHMarket: {},
-      styleUSTDTMarket: {},
+      styleUSDTMarket: {},
+      styleBCPMarket: {},
       isETHClicked: false,
       isBTCClicked: true,
       isUSDTClicked: false,
@@ -79,16 +83,29 @@ class HomeMarket extends Component {
   };
   clickTabUSDTMarket = () => {
     this.setState({
-      styleUSTDTMarket: active,
+      styleUSDTMarket: active,
       styleFavorites: {},
       styleETHMarket: {},
       styleBTCMarket: {},
+      styleBCPMarket: {},
       isETHClicked: false,
       isBTCClicked: false,
       isUSDTClicked: true,
     });
   };
-  
+
+  clickTabBCPMarket = () => {
+    this.setState({
+      styleUSDTMarket: {},
+      styleFavorites: {},
+      styleETHMarket: {},
+      styleBTCMarket: {},
+      styleBCPMarket: active,
+      isETHClicked: false,
+      isBTCClicked: false,
+      isUSDTClicked: false,
+    });
+  };
   render() {
     return (
       <Container>
@@ -117,9 +134,15 @@ class HomeMarket extends Component {
                   </Tab>
                   <Tab
                     onClick={this.clickTabUSDTMarket}
-                    style={this.state.styleUSTDTMarket}
+                    style={this.state.styleUSDTMarket}
                   >
-                    USTDT Market
+                    USDT Market
+                  </Tab>
+                  <Tab
+                    onClick={this.clickTabBCPMarket}
+                    style={this.state.styleBCPMarket}
+                  >
+                    BCP Market
                   </Tab>
                 </BoxTabsContent>
                 <div>
