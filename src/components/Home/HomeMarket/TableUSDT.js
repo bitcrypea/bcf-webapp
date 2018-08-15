@@ -13,7 +13,6 @@ class TableUSDT extends Component {
       coinEOSUSDT: {},
       coinBCCUSDT: {},
       coinTRXUSDT: {},
-      coinBNBUSDT: {},
       coinXRPUSDT: {},
       coinADAUSDT: {},
       coinNEOUSDT: {},
@@ -29,13 +28,12 @@ class TableUSDT extends Component {
     socket.on('coinEOSUSDT', data => this.setState({ coinEOSUSDT: JSON.parse(data) }))
     socket.on('coinBCCUSDT', data => this.setState({ coinBCCUSDT: JSON.parse(data) }))
     socket.on('coinTRXUSDT', data => this.setState({ coinTRXUSDT: JSON.parse(data) }))
-    socket.on('coinBNBUSDT', data => this.setState({ coinBNBUSDT: JSON.parse(data) }))
     socket.on('coinXRPUSDT', data => this.setState({ coinXRPUSDT: JSON.parse(data) }))
     socket.on('coinADAUSDT', data => this.setState({ coinADAUSDT: JSON.parse(data) }))
     socket.on('coinNEOUSDT', data => this.setState({ coinNEOUSDT: JSON.parse(data) }))
   }
   render () {
-    const { coinBTCUSDT, coinETCUSDT, coinETHUSDT, coinEOSUSDT, coinBCCUSDT, coinTRXUSDT, coinBNBUSDT, coinXRPUSDT, coinADAUSDT, coinNEOUSDT } = this.state
+    const { coinBTCUSDT, coinETCUSDT, coinETHUSDT, coinEOSUSDT, coinBCCUSDT, coinTRXUSDT, coinXRPUSDT, coinADAUSDT, coinNEOUSDT } = this.state
     return (
       <Table>
         <Colgroup>
@@ -109,16 +107,6 @@ class TableUSDT extends Component {
             <TD4>{coinTRXUSDT.h}</TD4>
             <TD4>{coinTRXUSDT.l}</TD4>
             <TD4>{coinTRXUSDT.q}</TD4>
-          </TableRow>
-          <TableRow>
-            <TD1 />
-            <TD2>BNB/USDT</TD2>
-            <TD1 />
-            <TD2 style={{textAlign: 'center'}}>{coinBNBUSDT.c}</TD2>
-            <TD3>{Math.round(parseFloat(coinBNBUSDT.P) * 100) / 100}%</TD3>
-            <TD4>{coinBNBUSDT.h}</TD4>
-            <TD4>{coinBNBUSDT.l}</TD4>
-            <TD4>{coinBNBUSDT.q}</TD4>
           </TableRow>
           <TableRow>
             <TD1 />

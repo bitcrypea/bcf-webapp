@@ -11,7 +11,6 @@ class TableBTC extends Component {
       coinETHBTC: {},
       coinEOSBTC: {},
       coinXRPBTC: {},
-      coinBNBBTC: {},
       coinOSTBTC: {},
       coinXLMBTC: {},
       coinBCCBTC: {},
@@ -27,7 +26,6 @@ class TableBTC extends Component {
     socket.on('coinETHBTC', data => this.setState({ coinETHBTC: JSON.parse(data) }))
     socket.on('coinEOSBTC', data => this.setState({ coinEOSBTC: JSON.parse(data) }))
     socket.on('coinXRPBTC', data => this.setState({ coinXRPBTC: JSON.parse(data) }))
-    socket.on('coinBNBBTC', data => this.setState({ coinBNBBTC: JSON.parse(data) }))
     socket.on('coinOSTBTC', data => this.setState({ coinOSTBTC: JSON.parse(data) }))
     socket.on('coinXLMBTC', data => this.setState({ coinXLMBTC: JSON.parse(data) }))
     socket.on('coinBCCBTC', data => this.setState({ coinBCCBTC: JSON.parse(data) }))
@@ -35,7 +33,7 @@ class TableBTC extends Component {
     socket.on('coinADABTC', data => this.setState({ coinADABTC: JSON.parse(data) }))
   }
   render () {
-    const { coinETCBTC, coinETHBTC, coinEOSBTC, coinXRPBTC, coinBNBBTC, coinOSTBTC, coinXLMBTC, coinBCCBTC, coinLTCBTC, coinADABTC } = this.state
+    const { coinETCBTC, coinETHBTC, coinEOSBTC, coinXRPBTC, coinOSTBTC, coinXLMBTC, coinBCCBTC, coinLTCBTC, coinADABTC } = this.state
     return (
       <Table>
         <Colgroup>
@@ -89,16 +87,6 @@ class TableBTC extends Component {
             <TD4>{coinXRPBTC.h}</TD4>
             <TD4>{coinXRPBTC.l}</TD4>
             <TD4>{coinXRPBTC.q}</TD4>
-          </TableRow>
-          <TableRow>
-            <TD1 />
-            <TD2>BNB/BTC</TD2>
-            <TD1 />
-            <TD2 style={{textAlign: 'center'}}>{coinBNBBTC.c}</TD2>
-            <TD3>{Math.round(parseFloat(coinBNBBTC.P) * 100) / 100}%</TD3>
-            <TD4>{coinBNBBTC.h}</TD4>
-            <TD4>{coinBNBBTC.l}</TD4>
-            <TD4>{coinBNBBTC.q}</TD4>
           </TableRow>
           <TableRow>
             <TD1 />

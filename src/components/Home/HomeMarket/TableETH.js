@@ -12,7 +12,6 @@ class TableETH extends Component {
       coinETCETH: {},
       coinVETETH: {},
       coinADAETH: {},
-      coinBNBETH: {},
       coinXRPETH: {},
       coinEOSETH: {},
       coinTRXETH: {},
@@ -28,14 +27,13 @@ class TableETH extends Component {
     socket.on('coinETCETH', data => this.setState({ coinETCETH: JSON.parse(data) }))
     socket.on('coinVETETH', data => this.setState({ coinVETETH: JSON.parse(data) }))
     socket.on('coinADAETH', data => this.setState({ coinADAETH: JSON.parse(data) }))
-    socket.on('coinBNBETH', data => this.setState({ coinBNBETH: JSON.parse(data) }))
     socket.on('coinXRPETH', data => this.setState({ coinXRPETH: JSON.parse(data) }))
     socket.on('coinEOSETH', data => this.setState({ coinEOSETH: JSON.parse(data) }))
     socket.on('coinTRXETH', data => this.setState({ coinTRXETH: JSON.parse(data) }))
     socket.on('coinZILETH', data => this.setState({ coinZILETH: JSON.parse(data) }))
   }
   render () {
-    const { coinHOTETH, coinNASETH, coinETCETH, coinVETETH, coinADAETH, coinBNBETH, coinXRPETH, coinEOSETH, coinTRXETH, coinZILETH } = this.state
+    const { coinHOTETH, coinNASETH, coinETCETH, coinVETETH, coinADAETH, coinXRPETH, coinEOSETH, coinTRXETH, coinZILETH } = this.state
     return (
       <Table>
         <Colgroup>
@@ -99,16 +97,6 @@ class TableETH extends Component {
             <TD4>{coinADAETH.h}</TD4>
             <TD4>{coinADAETH.l}</TD4>
             <TD4>{coinADAETH.q}</TD4>
-          </TableRow>
-          <TableRow>
-            <TD1 />
-            <TD2>BNB/ETH</TD2>
-            <TD1 />
-            <TD2 style={{textAlign: 'center'}}>{coinBNBETH.c}</TD2>
-            <TD3>{Math.round(parseFloat(coinBNBETH.P) * 100) / 100}%</TD3>
-            <TD4>{coinBNBETH.h}</TD4>
-            <TD4>{coinBNBETH.l}</TD4>
-            <TD4>{coinBNBETH.q}</TD4>
           </TableRow>
           <TableRow>
             <TD1 />
