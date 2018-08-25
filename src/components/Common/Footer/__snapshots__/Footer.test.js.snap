@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders correctly 1`] = `
+<footer
+  className="sc-bdVaJa dDtpGW"
+>
+  <div
+    className="sc-bwzfXH QtULM"
+  >
+    <div
+      className="sc-htpNat wZoIb"
+    >
+      <div
+        className="sc-bxivhb ddRLJv"
+      >
+        <div
+          className="sc-ifAKCX dakLHt"
+        >
+          <a
+            className="sc-EHOje ckTWiQ"
+          >
+            Apply For Listing
+          </a>
+          <a
+            className="sc-EHOje ckTWiQ"
+          >
+            API
+          </a>
+          <a
+            className="sc-EHOje ckTWiQ"
+          >
+            Contact
+          </a>
+          <a
+            className="sc-EHOje ckTWiQ"
+          >
+            Join Us
+          </a>
+          <a
+            className="sc-EHOje ckTWiQ"
+          >
+            Fees
+          </a>
+        </div>
+        <div
+          className="sc-ifAKCX dakLHt"
+        >
+          <h6
+            className="sc-bZQynM idKyql"
+          >
+            COMPANY
+          </h6>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            News
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Token Introduction
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            FAQ
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Guides
+          </a>
+        </div>
+        <div
+          className="sc-ifAKCX dakLHt"
+        >
+          <h6
+            className="sc-bZQynM idKyql"
+          >
+            CONTACT US
+          </h6>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Telegram
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Email
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Facebook
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            WeChat
+          </a>
+        </div>
+        <div
+          className="sc-ifAKCX dakLHt"
+        >
+          <h6
+            className="sc-bZQynM idKyql"
+          >
+            SOCIAL MEDIA
+          </h6>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Facebook
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Twitter
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Reddit
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            instagram
+          </a>
+          <a
+            className="sc-gzVnrw ikktpE"
+          >
+            Medium
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+`;

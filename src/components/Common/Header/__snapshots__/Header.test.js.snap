@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<header
+  className="sc-bwzfXH cAOBC"
+>
+  <div
+    className="sc-htpNat gLXFtu"
+  >
+    <div
+      className="sc-bxivhb hUIpRx"
+    >
+      <a
+        className="sc-EHOje kdUijg"
+        href="/"
+      >
+        <img
+          className="sc-bZQynM kQBLMx"
+          height="40"
+          src="logo-bitcrypea.png"
+          width="104"
+        />
+      </a>
+      <div
+        className="ant-dropdown-trigger sc-bdVaJa kdWzoU"
+        disabled={undefined}
+        onBlur={undefined}
+        onClick={undefined}
+        onContextMenu={undefined}
+        onFocus={undefined}
+        onMouseDown={undefined}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onTouchStart={undefined}
+      >
+        Token Trading
+      </div>
+    </div>
+    <div
+      className="sc-ifAKCX diTFmv"
+    >
+      <a
+        className="sc-gzVnrw cTTjsC"
+        href="/login"
+      >
+        Login
+      </a>
+      <a
+        className="sc-htoDjs eOHVTT"
+        href="/register"
+      >
+        Sign up
+      </a>
+    </div>
+  </div>
+</header>
+`;
