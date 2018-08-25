@@ -35,7 +35,9 @@
   },
   "devDependencies": {
     "babel-plugin-import": "^1.8.0",
+    "jest": "^23.5.0",
     "react-app-rewire-less": "^2.1.2",
-    "react-app-rewired": "^1.5.2"
+    "react-app-rewired": "^1.5.2",
+    "react-test-renderer": "^16.4.2"
   }
 }
