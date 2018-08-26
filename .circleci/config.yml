@@ -18,4 +18,4 @@ jobs:
           command: |
             ./cc-test-reporter before-build
             npm test -- --coverage
-            ./cc-test-reporter after-build -r
+            ./cc-test-reporter after-build --exit-code $?
