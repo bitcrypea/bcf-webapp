@@ -5,12 +5,12 @@ import { ApolloProvider } from 'react-apollo';
 import './index.css';
 import App from './pages/App';
 import registerServiceWorker from './registerServiceWorker';
-import configureStore from './redux/store';
+import store from './redux/store';
 import apolloClient from './apollo';
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
-    <Provider store={configureStore()}>
+    <Provider store={store}>
       <App />
     </Provider>
   </ApolloProvider>,
