@@ -41,13 +41,24 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
+    "precommit": "lint-staged",
+    "test:staged": "cross-env CI=true react-scripts test --env=jsdom --findRelatedTests",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
+    "prettier": "prettier --list-different --single-quote --no-semi --write",
+    "test": "react-scripts test --bail --env=jsdom --runInBand",
     "test:coverage": "yarn test --coverage --silent --updateSnapshot",
     "eject": "react-scripts eject"
   },
+  "lint-staged": {
+    "*.js": [
+      "test:staged",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "babel-plugin-import": "^1.8.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
     "react-app-rewire-less": "^2.1.2",
     "react-app-rewired": "^1.5.2",
     "react-test-renderer": "^16.4.2"
