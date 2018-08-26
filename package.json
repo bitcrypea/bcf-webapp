@@ -22,6 +22,7 @@
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
     "lodash": "^4.17.10",
+    "prettier": "^1.14.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.4.1",
@@ -39,23 +40,28 @@
     "socket.io-client": "^2.1.1",
     "styled-components": "^3.3.3"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,scss,css}": [
+      "prettier --config .prettierrc --write",
+      "git add"
+    ]
+  },
   "scripts": {
     "start": "react-app-rewired start",
-    "precommit": "lint-staged && set CI=true && yarn test --watchAll",
+    "precommit": "lint-staged",
     "build": "react-app-rewired build",
     "test": "react-scripts test",
     "test:coverage": "yarn test --coverage --silent --updateSnapshot",
     "eject": "react-scripts eject"
   },
-  "lint-staged": {
-    "*.js": [
-      "yarn test:coverage",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "babel-plugin-import": "^1.8.0",
     "cross-env": "^5.2.0",
+    "eslint": "^4.19.1 || ^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.2",
     "react-app-rewire-less": "^2.1.2",
