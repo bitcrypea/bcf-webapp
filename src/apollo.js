@@ -8,7 +8,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
 import config from './config';
 
-const apiLink = new HttpLink({ uri: config.graphqlEndpoint 
+const apiLink = new HttpLink({ uri: config.graphqlEndpoint });
 
 const retryLink = new RetryLink({
   delay: {
