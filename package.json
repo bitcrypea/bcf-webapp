@@ -51,7 +51,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "test:staged",
+      "yarn run test:staged",
       "git add"
     ]
   },
