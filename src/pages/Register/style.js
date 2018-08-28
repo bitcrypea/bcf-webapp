@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   background: #f7f7f7;
@@ -47,7 +47,7 @@ export const Title = styled.div`
   margin-bottom: 30px;
 
   &::after {
-    content: " ";
+    content: ' ';
     display: inline-block;
     width: 100%;
     height: 1px;
@@ -71,15 +71,23 @@ export const Span = styled.span`
 
 export const FormContainer = styled.div`
   width: 330px;
-`
+`;
 
 export const FooterContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
   width: 330px;
-`
+`;
 
 export const LinkRegister = styled.a`
   font-size: 14px;
-`
+`;
+
+export const Center = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
