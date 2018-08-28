@@ -1,6 +1,6 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { Form, Input, Button } from "antd";
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { Form, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -15,8 +15,9 @@ const makeField = Component => ({
   const hasError = meta.touched && meta.invalid;
   return (
     <FormItem
+      style={{ textAlign: 'left' }}
       label={label}
-      validateStatus={hasError ? "error" : "success"}
+      validateStatus={hasError ? 'error' : 'success'}
       hasFeedback={hasFeedback && hasError}
       help={hasError && meta.error}
     >
@@ -28,7 +29,7 @@ const makeField = Component => ({
 const AInput = makeField(Input);
 
 const RegisterForm = props => {
-  const { handleSubmit, pristine                      , submitting } = props;
+  const { handleSubmit, pristine, submitting } = props;
   return (
     <Form onSubmit={handleSubmit}>
       <Field
@@ -41,18 +42,18 @@ const RegisterForm = props => {
 
       <Field
         label=""
-        name="password"
+        name="firstName"
         component={AInput}
-        type="password"
-        placeholder="Password"
+        type="text"
+        placeholder="First Name"
       />
 
       <Field
         label=""
-        name="confirmPassword"
+        name="lastName"
         component={AInput}
-        type="password"
-        placeholder="Confirm password"
+        type="text"
+        placeholder="Last Name"
       />
 
       <FormItem>
@@ -60,7 +61,7 @@ const RegisterForm = props => {
           type="primary"
           disabled={pristine || submitting}
           htmlType="submit"
-          style={{ width: "100%" }}
+          style={{ width: '100%' }}
         >
           Submit
         </Button>
@@ -71,14 +72,25 @@ const RegisterForm = props => {
 
 const validate = values => {
   const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
   if (!values.firstName) {
-    errors.firstName = "Required";
+    errors.firstName = 'Required';
+  }
+
+  if (!values.lastName) {
+    errors.lastName = 'Required';
   }
 
   return errors;
 };
 
 export default reduxForm({
-  form: "simple", // a unique identifier for this form
-  validate
+  form: 'simple', // a unique identifier for this form
+  validate,
 })(RegisterForm);
