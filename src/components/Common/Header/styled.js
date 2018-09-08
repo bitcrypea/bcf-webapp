@@ -1,11 +1,12 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const MenuTitle = styled.div`
   color: #666;
   cursor: pointer;
-`
+`;
 
 export const Container = styled.header`
+  border-bottom: 1px solid lightgray;
   background: #fff;
   min-width: 1200px;
   padding: 0 30px;
@@ -13,7 +14,7 @@ export const Container = styled.header`
     sans-serif;
   font-size: 16px;
   line-height: 1.5;
-`
+`;
 
 export const NewNav = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ export const NewNav = styled.div`
   background-color: #fff;
   font-family: Open Sans, SF Pro Text, Helvetica Neue, Helvetica, Arial,
     sans-serif;
-`
+`;
 
 export const NavLeft = styled.div`
   max-width: 800px;
@@ -32,7 +33,7 @@ export const NavLeft = styled.div`
   display: flex;
   align-items: center;
   font-size: 14px;
-`
+`;
 
 export const NavRight = styled.div`
   max-width: 800px;
@@ -42,24 +43,24 @@ export const NavRight = styled.div`
   display: flex;
   align-items: center;
   font-size: 12px;
-`
+`;
 
 export const TagA = styled.a`
   margin-right: 32px;
   background-color: transparent;
-`
+`;
 
 export const Logo = styled.img`
   cursor: pointer;
   border-style: none;
-`
+`;
 
 export const LoginButton = styled.a`
   cursor: pointer;
   text-decoration: none;
   color: #659aea;
   background-color: transparent;
-`
+`;
 
 export const Register = styled.a`
   cursor: pointer;
@@ -71,4 +72,4 @@ export const Register = styled.a`
   border-radius: 3px;
   margin: 0 0 0 16px;
   background-color: #659aea;
-`
+`;

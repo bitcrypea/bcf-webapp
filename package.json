@@ -52,7 +52,7 @@
     "start": "react-app-rewired start",
     "precommit": "lint-staged",
     "build": "react-app-rewired build",
-    "test": "react-scripts test",
+    "test": "react-app-rewired test",
     "test:coverage": "yarn test --coverage --silent --updateSnapshot",
     "eject": "react-scripts eject"
   },
