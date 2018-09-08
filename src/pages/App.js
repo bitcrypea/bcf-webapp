@@ -1,29 +1,24 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./App.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import { simpleAction } from "../redux/actions/simpleAction";
-import RouterApp from "./routes";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './App.css';
+import { simpleAction } from '../redux/actions/simpleAction';
+import RouterApp from './routes';
 
 class App extends Component {
   simpleAction = event => {
     this.props.simpleAction();
   };
   render() {
-    return (
-      <Router>
-        <RouterApp />
-      </Router>
-    );
+    return <RouterApp />;
   }
 }
 
 const mapStateToProps = state => ({
-  ...state
+  ...state,
 });
 
 const mapDispatchToProps = dispatch => ({
-  simpleAction: () => dispatch(simpleAction())
+  simpleAction: () => dispatch(simpleAction()),
 });
 export default connect(
   mapStateToProps,
