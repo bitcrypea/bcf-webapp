@@ -11,8 +11,6 @@ import {
   FormContainer,
   Center,
   MainContent,
-  SecondContent,
-  Li,
   P,
 } from './style';
 import logo from '../../assets/images/logo-bitcrypea.png';

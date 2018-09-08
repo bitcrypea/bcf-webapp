@@ -6,7 +6,7 @@ export const MenuTitle = styled.div`
 `;
 
 export const Container = styled.header`
-  border-bottom: 1px solid lightgray;
+  box-shadow: 0 2px 8px #f0f1f2;
   background: #fff;
   min-width: 1200px;
   padding: 0 30px;

@@ -15,7 +15,6 @@ export const BasicInfor = styled.div`
   align-items: center;
   padding: 30px 0 30px;
   border: 1px solid #e6e6e6;
-  position: relative;
   line-height: 100%;
   margin: 15px 0;
 `;
@@ -58,4 +57,67 @@ export const CustomButton = styled(Button)`
   margin-right: 10px;
   margin-top: 10px;
   right: 0px;
+`;
+
+export const RowContainer = styled.div`
+  display: flex;
+  align-items: center;
+  line-height: 100%;
+  margin: 15px 0;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+export const LeftColumn = styled.div`
+  flex: 0 0 49%;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #e6e6e6;
+  margin-right: 10px;
+`;
+
+export const RightColumn = styled.div`
+  flex: 0 0 49%;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #e6e6e6;
+  margin-left: 10px;
+`;
+
+export const Description = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Action = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const H4 = styled.h4`
+  font-size: 14px;
+  color: #666;
+  line-height: 1.3;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-left: 10px;
+`;
+
+export const TableContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Title = styled.div`
+  color: #333;
+  height: 46px;
+  line-height: 46px;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: bold;
 `;
