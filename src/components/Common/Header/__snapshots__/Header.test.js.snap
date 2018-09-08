@@ -2,7 +2,7 @@
 
 exports[`Header renders correctly 1`] = `
 <header
-  className="sc-bwzfXH cAOBC"
+  className="sc-bwzfXH ibQUJu"
 >
   <div
     className="sc-htpNat gLXFtu"
