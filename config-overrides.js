@@ -3,12 +3,12 @@ const rewireLess = require('react-app-rewire-less');
 
 module.exports = function override(config, env) {
   config = injectBabelPlugin(
-    ['import', { libraryName: 'antd', style: true }],
+    ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }], // change importing css to less
     config
-  ); // change importing css to less
+  );
   config = rewireLess.withLoaderOptions({
-    javascriptEnabled: true,
     modifyVars: { '@primary-color': '#6D89EA' },
+    javascriptEnabled: true,
   })(config, env);
   return config;
 };
