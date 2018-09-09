@@ -8,6 +8,8 @@ import Forgot from './Forgot';
 import EmailSend from './EmailSend';
 import EmailVerify from './EmailVerify';
 import MyAccount from './MyAccount';
+import ModifyPassword from './ModifyPassword';
+import UnbindGoogle from './UnbindGoogle/index';
 
 const RouterApp = () => (
   <Switch>
@@ -19,6 +21,8 @@ const RouterApp = () => (
     <Route exact path="/email-send" component={EmailSend} />
     <Route exact path="/forgot" component={Forgot} />
     <Route exact path="/my-account" component={MyAccount} />
+    <Route exact path="/modify-pwd" component={ModifyPassword} />
+    <Route exact path="/unbind-google" component={UnbindGoogle} />
     {/* <Route path="*" component={NoMatch} /> */}
   </Switch>
 );

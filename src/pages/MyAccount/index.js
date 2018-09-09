@@ -24,6 +24,9 @@ import avatar from './img-user.png';
 import Footer from '../../components/Common/Footer/Footer';
 import { Icon, Table } from 'antd';
 import { Button } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { push } from 'connected-react-router';
 
 const columnsDevice = [
   {
@@ -127,7 +130,9 @@ class MyAccount extends Component {
                   <H4>Change Password</H4>
                 </Description>
                 <Action>
-                  <Button>Change</Button>
+                  <Button onClick={() => this.props.gotoChangePassword()}>
+                    Change
+                  </Button>
                 </Action>
               </LeftColumn>
               <RightColumn>
@@ -140,7 +145,9 @@ class MyAccount extends Component {
                   <H4>Google Authentication</H4>
                 </Description>
                 <Action>
-                  <Button>Disable</Button>
+                  <Button onClick={() => this.props.gotoUnbindGoogle()}>
+                    Disable
+                  </Button>
                 </Action>
               </RightColumn>
             </Container>
@@ -162,4 +169,16 @@ class MyAccount extends Component {
   }
 }
 
-export default MyAccount;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      gotoChangePassword: () => push('/modify-pwd'),
+      gotoUnbindGoogle: () => push('/unbind-google'),
+    },
+    dispatch
+  );
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(MyAccount);

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
+import { push } from 'connected-react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
   NewNav,
   Container,
@@ -28,7 +31,7 @@ class Header extends Component {
       <Container>
         <NewNav>
           <NavLeft>
-            <TagA href="/">
+            <TagA onClick={() => this.props.gotoHome()}>
               <Logo src={logo} width="104" height="40" />
             </TagA>
             <Dropdown overlay={menuTokenTrading} placement="bottomLeft">
@@ -36,8 +39,15 @@ class Header extends Component {
             </Dropdown>
           </NavLeft>
           <NavRight>
-            <LoginButton href="/login">Login</LoginButton>
-            <Register href="/register">Sign up</Register>
+            <Link to="/my-account" style={{ marginRight: 10 }}>
+              My Account
+            </Link>
+            <LoginButton onClick={() => this.props.gotoLogin()}>
+              Login
+            </LoginButton>
+            <Register onClick={() => this.props.gotoRegister()}>
+              Sign up
+            </Register>
           </NavRight>
         </NewNav>
       </Container>
@@ -45,4 +55,17 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      gotoRegister: () => push('/register'),
+      gotoLogin: () => push('/login'),
+      gotoHome: () => push('/'),
+    },
+    dispatch
+  );
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);
