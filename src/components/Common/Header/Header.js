@@ -39,6 +39,9 @@ class Header extends Component {
             </Dropdown>
           </NavLeft>
           <NavRight>
+            <Link to="/my-account" style={{ marginRight: 10 }}>
+              My Account
+            </Link>
             <LoginButton onClick={() => this.props.gotoLogin()}>
               Login
             </LoginButton>
