@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../components/Common/Header/Header';
-import { Main, Container, BasicInfor, Title } from './styled';
+import { Main, BasicInfor, Title } from './styled';
 import Footer from '../../components/Common/Footer/Footer';
 import UnbindGoogleForm from '../../components/UnbindGoogle/UnbindGoogleForm';
 
