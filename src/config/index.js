@@ -1,5 +1,5 @@
 const config = {
-  graphqlEndpoint: 'https://api-stag.bitcrypea.com/graphql',
+  graphqlEndpoint: process.env.GRAPHQL_ENDPOINT,
 };
 
 export default config;
