@@ -18,6 +18,7 @@ import {
 import logo from '../../assets/images/logo-bitcrypea.png';
 import RegisterForm from '../../components/Register/RegisterForm';
 import { SIGNUP } from './graphql';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 class Register extends Component {
   state = {
@@ -66,7 +67,7 @@ class Register extends Component {
                 </LogoContainer>
                 <FormContainer>
                   <Title>
-                    <Span>Register {process.env.GRAPHQL_ENDPOINT}</Span>
+                    <Span>Register{env.GRAPHQL_ENDPOINT}</Span>
                   </Title>
                   <RegisterForm onSubmit={this.onSubmit} />
                 </FormContainer>
