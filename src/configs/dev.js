@@ -1,5 +1,3 @@
-const config = {
+export const dev = {
   graphqlEndpoint: 'https://api-dev.bitcrypea.com/graphql',
 };
-
-export default config;
