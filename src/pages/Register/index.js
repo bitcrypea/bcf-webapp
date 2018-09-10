@@ -49,6 +49,7 @@ class Register extends Component {
   };
   render() {
     const { isLoading } = this.state;
+    const env = runtimeEnv();
     return (
       <div>
         {isLoading && (
