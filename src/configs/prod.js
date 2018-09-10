@@ -1,3 +1,3 @@
 export const prod = {
-  graphqlEndpoint: 'https://api-dev.bitcrypea.com/graphql',
+  graphqlEndpoint: 'https://api-stag.bitcrypea.com/graphql',
 }
