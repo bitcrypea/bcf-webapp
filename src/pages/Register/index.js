@@ -66,7 +66,7 @@ class Register extends Component {
                 </LogoContainer>
                 <FormContainer>
                   <Title>
-                    <Span>Register {process.env.GRAPHQL_ENDPOINT}</Span>
+                    <Span>Registerzz</Span>
                   </Title>
                   <RegisterForm onSubmit={this.onSubmit} />
                 </FormContainer>
