@@ -66,7 +66,7 @@ class Register extends Component {
                 </LogoContainer>
                 <FormContainer>
                   <Title>
-                    <Span>Registerzz</Span>
+                    <Span>Register</Span>
                   </Title>
                   <RegisterForm onSubmit={this.onSubmit} />
                 </FormContainer>
