@@ -6,10 +6,11 @@ import { ApolloLink } from 'apollo-link';
 // import { RetryLink } from 'apollo-link-retry';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
-import config from './config/index';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
+const env = runtimeEnv();
 
-const apiLink = new HttpLink({ uri: config.graphqlEndpoint });
+const apiLink = new HttpLink({ uri: env.REACT_APP_GRAPHQL_ENDPOINT });
 
 // const retryLink = new RetryLink({
 //   delay: {
