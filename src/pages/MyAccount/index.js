@@ -27,6 +27,7 @@ import { Button } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
+import { isLoggedIn } from '../../redux/selectors/authSelector';
 
 const columnsDevice = [
   {
@@ -94,6 +95,13 @@ const dataLogin = [
 ];
 
 class MyAccount extends Component {
+  componentDidMount() {
+    const { gotoLogin, authenticated } = this.props;
+    if (!authenticated) {
+      gotoLogin();
+    }
+  }
+
   render() {
     return (
       <div>
@@ -172,13 +180,18 @@ class MyAccount extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
       gotoUnbindGoogle: () => push('/unbind-google'),
     },
     dispatch
   );
 
+const mapStateToProps = state => ({
+  authenticated: isLoggedIn(state),
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(MyAccount);

@@ -27,6 +27,7 @@ class Register extends Component {
   onSubmit = values => {
     const { signup } = this.props;
 
+    this.setState({ isLoading: true });
     signup({
       variables: {
         email: values.email,
@@ -35,17 +36,17 @@ class Register extends Component {
       },
     })
       .then(({ data }) => {
-        this.setState({ isLoading: true });
         this.setState({ isLoading: false });
-        console.log('Got data: ', data);
         message.success('Registration successful, please check email!');
       })
       .catch(error => {
+        this.setState({ isLoading: false });
         error.graphQLErrors.forEach(element => {
           message.error(element.message);
         });
       });
   };
+
   render() {
     const { isLoading } = this.state;
     return (
