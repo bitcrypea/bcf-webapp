@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../types';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, REGISTER } from '../types';
 
 export const loginSuccess = auth => ({
   type: LOGIN_SUCCESS,
@@ -12,4 +12,9 @@ export const loginError = error => ({
 
 export const logout = () => ({
   type: LOGOUT,
+});
+
+export const register = auth => ({
+  type: REGISTER,
+  payload: auth,
 });

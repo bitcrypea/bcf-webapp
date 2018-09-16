@@ -15,6 +15,10 @@ import {
   Li,
 } from './style';
 import logo from '../../assets/images/logo-bitcrypea.png';
+import { getUser } from '../../redux/selectors/authSelector';
+import { push } from 'connected-react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class EmailSend extends Component {
   render() {
@@ -36,8 +40,8 @@ class EmailSend extends Component {
               <FormContent>
                 <MainContent>
                   We have sent a confirmation email to your registered email
-                  address. thuongthanhto@gmail.com. Please follow the
-                  instructions in the email to continue. Resend email >>
+                  address. <strong>{this.props.user.email}</strong>. Please
+                  follow the instructions in the email to continue.
                 </MainContent>
                 <SecondContent>
                   <strong style={{ fontWeight: 'normal', paddingBottom: 5 }}>
@@ -67,4 +71,21 @@ class EmailSend extends Component {
   }
 }
 
-export default EmailSend;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      gotoForgot: () => push('/forgot'),
+      gotoRegister: () => push('/register'),
+      gotoHome: () => push('/'),
+    },
+    dispatch
+  );
+
+const mapStateToProps = state => ({
+  user: getUser(state),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EmailSend);

@@ -12,7 +12,6 @@ export const history = createHistory();
 const encryptor = createEncryptor({
   secretKey: 'my-super-secret-key',
   onError: function(error) {
-    debugger;
     console.log(error);
   },
 });

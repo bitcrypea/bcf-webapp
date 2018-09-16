@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../types';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, REGISTER } from '../types';
 
 const getInitialState = () => ({
   isLoggedIn: false,
@@ -9,8 +9,12 @@ const getInitialState = () => ({
 });
 
 function auth(state = getInitialState(), { type, payload }) {
-  debugger;
   switch (type) {
+    case REGISTER:
+      return {
+        ...state,
+        ...payload,
+      };
     case LOGIN_SUCCESS:
       return {
         ...state,
