@@ -6,3 +6,5 @@ export const isLoggedIn = createSelector(
   authSelector,
   state => state.isLoggedIn
 );
+
+export const getUser = createSelector(authSelector, state => state.user);

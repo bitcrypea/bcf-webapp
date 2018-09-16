@@ -18,6 +18,10 @@ import {
 import logo from '../../assets/images/logo-bitcrypea.png';
 import RegisterForm from '../../components/Register/RegisterForm';
 import { SIGNUP } from './graphql';
+import { bindActionCreators } from 'redux';
+import { push } from 'connected-react-router';
+import { connect } from 'react-redux';
+import { register } from '../../redux/actions/authAction';
 
 class Register extends Component {
   state = {
@@ -25,7 +29,7 @@ class Register extends Component {
   };
 
   onSubmit = values => {
-    const { signup } = this.props;
+    const { signup, register, gotoEmailSend } = this.props;
 
     this.setState({ isLoading: true });
     signup({
@@ -36,8 +40,18 @@ class Register extends Component {
       },
     })
       .then(({ data }) => {
+        const user = {
+          user: {
+            email: values.email,
+            first_name: values.firstName,
+            last_name: values.lastName,
+          },
+        };
+
         this.setState({ isLoading: false });
         message.success('Registration successful, please check email!');
+        register(user);
+        gotoEmailSend();
       })
       .catch(error => {
         this.setState({ isLoading: false });
@@ -46,6 +60,10 @@ class Register extends Component {
         });
       });
   };
+
+  componentDidMount() {
+    this.props.register({ user: null });
+  }
 
   render() {
     const { isLoading } = this.state;
@@ -61,7 +79,7 @@ class Register extends Component {
             <Center>
               <Main>
                 <LogoContainer>
-                  <TagA href="/">
+                  <TagA onClick={this.props.gotoHome}>
                     <Logo src={logo} width="150" height="50" />
                   </TagA>
                 </LogoContainer>
@@ -73,7 +91,10 @@ class Register extends Component {
                 </FormContainer>
                 <FooterContainer>
                   Already Registered?
-                  <LinkRegister style={{ marginLeft: 2 }} href="/login">
+                  <LinkRegister
+                    style={{ marginLeft: 2 }}
+                    onClick={this.props.gotoLogin}
+                  >
                     Login
                   </LinkRegister>
                 </FooterContainer>
@@ -87,6 +108,23 @@ class Register extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      register,
+      gotoEmailSend: () => push('/email-send'),
+      gotoForgot: () => push('/forgot'),
+      gotoLogin: () => push('/register'),
+      gotoHome: () => push('/'),
+    },
+    dispatch
+  );
+
 export default graphql(SIGNUP, {
   name: 'signup',
-})(Register);
+})(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Register)
+);

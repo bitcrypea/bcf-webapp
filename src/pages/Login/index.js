@@ -36,7 +36,6 @@ class Login extends Component {
   }
 
   onSubmit = values => {
-    debugger;
     const { signin, gotoHome, loginSuccess } = this.props;
     this.setState({ isLoading: true });
     signin({
@@ -46,7 +45,6 @@ class Login extends Component {
       },
     })
       .then(({ data }) => {
-        debugger;
         this.setState({ isLoading: false });
         message.success('Login successful');
         loginSuccess(data.signin);
