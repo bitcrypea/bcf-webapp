@@ -7,6 +7,7 @@ import { ApolloLink } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import { authTokenFromStorage } from './redux/tokens';
 
 const env = runtimeEnv();
 
@@ -51,18 +52,18 @@ const apiLink = new HttpLink({ uri: env.REACT_APP_GRAPHQL_ENDPOINT });
 // });
 
 // // add the authorization to the headers
-// const authMiddleware = new ApolloLink((operation, forward) => {
-//   // const token = authTokenFromStorage();
-//   // console.log('TOKEN', token);
-//   // if (token !== null) {
-//   //   operation.setContext({
-//   //     headers: {
-//   //       Authorization: `Bearer ${token}`,
-//   //     },
-//   //   });
-//   //   return forward(operation);
-//   // }
-// });
+const authMiddleware = new ApolloLink((operation, forward) => {
+  const token = authTokenFromStorage();
+  console.log('TOKEN', token);
+  if (token !== null) {
+    operation.setContext({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return forward(operation);
+  }
+});
 
 // const loggerMiddleware = new ApolloLink((operation, forward) => {
 //   if (
@@ -86,7 +87,7 @@ const link = ApolloLink.from([
   // loggerMiddleware,
   // errorLink,
   // retryLink,
-  // authMiddleware,
+  authMiddleware,
   apiLink,
 ]);
 
