@@ -27,7 +27,7 @@ import { Button } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn } from '../../redux/selectors/authSelector';
+import { isLoggedIn, getUser } from '../../redux/selectors/authSelector';
 
 const columnsDevice = [
   {
@@ -103,6 +103,7 @@ class MyAccount extends Component {
   }
 
   render() {
+    const {currentUser} = this.props;
     return (
       <div>
         <Header />
@@ -112,8 +113,8 @@ class MyAccount extends Component {
               <Image width="84" height="84" src={avatar} />
             </AvatarContainer>
             <InforContainer>
-              <Email>thuongthanhto@gmail.com</Email>
-              <BasicInfo>Name: Thuong</BasicInfo>
+              <Email>{currentUser.email}</Email>
+              <BasicInfo>Name: {currentUser.first_name}</BasicInfo>
               <BasicInfo>Address: Ho Chi Minh City</BasicInfo>
               <LoginInfo>
                 Last login Time: 2018-09-02 17:05:07 IP: 14.169.94.206
@@ -189,6 +190,7 @@ const mapDispatchToProps = dispatch =>
 
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
+  currentUser: getUser(state),
 });
 
 export default connect(
