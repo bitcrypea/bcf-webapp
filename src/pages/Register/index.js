@@ -114,7 +114,7 @@ const mapDispatchToProps = dispatch =>
       register,
       gotoEmailSend: () => push('/email-send'),
       gotoForgot: () => push('/forgot'),
-      gotoLogin: () => push('/register'),
+      gotoLogin: () => push('/login'),
       gotoHome: () => push('/'),
     },
     dispatch

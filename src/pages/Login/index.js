@@ -48,6 +48,8 @@ class Login extends Component {
         this.setState({ isLoading: false });
         message.success('Login successful');
         loginSuccess(data.signin);
+        localStorage.setItem("TOKEN_ID", data.signin.id)
+        localStorage.setItem("TOKEN_SECRET", data.signin.token)
         gotoHome();
       })
       .catch(error => {

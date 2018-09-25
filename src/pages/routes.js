@@ -10,12 +10,14 @@ import EmailVerify from './EmailVerify';
 import MyAccount from './MyAccount';
 import ModifyPassword from './ModifyPassword';
 import UnbindGoogle from './UnbindGoogle/index';
+import Test from './Test';
 
 const RouterApp = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/exchange" component={Exchange} />
     <Route exact path="/login" component={Login} />
+    <Route exact path="/test" component={Test} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/email-verify" component={EmailVerify} />
     <Route exact path="/email-send" component={EmailSend} />
