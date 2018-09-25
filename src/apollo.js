@@ -63,6 +63,12 @@ const authMiddleware = new ApolloLink((operation, forward) => {
     });
     return forward(operation);
   }
+  operation.setContext({
+    headers: {
+      
+    },
+  });
+  return forward(operation);
 });
 
 // const loggerMiddleware = new ApolloLink((operation, forward) => {
