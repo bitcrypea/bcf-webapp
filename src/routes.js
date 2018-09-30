@@ -1,16 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Exchange from './Exchange/index';
-import Home from './Home/index';
-import Login from './Login';
-import Register from './Register';
-import Forgot from './Forgot';
-import EmailSend from './EmailSend';
-import EmailVerify from './EmailVerify';
-import MyAccount from './MyAccount';
-import ModifyPassword from './ModifyPassword';
-import UnbindGoogle from './UnbindGoogle/index';
-import Test from './Test';
+import Exchange from './pages/Exchange';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Forgot from './pages/Forgot';
+import EmailSend from './pages/EmailSend';
+import EmailVerify from './pages/EmailVerify';
+import MyAccount from './pages/MyAccount';
+import ModifyPassword from './pages/ModifyPassword';
+import UnbindGoogle from './pages/UnbindGoogle';
+import Test from './pages/Test';
 
 const RouterApp = () => (
   <Switch>
