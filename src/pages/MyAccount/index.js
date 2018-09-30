@@ -1,179 +1,132 @@
 import React, { Component } from 'react';
 import Header from '../../components/Common/Header/Header';
-import {
-  Main,
-  BasicInfor,
-  AvatarContainer,
-  Image,
-  InforContainer,
-  Email,
-  LoginInfo,
-  BasicInfo,
-  CustomButton,
-  RowContainer,
-  LeftColumn,
-  RightColumn,
-  Container,
-  Description,
-  Action,
-  H4,
-  TableContainer,
-  Title,
-} from './styled';
-import avatar from './img-user.png';
 import Footer from '../../components/Common/Footer/Footer';
-import { Icon, Table } from 'antd';
-import { Button } from 'antd';
+import { Menu } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import { isLoggedIn, getUser } from '../../redux/selectors/authSelector';
+import LeftMenu from '../../components/MyAccount/LeftMenu';
+import {
+  AccountContent,
+  AccountLayout,
+  AccountContentWide,
+  AccountInfoMain,
+  AccountRight,
+  AccountLeftMenu,
+} from './styled';
+import MyActivity from '../../components/MyAccount/MyActivity';
+import Wallets from '../../components/MyAccount/Wallets';
 
-const columnsDevice = [
-  {
-    title: 'Device',
-    dataIndex: 'device',
-    key: 'device',
-  },
-  {
-    title: 'Location',
-    dataIndex: 'location',
-    key: 'location',
-  },
-  {
-    title: 'Recent activity',
-    dataIndex: 'recentActivity',
-    key: 'recentActivity',
-  },
-  {
-    title: 'IP Address',
-    dataIndex: 'ipAddress',
-    key: 'ipAddress',
-  },
-];
-
-const columnsLogin = [
-  {
-    title: 'Date',
-    dataIndex: 'date',
-    key: 'date',
-  },
-  {
-    title: 'IP Address',
-    dataIndex: 'ipAddress',
-    key: 'ipAddress',
-  },
-  {
-    title: 'Location',
-    dataIndex: 'location',
-    key: 'location',
-  },
-];
-
-const dataDevice = [
-  {
-    key: '1',
-    device: 'Chrome V68.0.3440.106 (Linux)',
-    location: 'Ho Chi Minh City Viet Nam',
-    recentActivity: '2018-09-08 10:35:27',
-    ipAddress: '14.169.94.206',
-  },
-];
-const dataLogin = [
-  {
-    key: '1',
-    date: '2018-09-08 10:35:27',
-    ipAddress: '14.169.94.206',
-    location: 'Ho Chi Minh City Viet Nam',
-  },
-  {
-    key: '2',
-    date: '2018-10-08 10:35:27',
-    ipAddress: '14.169.94.206',
-    location: 'Ho Chi Minh City Viet Nam',
-  },
-];
+const { Item } = Menu;
+const menuMapActivity = {
+  myActivity: 'My Activity',
+};
+const menuMapBalance = {
+  wallets: 'Wallets',
+};
+const menuMapAccount = {
+  myProfile: 'My Profile',
+  identityVerification: 'Identity Verification',
+  enableAccount: 'Enable Account',
+};
+const menuMapSetting = {
+  password: 'Password',
+  authentication: 'Two-Factor Authentication',
+  apiKey: 'API Key',
+};
 
 class MyAccount extends Component {
+  constructor(props) {
+    super(props);
+    const { gotoLogin, authenticated } = this.props;
+    if (!authenticated) {
+      gotoLogin();
+    }
+
+    this.state = {
+      mode: 'inline',
+      menuMapActivity,
+      menuMapBalance,
+      menuMapAccount,
+      menuMapSetting,
+      selectKey: 'myActivity',
+    };
+  }
+
+  getMenu = group => {
+    const {
+      menuMapActivity,
+      menuMapBalance,
+      menuMapAccount,
+      menuMapSetting,
+    } = this.state;
+    if (group === 'balance') {
+      return Object.keys(menuMapBalance).map(item => (
+        <Item key={item}>{menuMapBalance[item]}</Item>
+      ));
+    }
+    if (group === 'account') {
+      return Object.keys(menuMapAccount).map(item => (
+        <Item key={item}>{menuMapAccount[item]}</Item>
+      ));
+    }
+    if (group === 'setting') {
+      return Object.keys(menuMapSetting).map(item => (
+        <Item key={item}>{menuMapSetting[item]}</Item>
+      ));
+    }
+    return Object.keys(menuMapActivity).map(item => (
+      <Item key={item}>{menuMapActivity[item]}</Item>
+    ));
+  };
+
+  selectKeyMenu = ({ key }) => {
+    this.setState({
+      selectKey: key,
+    });
+  };
+
   componentDidMount() {
     const { gotoLogin, authenticated } = this.props;
     if (!authenticated) {
       gotoLogin();
     }
   }
-
+  Header;
   render() {
-    const {currentUser} = this.props;
+    const { currentUser, authenticated } = this.props;
+    const { mode, selectKey } = this.state;
     return (
-      <div>
-        <Header />
-        <Main>
-          <BasicInfor>
-            <AvatarContainer>
-              <Image width="84" height="84" src={avatar} />
-            </AvatarContainer>
-            <InforContainer>
-              <Email>{currentUser.email}</Email>
-              <BasicInfo>Name: {currentUser.first_name}</BasicInfo>
-              <BasicInfo>Address: Ho Chi Minh City</BasicInfo>
-              <LoginInfo>
-                Last login Time: 2018-09-02 17:05:07 IP: 14.169.94.206
-              </LoginInfo>
-            </InforContainer>
-            <CustomButton
-              type="primary"
-              icon="edit"
-              size="large"
-              shape="circle"
-            />
-          </BasicInfor>
-          <RowContainer>
-            <Container>
-              <LeftColumn>
-                <Description>
-                  <Icon
-                    style={{ fontSize: '50px' }}
-                    type="lock"
-                    theme="outlined"
-                  />
-                  <H4>Change Password</H4>
-                </Description>
-                <Action>
-                  <Button onClick={() => this.props.gotoChangePassword()}>
-                    Change
-                  </Button>
-                </Action>
-              </LeftColumn>
-              <RightColumn>
-                <Description>
-                  <Icon
-                    style={{ fontSize: '48px' }}
-                    type="google"
-                    theme="outlined"
-                  />
-                  <H4>Google Authentication</H4>
-                </Description>
-                <Action>
-                  <Button onClick={() => this.props.gotoUnbindGoogle()}>
-                    Disable
-                  </Button>
-                </Action>
-              </RightColumn>
-            </Container>
-          </RowContainer>
-
-          <TableContainer>
-            <Title>Device Management</Title>
-            <Table columns={columnsDevice} dataSource={dataDevice} />
-          </TableContainer>
-
-          <TableContainer>
-            <Title>Last Login</Title>
-            <Table columns={columnsLogin} dataSource={dataLogin} />
-          </TableContainer>
-        </Main>
-        <Footer />
-      </div>
+      <AccountLayout>
+        {authenticated && (
+          <div>
+            <Header />
+            <AccountContent>
+              <AccountContentWide>
+                <AccountInfoMain>
+                  <AccountLeftMenu>
+                    <LeftMenu
+                      mode={mode}
+                      getMenu={this.getMenu}
+                      selectKey={selectKey}
+                      selectKeyMenu={this.selectKeyMenu}
+                    />
+                  </AccountLeftMenu>
+                  <AccountRight>
+                    {selectKey === 'myActivity' && (
+                      <MyActivity currentUser={currentUser} />
+                    )}
+                    {selectKey === 'wallets' && <Wallets />}
+                  </AccountRight>
+                </AccountInfoMain>
+                <div style={{ height: 50 }} />
+              </AccountContentWide>
+            </AccountContent>
+            <Footer />
+          </div>
+        )}
+      </AccountLayout>
     );
   }
 }
