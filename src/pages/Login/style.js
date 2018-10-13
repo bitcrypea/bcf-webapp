@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Container = styled.div`
+export const HeaderContainer = styled.div`
   background: #f7f7f7;
   height: 100vh;
   display: flex;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Main = styled.div`
+export const HeaderMain = styled.div`
   box-sizing: content-box;
   height: 370px;
   width: 518px;
@@ -20,25 +20,26 @@ export const Main = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 100px;
 `;
 
-export const FormContent = styled.div``;
+export const HeaderFormContent = styled.div``;
 
-export const LogoContainer = styled.div`
+export const HeaderLogoContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-export const TagA = styled.a`
+export const HeaderTagA = styled.a`
   margin-right: 32px;
   background-color: transparent;
 `;
 
-export const Logo = styled.img`
+export const HeaderLogo = styled.img`
   cursor: pointer;
   border-style: none;
 `;
 
-export const Title = styled.div`
+export const HeaderTitle = styled.div`
   font-size: 16px;
   color: #666;
   text-align: center;
@@ -47,7 +48,7 @@ export const Title = styled.div`
   margin-bottom: 30px;
 
   &::after {
-    content: " ";
+    content: ' ';
     display: inline-block;
     width: 100%;
     height: 1px;
@@ -58,7 +59,7 @@ export const Title = styled.div`
   }
 `;
 
-export const Span = styled.span`
+export const HeaderSpan = styled.span`
   padding: 0 30px;
   background: #fff;
   position: relative;
@@ -69,17 +70,17 @@ export const Span = styled.span`
   font-weight: normal;
 `;
 
-export const FormContainer = styled.div`
+export const HeaderFormContainer = styled.div`
   width: 330px;
-`
+`;
 
-export const FooterContainer = styled.div`
+export const HeaderFooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   width: 330px;
-`
+`;
 
-export const LinkRegister = styled.a`
+export const HeaderLinkRegister = styled.a`
   font-size: 14px;
-`
+`;

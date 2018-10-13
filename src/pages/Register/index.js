@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import { message, Spin } from 'antd';
 import {
   Container,
-  Main,
+  RegisterMain,
   Logo,
   FormContent,
   LogoContainer,
@@ -21,7 +21,7 @@ import { SIGNUP } from './graphql';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
-import { register } from '../../redux/actions/authAction';
+import { registerUser } from '../../redux/auth/actions';
 
 class Register extends Component {
   state = {
@@ -29,7 +29,7 @@ class Register extends Component {
   };
 
   onSubmit = values => {
-    const { signup, register, gotoEmailSend } = this.props;
+    const { signup, registerUser, gotoEmailSend } = this.props;
 
     this.setState({ isLoading: true });
     signup({
@@ -50,7 +50,7 @@ class Register extends Component {
 
         this.setState({ isLoading: false });
         message.success('Registration successful, please check email!');
-        register(user);
+        registerUser(user);
         gotoEmailSend();
       })
       .catch(error => {
@@ -62,7 +62,7 @@ class Register extends Component {
   };
 
   componentDidMount() {
-    this.props.register({ user: null });
+    this.props.registerUser({ user: null });
   }
 
   render() {
@@ -77,7 +77,7 @@ class Register extends Component {
         {!isLoading && (
           <Container>
             <Center>
-              <Main>
+              <RegisterMain>
                 <LogoContainer>
                   <TagA onClick={this.props.gotoHome}>
                     <Logo src={logo} width="150" height="50" />
@@ -99,7 +99,7 @@ class Register extends Component {
                   </LinkRegister>
                 </FooterContainer>
                 <FormContent />
-              </Main>
+              </RegisterMain>
             </Center>
           </Container>
         )}
@@ -111,7 +111,7 @@ class Register extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      register,
+      registerUser,
       gotoEmailSend: () => push('/email-send'),
       gotoForgot: () => push('/forgot'),
       gotoLogin: () => push('/login'),

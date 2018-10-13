@@ -5,7 +5,6 @@ import { Menu } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, getUser } from '../../redux/selectors/authSelector';
 import LeftMenu from '../../components/MyAccount/LeftMenu';
 import {
   AccountContent,
@@ -17,6 +16,7 @@ import {
 } from './styled';
 import MyActivity from '../../components/MyAccount/MyActivity';
 import Wallets from '../../components/MyAccount/Wallets';
+import { isLoggedIn, getUser } from '../../redux/auth/selectors';
 
 const { Item } = Menu;
 const menuMapActivity = {

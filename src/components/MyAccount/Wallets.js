@@ -9,58 +9,12 @@ import {
   AccountWalletsName,
   AccountWalletValue,
   AccountTable,
+  DepositModal,
+  DepositTitle,
 } from './styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Divider } from 'antd';
-
-const columns = [
-  {
-    title: 'CURRENCY NAME',
-    dataIndex: 'currencyName',
-    key: 'currencyName',
-  },
-  {
-    title: 'SYMBOL',
-    dataIndex: 'symbol',
-    key: 'symbol',
-  },
-  {
-    title: 'AVAILABLE BALANCE',
-    dataIndex: 'availableBalance',
-    key: 'availableBalance',
-  },
-  {
-    title: 'PENDING DEPOSIT',
-    dataIndex: 'pendingDeposit',
-    key: 'pendingDeposit',
-  },
-  {
-    title: 'RESERVED',
-    key: 'reserved',
-    dataIndex: 'reserved',
-  },
-  {
-    title: 'TOTAL',
-    key: 'total',
-    dataIndex: 'total',
-  },
-  {
-    title: 'EST.BTC VALUE',
-    key: 'estBtcValue',
-    dataIndex: 'estBtcValue',
-  },
-  {
-    title: 'ACTION',
-    key: 'action',
-    render: (text, record) => (
-      <span>
-        <a href="javascript:;">Deposit</a>
-        <Divider type="vertical" />
-        <a href="javascript:;">Withdrawal</a>
-      </span>
-    ),
-  },
-];
+import { Divider, Button } from 'antd';
+import Deposit from '../Modal/Deposit';
 
 const data = [
   {
@@ -76,6 +30,16 @@ const data = [
 ];
 
 class Wallets extends Component {
+  state = { isOpenDiposit: false };
+
+  showDipositModal = () => {
+    this.setState({ isOpenDiposit: true });
+  };
+
+  handleCancel = () => {
+    this.setState({ isOpenDiposit: false });
+  };
+
   render() {
     return (
       <Fragment>
@@ -106,11 +70,76 @@ class Wallets extends Component {
             </AccountEstimatedHoldings>
             <AccountTable
               style={{ fontSize: 10 }}
-              columns={columns}
+              columns={[
+                {
+                  title: 'CURRENCY NAME',
+                  dataIndex: 'currencyName',
+                  key: 'currencyName',
+                },
+                {
+                  title: 'SYMBOL',
+                  dataIndex: 'symbol',
+                  key: 'symbol',
+                },
+                {
+                  title: 'AVAILABLE BALANCE',
+                  dataIndex: 'availableBalance',
+                  key: 'availableBalance',
+                },
+                {
+                  title: 'PENDING DEPOSIT',
+                  dataIndex: 'pendingDeposit',
+                  key: 'pendingDeposit',
+                },
+                {
+                  title: 'RESERVED',
+                  key: 'reserved',
+                  dataIndex: 'reserved',
+                },
+                {
+                  title: 'TOTAL',
+                  key: 'total',
+                  dataIndex: 'total',
+                },
+                {
+                  title: 'EST.BTC VALUE',
+                  key: 'estBtcValue',
+                  dataIndex: 'estBtcValue',
+                },
+                {
+                  title: 'ACTION',
+                  key: 'action',
+                  render: (text, record) => (
+                    <span>
+                      <a onClick={this.showDipositModal}>Deposit</a>
+                      <Divider type="vertical" />
+                      <a href="">Withdrawal</a>
+                    </span>
+                  ),
+                },
+              ]}
               dataSource={data}
             />
           </AccountSectionWallets>
         </AccountSection>
+
+        <DepositModal
+          title={
+            <DepositTitle style={{ textAlign: 'center' }}>Deposit</DepositTitle>
+          }
+          visible={this.state.isOpenDiposit}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button
+              style={{ width: 130, height: 40 }}
+              onClick={this.handleCancel}
+            >
+              Done
+            </Button>,
+          ]}
+        >
+          <Deposit />
+        </DepositModal>
       </Fragment>
     );
   }

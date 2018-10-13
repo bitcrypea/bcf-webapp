@@ -5,32 +5,20 @@ import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
-  ContainerHeader,
-  TopNavHead,
-  TopNavMain,
-  TopNavLeft,
-  TopNavRight,
-  TagA,
-  MenuTitle,
-  Logo,
-  LoginButton,
-  Register,
+  HeaderContainerHeader,
+  HeaderTopNavHead,
+  HeaderTopNavMain,
+  HeaderTopNavLeft,
+  HeaderTopNavRight,
+  HeaderTagA,
+  HeaderMenuTitle,
+  HeaderLogo,
+  HeaderLoginButton,
+  HeaderRegister,
 } from './styled';
-import logo from '../../../assets/images/logo-bitcrypea.png';
-import { isLoggedIn } from '../../../redux/selectors/authSelector';
-import { logout } from '../../../redux/actions/authAction';
-
-const menuTokenTrading = (
-  <Menu selectedKeys={[]}>
-    <Menu.Item key="userinfo" onClick={this.handleChangePassword}>
-      <Link to="/exchange">Exchange</Link>
-    </Menu.Item>
-    <Menu.Divider />
-    <Menu.Item onClick={this.handleLogout} key="logout">
-      <Link to="/exchange">Exchange Advanced</Link>
-    </Menu.Item>
-  </Menu>
-);
+import logo from '../../../assets/images/logo.png';
+import { isLoggedIn } from '../../../redux/auth/selectors';
+import { logout } from '../../../redux/auth/actions';
 
 class Header extends Component {
   handleLogout = () => {
@@ -41,24 +29,18 @@ class Header extends Component {
   render() {
     const { authenticated } = this.props;
     return (
-      <ContainerHeader>
-        <TopNavHead>
-          <TopNavMain>
-            <TopNavLeft>
-              <TagA onClick={() => this.props.gotoHome()}>
-                <Logo src={logo} width="104" height="40" />
-              </TagA>
-              <Dropdown
-                overlay={menuTokenTrading}
-                placement="bottomLeft"
-                trigger={['click']}
-              >
-                <MenuTitle>
-                  <MenuTitle>Token Trading</MenuTitle>
-                </MenuTitle>
-              </Dropdown>
-            </TopNavLeft>
-            <TopNavRight>
+      <HeaderContainerHeader>
+        <HeaderTopNavHead>
+          <HeaderTopNavMain>
+            <HeaderTopNavLeft>
+              <HeaderTagA onClick={() => this.props.gotoHome()}>
+                <HeaderLogo src={logo} width="90" height="60" />
+              </HeaderTagA>
+              <Link style={{ color: 'white' }} to="/exchange">
+                Exchange
+              </Link>
+            </HeaderTopNavLeft>
+            <HeaderTopNavRight>
               {authenticated && (
                 <Dropdown
                   overlay={
@@ -85,75 +67,32 @@ class Header extends Component {
                   placement="bottomRight"
                   trigger={['click']}
                 >
-                  <MenuTitle>
+                  <HeaderMenuTitle>
                     <Icon
                       style={{ fontSize: 24 }}
                       type="user"
                       theme="outlined"
                     />
-                  </MenuTitle>
+                  </HeaderMenuTitle>
                 </Dropdown>
               )}
               {!authenticated && (
                 <Fragment>
-                  <LoginButton onClick={() => this.props.gotoLogin()}>
+                  <HeaderLoginButton
+                    style={{ color: 'white' }}
+                    onClick={() => this.props.gotoLogin()}
+                  >
                     Login
-                  </LoginButton>
-                  <Register onClick={() => this.props.gotoRegister()}>
+                  </HeaderLoginButton>
+                  <HeaderRegister onClick={() => this.props.gotoRegister()}>
                     Sign up
-                  </Register>
+                  </HeaderRegister>
                 </Fragment>
               )}
-            </TopNavRight>
-          </TopNavMain>
-        </TopNavHead>
-      </ContainerHeader>
-      // <Container>
-      //   <NewNav>
-      //     <NavLeft>
-      //       <TagA onClick={() => this.props.gotoHome()}>
-      //         <Logo src={logo} width="104" height="40" />
-      //       </TagA>
-      //       <Dropdown
-      //         overlay={menuTokenTrading}
-      //         placement="bottomLeft"
-      //         trigger={['click']}
-      //       >
-      //         <MenuTitle>Token Trading</MenuTitle>
-      //       </Dropdown>
-      //     </NavLeft>
-      //     <NavRight>
-      //       {authenticated && (
-      //         <Dropdown
-      //           overlay={
-      //             <Menu>
-      //               <Menu.Item>
-      //                 <Link to="/my-account">My Account</Link>
-      //               </Menu.Item>
-      //               <Menu.Item onClick={this.handleLogout}>Logout</Menu.Item>
-      //             </Menu>
-      //           }
-      //           placement="bottomRight"
-      //           trigger={['click']}
-      //         >
-      //           <MenuTitle>
-      //             <Icon style={{ fontSize: 24 }} type="user" theme="outlined" />
-      //           </MenuTitle>
-      //         </Dropdown>
-      //       )}
-      //       {!authenticated && (
-      //         <Fragment>
-      //           <LoginButton onClick={() => this.props.gotoLogin()}>
-      //             Login
-      //           </LoginButton>
-      //           <Register onClick={() => this.props.gotoRegister()}>
-      //             Sign up
-      //           </Register>
-      //         </Fragment>
-      //       )}
-      //     </NavRight>
-      //   </NewNav>
-      // </Container>
+            </HeaderTopNavRight>
+          </HeaderTopNavMain>
+        </HeaderTopNavHead>
+      </HeaderContainerHeader>
     );
   }
 }
@@ -173,6 +112,7 @@ const mapDispatchToProps = dispatch =>
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

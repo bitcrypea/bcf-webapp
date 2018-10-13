@@ -15,10 +15,10 @@ import {
   Li,
 } from './style';
 import logo from '../../assets/images/logo-bitcrypea.png';
-import { getUser } from '../../redux/selectors/authSelector';
 import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { getUser } from '../../redux/auth/selectors';
 
 class EmailSend extends Component {
   render() {
