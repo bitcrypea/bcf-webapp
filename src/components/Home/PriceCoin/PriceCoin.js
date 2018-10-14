@@ -75,7 +75,7 @@ class PriceCoin extends Component {
       cartBCCBTC,
       cartXRPBTC,
     } = this.props;
-    console.log(cartETCBTC);
+
     return (
       <div>
         <Container>

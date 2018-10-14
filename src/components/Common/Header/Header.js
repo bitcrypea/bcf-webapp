@@ -36,9 +36,9 @@ class Header extends Component {
               <HeaderTagA onClick={() => this.props.gotoHome()}>
                 <HeaderLogo src={logo} width="90" height="60" />
               </HeaderTagA>
-              <Link style={{ color: 'white' }} to="/exchange">
+              {/* <Link style={{ color: 'white' }} to="/exchange">
                 Exchange
-              </Link>
+              </Link> */}
             </HeaderTopNavLeft>
             <HeaderTopNavRight>
               {authenticated && (
@@ -69,7 +69,7 @@ class Header extends Component {
                 >
                   <HeaderMenuTitle>
                     <Icon
-                      style={{ fontSize: 24 }}
+                      style={{ fontSize: 24, color: 'white' }}
                       type="user"
                       theme="outlined"
                     />

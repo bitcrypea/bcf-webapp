@@ -18,6 +18,10 @@ import { Input } from 'antd';
 const Search = Input.Search;
 
 class Deposit extends Component {
+  onSearch = () => {
+    const { createAddress } = this.props;
+    createAddress('BTC');
+  };
   render() {
     return (
       <DepositContent>
@@ -41,7 +45,7 @@ class Deposit extends Component {
               placeholder="Generate a new address"
               enterButton="New Address"
               size="large"
-              onSearch={value => console.log(value)}
+              onSearch={this.onSearch}
             />
           </DepositSearch>
         </DepositAddress>

@@ -119,6 +119,7 @@ class Wallets extends Component {
                 },
               ]}
               dataSource={data}
+              rowKey="key"
             />
           </AccountSectionWallets>
         </AccountSection>
@@ -138,7 +139,7 @@ class Wallets extends Component {
             </Button>,
           ]}
         >
-          <Deposit />
+          <Deposit createAddress={this.props.createAddress} />
         </DepositModal>
       </Fragment>
     );
