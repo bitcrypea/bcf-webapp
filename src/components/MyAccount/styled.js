@@ -120,3 +120,21 @@ export const DepositTitle = styled.div`
   text-align: center;
   color: white;
 `;
+
+export const ReferralContentLeft = styled.div`
+  flex: 1;
+`;
+
+export const ReferralContentRight = styled.div`
+  flex: 1;
+`;
+
+export const ReferralContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const ReferralTitle = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 10px;
+`;
