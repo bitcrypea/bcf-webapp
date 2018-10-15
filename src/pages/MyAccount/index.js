@@ -123,7 +123,7 @@ class MyAccount extends Component {
   };
 
   render() {
-    const { currentUser, authenticated, createDepositAddress } = this.props;
+    const { currentUser, authenticated } = this.props;
     const { mode, selectKey } = this.state;
 
     return (

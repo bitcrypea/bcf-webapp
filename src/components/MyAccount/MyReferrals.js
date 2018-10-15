@@ -12,8 +12,6 @@ import { Switch, Input } from 'antd';
 
 class MyReferrals extends Component {
   render() {
-    const { currentUser } = this.props;
-
     return (
       <Fragment>
         <AccountSection>
