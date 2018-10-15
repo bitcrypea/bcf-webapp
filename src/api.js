@@ -1,7 +1,17 @@
-import openSocket from 'socket.io-client'
-const socket = openSocket('http://localhost:3000')
+import Pusher from 'pusher-js';
+import { authTokenFromStorage } from './redux/tokens';
 
-function subscribeToTimer (cb) {
-  socket.on('tick', data => cb(null, data))
-}
-export { subscribeToTimer }
+export const initPusher = () => {
+  const token = authTokenFromStorage();
+
+  const pusher = new Pusher('112da5ecf39968cbb761', {
+    authEndpoint: 'https://api-dev.bitcrypea.com/pusher/auth',
+    auth: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  });
+
+  return pusher;
+};

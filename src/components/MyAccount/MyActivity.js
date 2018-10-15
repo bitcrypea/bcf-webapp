@@ -58,7 +58,7 @@ const dataLogin = [];
 class MyActivity extends Component {
   render() {
     const { currentUser } = this.props;
-    console.log(currentUser);
+
     return (
       <Fragment>
         <AccountSection>

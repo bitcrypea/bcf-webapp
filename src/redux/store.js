@@ -5,7 +5,7 @@ import createEncryptor from 'redux-persist-transform-encrypt';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
-import rootReducer from '../reducers';
+import rootReducer from './reducers';
 
 export const history = createHistory();
 
