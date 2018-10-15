@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, REGISTER } from '../types';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, REGISTER } from './types';
 
 const getInitialState = () => ({
   isLoggedIn: false,

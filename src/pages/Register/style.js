@@ -8,18 +8,19 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Main = styled.div`
+export const RegisterMain = styled.div`
   box-sizing: content-box;
-  height: 455px;
+  height: 500px;
   width: 518px;
   padding: 30px 30px 40px;
   background: #fff;
   text-align: center;
-  margin-top: -41px;
+  margin-top: -5px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 100px;
 `;
 
 export const FormContent = styled.div``;

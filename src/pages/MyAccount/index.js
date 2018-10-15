@@ -5,7 +5,6 @@ import { Menu } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
-import { isLoggedIn, getUser } from '../../redux/selectors/authSelector';
 import LeftMenu from '../../components/MyAccount/LeftMenu';
 import {
   AccountContent,
@@ -17,6 +16,10 @@ import {
 } from './styled';
 import MyActivity from '../../components/MyAccount/MyActivity';
 import Wallets from '../../components/MyAccount/Wallets';
+import { isLoggedIn, getUser } from '../../redux/auth/selectors';
+import { initPusher } from '../../api';
+import { graphql } from 'react-apollo';
+import { createDepositAddressMutation } from './graphql';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -43,6 +46,17 @@ class MyAccount extends Component {
     if (!authenticated) {
       gotoLogin();
     }
+
+    let pusher = initPusher();
+    var channel = pusher.subscribe('private-deposit_addresses');
+
+    channel.bind('pusher:subscription_succeeded', function() {
+      console.log('success');
+    });
+
+    channel.bind('create', function(data) {
+      console.log(data);
+    });
 
     this.state = {
       mode: 'inline',
@@ -93,10 +107,23 @@ class MyAccount extends Component {
       gotoLogin();
     }
   }
-  Header;
+
+  createAddress = currency => {
+    this.props.createDepositAddress(currency);
+    const { createDepositAddress } = this.props;
+    createDepositAddress({
+      variables: {
+        currency: currency,
+      },
+    })
+      .then(({ data }) => {})
+      .catch(error => {});
+  };
+
   render() {
-    const { currentUser, authenticated } = this.props;
+    const { currentUser, authenticated, createDepositAddress } = this.props;
     const { mode, selectKey } = this.state;
+
     return (
       <AccountLayout>
         {authenticated && (
@@ -117,7 +144,9 @@ class MyAccount extends Component {
                     {selectKey === 'myActivity' && (
                       <MyActivity currentUser={currentUser} />
                     )}
-                    {selectKey === 'wallets' && <Wallets />}
+                    {selectKey === 'wallets' && (
+                      <Wallets createAddress={this.createAddress} />
+                    )}
                   </AccountRight>
                 </AccountInfoMain>
                 <div style={{ height: 50 }} />
@@ -146,7 +175,11 @@ const mapStateToProps = state => ({
   currentUser: getUser(state),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MyAccount);
+export default graphql(createDepositAddressMutation, {
+  name: 'createDepositAddress',
+})(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(MyAccount)
+);

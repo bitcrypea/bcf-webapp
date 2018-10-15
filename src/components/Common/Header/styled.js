@@ -1,68 +1,23 @@
 import styled from 'styled-components';
 
-export const MenuTitle = styled.div`
+export const HeaderMenuTitle = styled.div`
   color: #666;
   cursor: pointer;
 `;
 
-// export const Container = styled.header`
-//   box-shadow: 0 2px 8px #f0f1f2;
-//   background: #fff;
-//   min-width: 1200px;
-//   padding: 0 30px;
-//   font-family: Open Sans, SF Pro Text, Helvetica Neue, Helvetica, Arial,
-//     sans-serif;
-//   font-size: 16px;
-//   line-height: 1.5;
-// `;
-
-// export const NewNav = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   height: 60px;
-//   background-color: #fff;
-//   font-family: Open Sans, SF Pro Text, Helvetica Neue, Helvetica, Arial,
-//     sans-serif;
-// `;
-
-// export const NavLeft = styled.div`
-//   max-width: 800px;
-//   list-style-type: none;
-//   padding: 0;
-//   margin: 0;
-//   display: flex;
-//   align-items: center;
-//   font-size: 14px;
-// `;
-
-// export const NavRight = styled.div`
-//   max-width: 800px;
-//   list-style-type: none;
-//   padding: 0;
-//   margin: 0;
-//   display: flex;
-//   align-items: center;
-//   font-size: 12px;
-// `;
-
-// export const TagA = styled.a`
-//   margin-right: 32px;
-//   background-color: transparent;
-// `;
-
-export const Logo = styled.img`
+export const HeaderLogo = styled.img`
   cursor: pointer;
   border-style: none;
 `;
 
-export const LoginButton = styled.a`
+export const HeaderLoginButton = styled.a`
   cursor: pointer;
   text-decoration: none;
   color: #659aea;
   background-color: transparent;
 `;
 
-export const Register = styled.a`
+export const HeaderRegister = styled.a`
   cursor: pointer;
   color: #fff;
   padding-left: 16px;
@@ -76,13 +31,13 @@ export const Register = styled.a`
   background-color: #659aea;
 `;
 
-export const TagA = styled.a`
+export const HeaderTagA = styled.a`
   margin-right: 32px;
   background-color: transparent;
   color: rgb(102, 102, 102);
 `;
 
-export const ContainerHeader = styled.div`
+export const HeaderContainerHeader = styled.div`
   padding: 0px;
   width: 100%;
   background: #fff;
@@ -91,8 +46,9 @@ export const ContainerHeader = styled.div`
   flex: 0 0 auto;
 `;
 
-export const TopNavHead = styled.div`
+export const HeaderTopNavHead = styled.div`
   width: 100%;
+  background: rgb(44, 40, 39);
   transition: background 0.3s, width 0.2s;
   height: 64px;
   padding: 0 12px 0 0;
@@ -100,7 +56,7 @@ export const TopNavHead = styled.div`
   position: relative;
 `;
 
-export const TopNavMain = styled.div`
+export const HeaderTopNavMain = styled.div`
   max-width: 1200px;
   margin: auto;
   padding-left: 4px;
@@ -109,8 +65,8 @@ export const TopNavMain = styled.div`
   justify-content: space-between;
 `;
 
-export const TopNavLeft = styled.div`
+export const HeaderTopNavLeft = styled.div`
   color: white;
   display: flex;
 `;
-export const TopNavRight = styled.div``;
+export const HeaderTopNavRight = styled.div``;
