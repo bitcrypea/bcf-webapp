@@ -20,10 +20,12 @@ import { isLoggedIn, getUser } from '../../redux/auth/selectors';
 import { initPusher } from '../../api';
 import { graphql } from 'react-apollo';
 import { createDepositAddressMutation } from './graphql';
+import MyReferrals from '../../components/MyAccount/MyReferrals';
 
 const { Item } = Menu;
 const menuMapActivity = {
   myActivity: 'My Activity',
+  myReferrals: 'My Referrals',
 };
 const menuMapBalance = {
   wallets: 'Wallets',
@@ -147,6 +149,7 @@ class MyAccount extends Component {
                     {selectKey === 'wallets' && (
                       <Wallets createAddress={this.createAddress} />
                     )}
+                    {selectKey === 'myReferrals' && <MyReferrals />}
                   </AccountRight>
                 </AccountInfoMain>
                 <div style={{ height: 50 }} />
