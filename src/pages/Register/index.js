@@ -21,6 +21,7 @@ import { SIGNUP } from './graphql';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
+import queryString from 'query-string';
 import { registerUser } from '../../redux/auth/actions';
 
 class Register extends Component {
@@ -63,6 +64,8 @@ class Register extends Component {
 
   componentDidMount() {
     this.props.registerUser({ user: null });
+    const values = queryString.parse(this.props.location.search);
+    console.log(values.ref_code); // "top"
   }
 
   render() {
