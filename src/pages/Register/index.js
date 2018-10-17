@@ -30,14 +30,24 @@ class Register extends Component {
 
   onSubmit = values => {
     const { signup, registerUser, gotoEmailSend } = this.props;
-
+    debugger;
     this.setState({ isLoading: true });
-    signup({
-      variables: {
+
+    let input = {
+      email: values.email,
+      first_name: values.firstName,
+      last_name: values.lastName,
+    };
+    if (values.referralId !== '') {
+      input = {
         email: values.email,
         first_name: values.firstName,
         last_name: values.lastName,
-      },
+        ref_code: values.referralId,
+      };
+    }
+    signup({
+      variables: input,
     })
       .then(({ data }) => {
         const user = {

@@ -11,7 +11,23 @@ import {
 import { Switch, Input } from 'antd';
 
 class MyReferrals extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      enable: false,
+    };
+  }
+
+  handleChange = checked => {
+    this.setState({ enable: checked });
+  };
+
   render() {
+    const { enable } = this.state;
+    if (enable) {
+      this.props.createAffiliate(7);
+    }
     return (
       <Fragment>
         <AccountSection>
@@ -23,15 +39,25 @@ class MyReferrals extends Component {
               <ReferralContent>
                 <ReferralTitle>Do you want to join program?</ReferralTitle>
                 <div>
-                  <Switch defaultChecked onChange={() => {}} />
+                  <Switch
+                    defaultChecked={enable}
+                    disabled={enable}
+                    onChange={this.handleChange}
+                  />
                 </div>
               </ReferralContent>
             </ReferralContentLeft>
             <ReferralContentRight>
-              <ReferralTitle>Current referral number of you is: </ReferralTitle>
-              <div>
-                <Input style={{ maxWidth: 200 }} disabled placeholder="1" />
-              </div>
+              {enable && (
+                <div>
+                  <ReferralTitle>
+                    Current referral number of you is:{' '}
+                  </ReferralTitle>
+                  <div>
+                    <Input style={{ maxWidth: 200 }} disabled placeholder="1" />
+                  </div>
+                </div>
+              )}
             </ReferralContentRight>
           </AccountBasicInfoContainer>
         </AccountSection>

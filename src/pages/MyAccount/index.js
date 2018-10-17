@@ -17,9 +17,13 @@ import {
 import MyActivity from '../../components/MyAccount/MyActivity';
 import Wallets from '../../components/MyAccount/Wallets';
 import { isLoggedIn, getUser } from '../../redux/auth/selectors';
-import { initPusher } from '../../api';
-import { graphql } from 'react-apollo';
-import { createDepositAddressMutation } from './graphql';
+import { graphql, compose } from 'react-apollo';
+import {
+  createDepositAddressMutation,
+  affiliateCodesQuery,
+  createAffiliateCodeMutation,
+  referralsQuery,
+} from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 
 const { Item } = Menu;
@@ -48,17 +52,6 @@ class MyAccount extends Component {
     if (!authenticated) {
       gotoLogin();
     }
-
-    let pusher = initPusher();
-    var channel = pusher.subscribe('private-deposit_addresses');
-
-    channel.bind('pusher:subscription_succeeded', function() {
-      console.log('success');
-    });
-
-    channel.bind('create', function(data) {
-      console.log(data);
-    });
 
     this.state = {
       mode: 'inline',
@@ -110,8 +103,18 @@ class MyAccount extends Component {
     }
   }
 
+  createAffiliate = code => {
+    const { createAffiliateCode } = this.props;
+    createAffiliateCode({
+      variables: {
+        code: code.toString(),
+      },
+    })
+      .then(({ data }) => {})
+      .catch(error => {});
+  };
+
   createAddress = currency => {
-    this.props.createDepositAddress(currency);
     const { createDepositAddress } = this.props;
     createDepositAddress({
       variables: {
@@ -125,6 +128,7 @@ class MyAccount extends Component {
   render() {
     const { currentUser, authenticated } = this.props;
     const { mode, selectKey } = this.state;
+    console.log(this.props);
 
     return (
       <AccountLayout>
@@ -149,7 +153,9 @@ class MyAccount extends Component {
                     {selectKey === 'wallets' && (
                       <Wallets createAddress={this.createAddress} />
                     )}
-                    {selectKey === 'myReferrals' && <MyReferrals />}
+                    {selectKey === 'myReferrals' && (
+                      <MyReferrals createAffiliate={this.createAffiliate} />
+                    )}
                   </AccountRight>
                 </AccountInfoMain>
                 <div style={{ height: 50 }} />
@@ -178,11 +184,22 @@ const mapStateToProps = state => ({
   currentUser: getUser(state),
 });
 
-export default graphql(createDepositAddressMutation, {
-  name: 'createDepositAddress',
-})(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+  compose(
+    graphql(referralsQuery, {
+      name: 'getReferrals',
+    }),
+    graphql(affiliateCodesQuery, {
+      name: 'getAffiliateCodes',
+    }),
+    graphql(createDepositAddressMutation, {
+      name: 'createDepositAddress',
+    }),
+    graphql(createAffiliateCodeMutation, {
+      name: 'createAffiliateCode',
+    })
   )(MyAccount)
 );

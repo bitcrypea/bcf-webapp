@@ -36,7 +36,7 @@ class RegisterForm extends Component {
 
   handleInitialize() {
     const initData = {
-      referralId: '1234',
+      referralId: '',
     };
 
     this.props.initialize(initData);
