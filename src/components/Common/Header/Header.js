@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Menu, Dropdown, Icon } from 'antd';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -69,7 +69,7 @@ class Header extends Component {
                 >
                   <HeaderMenuTitle>
                     <Icon
-                      style={{ fontSize: 24, color: 'white' }}
+                      style={{ fontSize: 24 }}
                       type="user"
                       theme="outlined"
                     />
@@ -78,10 +78,7 @@ class Header extends Component {
               )}
               {!authenticated && (
                 <Fragment>
-                  <HeaderLoginButton
-                    style={{ color: 'white' }}
-                    onClick={() => this.props.gotoLogin()}
-                  >
+                  <HeaderLoginButton onClick={() => this.props.gotoLogin()}>
                     Login
                   </HeaderLoginButton>
                   <HeaderRegister onClick={() => this.props.gotoRegister()}>

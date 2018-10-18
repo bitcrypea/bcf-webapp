@@ -8,12 +8,27 @@ import {
   ReferralTitle,
   ReferralContent,
 } from './styled';
-import { Switch, Input } from 'antd';
+import { Switch, Input, Badge } from 'antd';
 
 class MyReferrals extends Component {
-  render() {
-    const { currentUser } = this.props;
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      enable: this.props.enable,
+      code: localStorage.getItem('affiliate_codes'),
+    };
+  }
+
+  handleChange = checked => {
+    this.setState({ enable: checked });
+  };
+
+  render() {
+    const { enable } = this.state;
+    if (enable) {
+      this.props.createAffiliate(this.state.code);
+    }
     return (
       <Fragment>
         <AccountSection>
@@ -25,24 +40,45 @@ class MyReferrals extends Component {
               <ReferralContent>
                 <ReferralTitle>Do you want to join program?</ReferralTitle>
                 <div>
-                  <Switch defaultChecked onChange={() => {}} />
+                  <Switch
+                    defaultChecked={enable}
+                    disabled={enable}
+                    onChange={this.handleChange}
+                  />
                 </div>
               </ReferralContent>
             </ReferralContentLeft>
             <ReferralContentRight>
-              <ReferralTitle>Current referral number of you is: </ReferralTitle>
-              <div>
-                <Input style={{ maxWidth: 200 }} disabled placeholder="1" />
-              </div>
+              {enable && (
+                <div>
+                  <ReferralTitle>
+                    Current referral number of you is:{' '}
+                  </ReferralTitle>
+                  <div>
+                    <Input
+                      value={this.state.code}
+                      style={{ maxWidth: 200 }}
+                      disabled
+                    />
+                  </div>
+                </div>
+              )}
             </ReferralContentRight>
           </AccountBasicInfoContainer>
         </AccountSection>
 
         <AccountSection style={{ paddingTop: 50 }}>
           <AccountInfoTitle>
-            <span>Number account using your referral number</span>
+            <span>Sucessful referrals</span>
           </AccountInfoTitle>
-          <AccountBasicInfoContainer>Count: 10</AccountBasicInfoContainer>
+          <AccountBasicInfoContainer>
+            <Badge
+              count={this.props.count}
+              style={{ backgroundColor: '#52c41a', marginRight: 10 }}
+            />
+            {`  `}
+            People
+          </AccountBasicInfoContainer>
         </AccountSection>
       </Fragment>
     );

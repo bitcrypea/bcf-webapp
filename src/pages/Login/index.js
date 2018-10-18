@@ -47,9 +47,9 @@ class Login extends Component {
       .then(({ data }) => {
         this.setState({ isLoading: false });
         message.success('Login successful');
-        debugger;
         loginSuccess(data.signin);
         localStorage.setItem('TOKEN_ID', data.signin.id);
+        localStorage.setItem('affiliate_codes', data.signin.user.id);
         localStorage.setItem('TOKEN_SECRET', data.signin.token);
         gotoHome();
       })

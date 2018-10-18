@@ -14,6 +14,24 @@ import {
   RECEIVE_COIN_VETETH,
   RECEIVE_COIN_ETCETH,
   RECEIVE_COIN_HOTETH,
+  RECEIVE_COIN_ETCBTC,
+  RECEIVE_COIN_ETHBTC,
+  RECEIVE_COIN_EOSBTC,
+  RECEIVE_COIN_XRPBTC,
+  RECEIVE_COIN_OSTBTC,
+  RECEIVE_COIN_XLMBTC,
+  RECEIVE_COIN_BCCBTC,
+  RECEIVE_COIN_LTCBTC,
+  RECEIVE_COIN_ADABTC,
+  RECEIVE_COIN_BTCUSDT,
+  RECEIVE_COIN_ETCUSDT,
+  RECEIVE_COIN_ETHUSDT,
+  RECEIVE_COIN_EOSUSDT,
+  RECEIVE_COIN_BCCUSDT,
+  RECEIVE_COIN_TRXUSDT,
+  RECEIVE_COIN_XRPUSDT,
+  RECEIVE_COIN_ADAUSDT,
+  RECEIVE_COIN_NEOUSDT,
 } from './types';
 
 export const receiveCartETHBTC = data => ({
@@ -88,5 +106,95 @@ export const receiveCoinTRXETH = data => ({
 
 export const receiveCoinZILETH = data => ({
   type: RECEIVE_COIN_ZILETH,
+  payload: data,
+});
+
+export const receiveCoinETCBTC = data => ({
+  type: RECEIVE_COIN_ETCBTC,
+  payload: data,
+});
+
+export const receiveCoinETHBTC = data => ({
+  type: RECEIVE_COIN_ETHBTC,
+  payload: data,
+});
+
+export const receiveCoinEOSBTC = data => ({
+  type: RECEIVE_COIN_EOSBTC,
+  payload: data,
+});
+
+export const receiveCoinXRPBTC = data => ({
+  type: RECEIVE_COIN_XRPBTC,
+  payload: data,
+});
+
+export const receiveCoinOSTBTC = data => ({
+  type: RECEIVE_COIN_OSTBTC,
+  payload: data,
+});
+
+export const receiveCoinXLMBTC = data => ({
+  type: RECEIVE_COIN_XLMBTC,
+  payload: data,
+});
+
+export const receiveCoinBCCBTC = data => ({
+  type: RECEIVE_COIN_BCCBTC,
+  payload: data,
+});
+
+export const receiveCoinLTCBTC = data => ({
+  type: RECEIVE_COIN_LTCBTC,
+  payload: data,
+});
+
+export const receiveCoinADABTC = data => ({
+  type: RECEIVE_COIN_ADABTC,
+  payload: data,
+});
+
+export const receiveCoinBTCUSDT = data => ({
+  type: RECEIVE_COIN_BTCUSDT,
+  payload: data,
+});
+
+export const receiveCoinETCUSDT = data => ({
+  type: RECEIVE_COIN_ETCUSDT,
+  payload: data,
+});
+
+export const receiveCoinETHUSDT = data => ({
+  type: RECEIVE_COIN_ETHUSDT,
+  payload: data,
+});
+
+export const receiveCoinEOSUSDT = data => ({
+  type: RECEIVE_COIN_EOSUSDT,
+  payload: data,
+});
+
+export const receiveCoinBCCUSDT = data => ({
+  type: RECEIVE_COIN_BCCUSDT,
+  payload: data,
+});
+
+export const receiveCoinTRXUSDT = data => ({
+  type: RECEIVE_COIN_TRXUSDT,
+  payload: data,
+});
+
+export const receiveCoinXRPUSDT = data => ({
+  type: RECEIVE_COIN_XRPUSDT,
+  payload: data,
+});
+
+export const receiveCoinADAUSDT = data => ({
+  type: RECEIVE_COIN_ADAUSDT,
+  payload: data,
+});
+
+export const receiveCoinNEOUSDT = data => ({
+  type: RECEIVE_COIN_NEOUSDT,
   payload: data,
 });
