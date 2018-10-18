@@ -48,7 +48,7 @@ export const HeaderContainerHeader = styled.div`
 
 export const HeaderTopNavHead = styled.div`
   width: 100%;
-  background: rgb(44, 40, 39);
+  background: white;
   transition: background 0.3s, width 0.2s;
   height: 64px;
   padding: 0 12px 0 0;
@@ -69,4 +69,5 @@ export const HeaderTopNavLeft = styled.div`
   color: white;
   display: flex;
 `;
+
 export const HeaderTopNavRight = styled.div``;

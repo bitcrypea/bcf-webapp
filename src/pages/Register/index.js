@@ -30,14 +30,24 @@ class Register extends Component {
 
   onSubmit = values => {
     const { signup, registerUser, gotoEmailSend } = this.props;
-
+    debugger;
     this.setState({ isLoading: true });
-    signup({
-      variables: {
+
+    let input = {
+      email: values.email,
+      first_name: values.firstName,
+      last_name: values.lastName,
+    };
+    if (values.referralId !== '') {
+      input = {
         email: values.email,
         first_name: values.firstName,
         last_name: values.lastName,
-      },
+        ref_code: values.referralId,
+      };
+    }
+    signup({
+      variables: input,
     })
       .then(({ data }) => {
         const user = {
@@ -63,8 +73,6 @@ class Register extends Component {
 
   componentDidMount() {
     this.props.registerUser({ user: null });
-    // const values = queryString.parse(this.props.location.search);
-    // console.log(values.ref_code); // "top"
   }
 
   render() {
@@ -89,7 +97,10 @@ class Register extends Component {
                   <Title>
                     <Span>Register</Span>
                   </Title>
-                  <RegisterForm onSubmit={this.onSubmit} />
+                  <RegisterForm
+                    onSubmit={this.onSubmit}
+                    location={this.props.location}
+                  />
                 </FormContainer>
                 <FooterContainer>
                   Already Registered?

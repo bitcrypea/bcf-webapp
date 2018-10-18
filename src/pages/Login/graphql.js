@@ -7,6 +7,7 @@ const SIGNIN = gql`
       token
       expire_at
       user {
+        id
         first_name
         last_name
         email

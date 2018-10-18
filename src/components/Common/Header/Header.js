@@ -69,7 +69,7 @@ class Header extends Component {
                 >
                   <HeaderMenuTitle>
                     <Icon
-                      style={{ fontSize: 24, color: 'white' }}
+                      style={{ fontSize: 24 }}
                       type="user"
                       theme="outlined"
                     />
@@ -78,10 +78,7 @@ class Header extends Component {
               )}
               {!authenticated && (
                 <Fragment>
-                  <HeaderLoginButton
-                    style={{ color: 'white' }}
-                    onClick={() => this.props.gotoLogin()}
-                  >
+                  <HeaderLoginButton onClick={() => this.props.gotoLogin()}>
                     Login
                   </HeaderLoginButton>
                   <HeaderRegister onClick={() => this.props.gotoRegister()}>
