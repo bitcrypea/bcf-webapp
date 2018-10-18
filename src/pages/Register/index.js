@@ -73,8 +73,6 @@ class Register extends Component {
 
   componentDidMount() {
     this.props.registerUser({ user: null });
-    // const values = queryString.parse(this.props.location.search);
-    // console.log(values.ref_code); // "top"
   }
 
   render() {
@@ -99,7 +97,10 @@ class Register extends Component {
                   <Title>
                     <Span>Register</Span>
                   </Title>
-                  <RegisterForm onSubmit={this.onSubmit} />
+                  <RegisterForm
+                    onSubmit={this.onSubmit}
+                    location={this.props.location}
+                  />
                 </FormContainer>
                 <FooterContainer>
                   Already Registered?

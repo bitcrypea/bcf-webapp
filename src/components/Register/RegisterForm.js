@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Form, Input, Button } from 'antd';
 import { connect } from 'react-redux';
+import qs from 'qs';
 
 const FormItem = Form.Item;
 
@@ -35,8 +36,31 @@ class RegisterForm extends Component {
   }
 
   handleInitialize() {
+    let code;
+    const qsParsed = qs.parse(this.props.location.search.slice(1));
+
+    debugger;
+    if (qsParsed.ref_code !== undefined) {
+      const affiliate_codes = localStorage.getItem('affiliate_codes');
+      const ref_code = localStorage.getItem('ref_code');
+
+      if (ref_code !== null) {
+        code = ref_code;
+      }
+      if (affiliate_codes !== null && affiliate_codes !== qsParsed.ref_code) {
+        if (ref_code === null) {
+          localStorage.setItem('ref_code', qsParsed.ref_code);
+          code = qsParsed.ref_code;
+        }
+      } else {
+        if (ref_code === null) {
+          localStorage.setItem('ref_code', qsParsed.ref_code);
+          code = qsParsed.ref_code;
+        }
+      }
+    }
     const initData = {
-      referralId: '',
+      referralId: code,
     };
 
     this.props.initialize(initData);
@@ -44,6 +68,7 @@ class RegisterForm extends Component {
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
+    debugger;
     return (
       <Form onSubmit={handleSubmit}>
         <Field

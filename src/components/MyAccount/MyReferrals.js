@@ -8,14 +8,15 @@ import {
   ReferralTitle,
   ReferralContent,
 } from './styled';
-import { Switch, Input } from 'antd';
+import { Switch, Input, Badge } from 'antd';
 
 class MyReferrals extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      enable: false,
+      enable: this.props.enable,
+      code: localStorage.getItem('affiliate_codes'),
     };
   }
 
@@ -26,7 +27,7 @@ class MyReferrals extends Component {
   render() {
     const { enable } = this.state;
     if (enable) {
-      this.props.createAffiliate(7);
+      this.props.createAffiliate(this.state.code);
     }
     return (
       <Fragment>
@@ -54,7 +55,11 @@ class MyReferrals extends Component {
                     Current referral number of you is:{' '}
                   </ReferralTitle>
                   <div>
-                    <Input style={{ maxWidth: 200 }} disabled placeholder="1" />
+                    <Input
+                      value={this.state.code}
+                      style={{ maxWidth: 200 }}
+                      disabled
+                    />
                   </div>
                 </div>
               )}
@@ -64,9 +69,16 @@ class MyReferrals extends Component {
 
         <AccountSection style={{ paddingTop: 50 }}>
           <AccountInfoTitle>
-            <span>Number account using your referral number</span>
+            <span>Sucessful referrals</span>
           </AccountInfoTitle>
-          <AccountBasicInfoContainer>Count: 10</AccountBasicInfoContainer>
+          <AccountBasicInfoContainer>
+            <Badge
+              count={this.props.count}
+              style={{ backgroundColor: '#52c41a', marginRight: 10 }}
+            />
+            {`  `}
+            People
+          </AccountBasicInfoContainer>
         </AccountSection>
       </Fragment>
     );

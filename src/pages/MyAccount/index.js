@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../components/Common/Header/Header';
 import Footer from '../../components/Common/Footer/Footer';
-import { Menu } from 'antd';
+import { Menu, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
@@ -17,7 +17,8 @@ import {
 import MyActivity from '../../components/MyAccount/MyActivity';
 import Wallets from '../../components/MyAccount/Wallets';
 import { isLoggedIn, getUser } from '../../redux/auth/selectors';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import { compose } from 'recompose';
 import {
   createDepositAddressMutation,
   affiliateCodesQuery,
@@ -25,6 +26,7 @@ import {
   referralsQuery,
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
+import { Center } from '../Register/style';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -60,6 +62,9 @@ class MyAccount extends Component {
       menuMapAccount,
       menuMapSetting,
       selectKey: 'myActivity',
+      referrals: [],
+      affiliateCodes: [],
+      isShowSwitch: false,
     };
   }
 
@@ -97,17 +102,46 @@ class MyAccount extends Component {
   };
 
   componentDidMount() {
-    const { gotoLogin, authenticated } = this.props;
+    const {
+      gotoLogin,
+      authenticated,
+      affiliateCodes: { affiliate_codes },
+    } = this.props;
     if (!authenticated) {
       gotoLogin();
     }
+    console.log(affiliate_codes);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log(props.affiliateCodes.affiliate_codes);
+    if (
+      props.affiliateCodes.affiliate_codes &&
+      props.affiliateCodes.affiliate_codes.length !==
+        state.affiliateCodes.length
+    ) {
+      debugger;
+      return {
+        affiliateCodes: props.affiliateCodes.affiliate_codes,
+        isShowSwitch: true,
+      };
+    }
+
+    if (
+      props.referrals.referrals &&
+      props.referrals.referrals.length !== state.referrals.length
+    ) {
+      debugger;
+      return { referrals: props.referrals.referrals };
+    }
+    return null;
   }
 
   createAffiliate = code => {
     const { createAffiliateCode } = this.props;
     createAffiliateCode({
       variables: {
-        code: code.toString(),
+        code: code,
       },
     })
       .then(({ data }) => {})
@@ -127,9 +161,23 @@ class MyAccount extends Component {
 
   render() {
     const { currentUser, authenticated } = this.props;
-    const { mode, selectKey } = this.state;
+    const { mode, selectKey, isShowSwitch, referrals } = this.state;
+    console.log(this.state);
     console.log(this.props);
-
+    if (this.props.referrals.loading) {
+      return (
+        <Center>
+          <Spin />
+        </Center>
+      );
+    }
+    if (this.props.affiliateCodes.loading) {
+      return (
+        <Center>
+          <Spin />
+        </Center>
+      );
+    }
     return (
       <AccountLayout>
         {authenticated && (
@@ -154,7 +202,11 @@ class MyAccount extends Component {
                       <Wallets createAddress={this.createAddress} />
                     )}
                     {selectKey === 'myReferrals' && (
-                      <MyReferrals createAffiliate={this.createAffiliate} />
+                      <MyReferrals
+                        createAffiliate={this.createAffiliate}
+                        enable={isShowSwitch}
+                        count={referrals.length}
+                      />
                     )}
                   </AccountRight>
                 </AccountInfoMain>
@@ -190,10 +242,10 @@ export default connect(
 )(
   compose(
     graphql(referralsQuery, {
-      name: 'getReferrals',
+      name: 'referrals',
     }),
     graphql(affiliateCodesQuery, {
-      name: 'getAffiliateCodes',
+      name: 'affiliateCodes',
     }),
     graphql(createDepositAddressMutation, {
       name: 'createDepositAddress',
