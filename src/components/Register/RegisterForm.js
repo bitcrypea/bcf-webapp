@@ -39,7 +39,6 @@ class RegisterForm extends Component {
     let code;
     const qsParsed = qs.parse(this.props.location.search.slice(1));
 
-    debugger;
     if (qsParsed.ref_code !== undefined) {
       const affiliate_codes = localStorage.getItem('affiliate_codes');
       const ref_code = localStorage.getItem('ref_code');
@@ -68,7 +67,7 @@ class RegisterForm extends Component {
 
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
-    debugger;
+
     return (
       <Form onSubmit={handleSubmit}>
         <Field

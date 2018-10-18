@@ -120,7 +120,6 @@ class MyAccount extends Component {
       props.affiliateCodes.affiliate_codes.length !==
         state.affiliateCodes.length
     ) {
-      debugger;
       return {
         affiliateCodes: props.affiliateCodes.affiliate_codes,
         isShowSwitch: true,
@@ -131,7 +130,6 @@ class MyAccount extends Component {
       props.referrals.referrals &&
       props.referrals.referrals.length !== state.referrals.length
     ) {
-      debugger;
       return { referrals: props.referrals.referrals };
     }
     return null;

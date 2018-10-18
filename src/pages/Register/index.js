@@ -30,7 +30,7 @@ class Register extends Component {
 
   onSubmit = values => {
     const { signup, registerUser, gotoEmailSend } = this.props;
-    debugger;
+
     this.setState({ isLoading: true });
 
     let input = {
