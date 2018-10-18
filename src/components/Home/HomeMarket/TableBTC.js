@@ -58,7 +58,7 @@ class TableBTC extends Component {
       receiveCoinLTCBTC,
       receiveCoinADABTC,
     } = this.props;
-    debugger;
+
     socket.on('coinETCBTC', data => receiveCoinETCBTC(JSON.parse(data)));
     socket.on('coinETHBTC', data => receiveCoinETHBTC(JSON.parse(data)));
     socket.on('coinEOSBTC', data => receiveCoinEOSBTC(JSON.parse(data)));
