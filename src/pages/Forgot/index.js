@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   Main,
@@ -9,9 +9,9 @@ import {
   Title,
   Span,
   FormContainer,
-} from "./style";
-import logo from "../../assets/images/logo-bitcrypea.png";
-import ForgotForm from "../../components/Forgot/ForgotForm";
+} from './style';
+import logo from '../../assets/images/logo.png';
+import ForgotForm from '../../components/Forgot/ForgotForm';
 
 class Forgot extends Component {
   render() {
@@ -27,7 +27,7 @@ class Forgot extends Component {
             <Title>
               <Span>Forgot</Span>
             </Title>
-            <span style={{color: '#b48728', fontSize: 12}}>
+            <span style={{ color: '#b48728', fontSize: 12 }}>
               *For security purposes no withdrawals are permitted for 24 hours
               after modification of security methods.
             </span>

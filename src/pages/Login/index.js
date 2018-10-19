@@ -17,7 +17,7 @@ import {
   HeaderFooterContainer,
   HeaderLinkRegister,
 } from './style';
-import logo from '../../assets/images/logo-bitcrypea.png';
+import logo from '../../assets/images/logo.png';
 import LoginForm from '../../components/Login/LoginForm';
 import { SIGNIN } from './graphql';
 import { Center } from '../Register/style';
