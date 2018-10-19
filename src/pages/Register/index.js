@@ -90,7 +90,7 @@ class Register extends Component {
               <RegisterMain>
                 <LogoContainer>
                   <TagA onClick={this.props.gotoHome}>
-                    <Logo src={logo} width="150" height="50" />
+                    <Logo src={logo} width="90" height="60" />
                   </TagA>
                 </LogoContainer>
                 <FormContainer>

@@ -75,7 +75,7 @@ class Login extends Component {
             <HeaderMain>
               <HeaderLogoContainer>
                 <HeaderTagA onClick={() => this.props.gotoHome()}>
-                  <HeaderLogo src={logo} width="150" height="50" />
+                  <HeaderLogo src={logo} width="90" height="60" />
                 </HeaderTagA>
               </HeaderLogoContainer>
               <HeaderFormContainer>
