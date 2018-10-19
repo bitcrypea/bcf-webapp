@@ -14,7 +14,7 @@ import {
   SecondContent,
   Li,
 } from './style';
-import logo from '../../assets/images/logo-bitcrypea.png';
+import logo from '../../assets/images/logo.png';
 import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

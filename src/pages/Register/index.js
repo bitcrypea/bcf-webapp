@@ -15,7 +15,7 @@ import {
   LinkRegister,
   Center,
 } from './style';
-import logo from '../../assets/images/logo-bitcrypea.png';
+import logo from '../../assets/images/logo.png';
 import RegisterForm from '../../components/Register/RegisterForm';
 import { SIGNUP } from './graphql';
 import { bindActionCreators } from 'redux';

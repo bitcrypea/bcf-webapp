@@ -13,7 +13,7 @@ import {
   MainContent,
   P,
 } from './style';
-import logo from '../../assets/images/logo-bitcrypea.png';
+import logo from '../../assets/images/logo.png';
 
 class EmailVerify extends Component {
   render() {
