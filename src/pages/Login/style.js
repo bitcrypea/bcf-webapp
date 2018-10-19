@@ -30,7 +30,7 @@ export const HeaderLogoContainer = styled.div`
 `;
 
 export const HeaderTagA = styled.a`
-  margin-right: 32px;
+  /* margin-right: 32px; */
   background-color: transparent;
 `;
 

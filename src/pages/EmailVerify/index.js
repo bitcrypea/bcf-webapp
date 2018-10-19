@@ -24,7 +24,7 @@ class EmailVerify extends Component {
             <Main>
               <LogoContainer>
                 <TagA href="/">
-                  <Logo src={logo} width="150" height="50" />
+                  <Logo src={logo} width="90" height="60" />
                 </TagA>
               </LogoContainer>
               <FormContainer>

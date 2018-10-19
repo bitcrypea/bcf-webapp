@@ -30,7 +30,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const TagA = styled.a`
-  margin-right: 32px;
+  /* margin-right: 32px; */
   background-color: transparent;
 `;
 
