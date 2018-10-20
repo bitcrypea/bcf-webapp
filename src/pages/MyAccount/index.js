@@ -240,19 +240,19 @@ export default connect(
   compose(
     graphql(referralsQuery, {
       name: 'referrals',
-      options: props => {
-        return {
-          pollInterval: 1000,
-        };
-      },
+      // options: props => {
+      //   return {
+      //     pollInterval: 1000,
+      //   };
+      // },
     }),
     graphql(affiliateCodesQuery, {
       name: 'affiliateCodes',
-      options: props => {
-        return {
-          pollInterval: 1000,
-        };
-      },
+      // options: props => {
+      //   return {
+      //     pollInterval: 1000,
+      //   };
+      // },
     }),
     graphql(createDepositAddressMutation, {
       name: 'createDepositAddress',
