@@ -110,11 +110,11 @@ class MyAccount extends Component {
     if (!authenticated) {
       gotoLogin();
     }
-    console.log(affiliate_codes);
+    //console.log(affiliate_codes);
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log(props.affiliateCodes.affiliate_codes);
+    //console.log(props.affiliateCodes.affiliate_codes);
     if (
       props.affiliateCodes.affiliate_codes &&
       props.affiliateCodes.affiliate_codes.length !==
@@ -160,8 +160,7 @@ class MyAccount extends Component {
   render() {
     const { currentUser, authenticated } = this.props;
     const { mode, selectKey, isShowSwitch, referrals } = this.state;
-    console.log(this.state);
-    console.log(this.props);
+
     if (this.props.referrals.loading) {
       return (
         <Center>
@@ -241,9 +240,19 @@ export default connect(
   compose(
     graphql(referralsQuery, {
       name: 'referrals',
+      options: props => {
+        return {
+          pollInterval: 1000,
+        };
+      },
     }),
     graphql(affiliateCodesQuery, {
       name: 'affiliateCodes',
+      options: props => {
+        return {
+          pollInterval: 1000,
+        };
+      },
     }),
     graphql(createDepositAddressMutation, {
       name: 'createDepositAddress',

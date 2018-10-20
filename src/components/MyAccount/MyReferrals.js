@@ -22,13 +22,14 @@ class MyReferrals extends Component {
 
   handleChange = checked => {
     this.setState({ enable: checked });
+    if (checked) {
+      this.props.createAffiliate(this.state.code);
+    }
   };
 
   render() {
     const { enable } = this.state;
-    if (enable) {
-      this.props.createAffiliate(this.state.code);
-    }
+
     return (
       <Fragment>
         <AccountSection>
