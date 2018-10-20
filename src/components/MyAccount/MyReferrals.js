@@ -8,7 +8,7 @@ import {
   ReferralTitle,
   ReferralContent,
 } from './styled';
-import { Switch, Input, Badge } from 'antd';
+import { Switch, Input, Badge, Icon } from 'antd';
 
 class MyReferrals extends Component {
   constructor(props) {
@@ -42,6 +42,7 @@ class MyReferrals extends Component {
                 <ReferralTitle>Do you want to join program?</ReferralTitle>
                 <div>
                   <Switch
+                    checkedChildren={<Icon type="check" />}
                     defaultChecked={enable}
                     disabled={enable}
                     onChange={this.handleChange}
@@ -52,9 +53,7 @@ class MyReferrals extends Component {
             <ReferralContentRight>
               {enable && (
                 <div>
-                  <ReferralTitle>
-                    Current referral number of you is{' '}
-                  </ReferralTitle>
+                  <ReferralTitle>Referral Code</ReferralTitle>
                   <div>
                     <Input
                       value={this.state.code}
