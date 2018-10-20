@@ -53,7 +53,7 @@ class EmailSend extends Component {
                     </Li>
                     <Li>Check your spam or junk mail folders.</Li>
                     <Li>
-                      Add Binance to your email address whitelist. How can I do
+                      Add PNLEX to your email address whitelist. How can I do
                       this?
                     </Li>
 

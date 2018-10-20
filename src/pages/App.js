@@ -19,7 +19,7 @@ class App extends Component {
     });
 
     channel.bind('create', function(data) {
-      //console.log(data);
+      console.log(data);
     });
   }
   render() {
