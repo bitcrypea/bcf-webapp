@@ -9,6 +9,9 @@ import {
   ReferralContent,
 } from './styled';
 import { Switch, Input, Badge, Icon } from 'antd';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
+
+const env = runtimeEnv();
 
 class MyReferrals extends Component {
   constructor(props) {
@@ -53,13 +56,26 @@ class MyReferrals extends Component {
             <ReferralContentRight>
               {enable && (
                 <div>
-                  <ReferralTitle>Referral Code</ReferralTitle>
                   <div>
-                    <Input
-                      value={this.state.code}
-                      style={{ maxWidth: 200 }}
-                      disabled
-                    />
+                    <ReferralTitle>Referral Code</ReferralTitle>
+                    <div>
+                      <Input
+                        value={this.state.code}
+                        style={{ maxWidth: 200 }}
+                        disabled
+                      />
+                    </div>
+                  </div>
+                  <div style={{ marginTop: 10 }}>
+                    <ReferralTitle>Referral Link</ReferralTitle>
+                    <div>
+                      <span>
+                        {' '}
+                        {`${env.REACT_APP_REFER_LINK}/register?ref_code=${
+                          this.state.code
+                        }`}
+                      </span>
+                    </div>
                   </div>
                 </div>
               )}
