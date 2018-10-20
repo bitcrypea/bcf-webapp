@@ -53,7 +53,7 @@ class MyReferrals extends Component {
               {enable && (
                 <div>
                   <ReferralTitle>
-                    Current referral number of you is:{' '}
+                    Current referral number of you is{' '}
                   </ReferralTitle>
                   <div>
                     <Input

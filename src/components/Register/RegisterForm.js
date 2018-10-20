@@ -95,11 +95,11 @@ class RegisterForm extends Component {
         />
 
         <Field
-          label="Referral ID (optional)"
+          label=""
           name="referralId"
           component={AInput}
           type="text"
-          placeholder="Referral ID"
+          placeholder="Referral ID (optional)"
         />
 
         <FormItem>

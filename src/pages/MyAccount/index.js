@@ -105,7 +105,7 @@ class MyAccount extends Component {
     const {
       gotoLogin,
       authenticated,
-      affiliateCodes: { affiliate_codes },
+      // affiliateCodes: { affiliate_codes },
     } = this.props;
     if (!authenticated) {
       gotoLogin();
