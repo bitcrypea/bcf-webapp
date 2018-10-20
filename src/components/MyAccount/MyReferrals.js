@@ -78,7 +78,7 @@ class MyReferrals extends Component {
               style={{ backgroundColor: '#52c41a', marginRight: 10 }}
             />
             {`  `}
-            People
+            {this.props.count !== 0 && <span>People</span>}
           </AccountBasicInfoContainer>
         </AccountSection>
       </Fragment>
