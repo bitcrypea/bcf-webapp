@@ -7,7 +7,7 @@ export const initPusher = () => {
 
   const env = runtimeEnv();
 
-  const pusher = new Pusher(env.REACT_APP_PUSHER_ID, {
+  const pusher = new Pusher('112da5ecf39968cbb761', {
     authEndpoint: env.REACT_APP_PUSHER_ENDPOINT,
     auth: {
       headers: {
