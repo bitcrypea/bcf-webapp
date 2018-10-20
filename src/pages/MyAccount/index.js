@@ -27,6 +27,8 @@ import {
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { Center } from '../Register/style';
+import { createAffiliateCode } from '../../redux/pusher/actions';
+import { getNewReferral, getAffiliateCode } from '../../redux/pusher/selectors';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -65,6 +67,9 @@ class MyAccount extends Component {
       referrals: [],
       affiliateCodes: [],
       isShowSwitch: false,
+      newReferral: this.props.newReferral,
+      resultEnableAffiliateCode: this.props.resultEnableAffiliateCode,
+      count: 0,
     };
   }
 
@@ -102,35 +107,69 @@ class MyAccount extends Component {
   };
 
   componentDidMount() {
-    const {
-      gotoLogin,
-      authenticated,
-      // affiliateCodes: { affiliate_codes },
-    } = this.props;
+    const { gotoLogin, authenticated } = this.props;
     if (!authenticated) {
       gotoLogin();
     }
-    //console.log(affiliate_codes);
   }
 
   static getDerivedStateFromProps(props, state) {
-    //console.log(props.affiliateCodes.affiliate_codes);
     if (
-      props.affiliateCodes.affiliate_codes &&
-      props.affiliateCodes.affiliate_codes.length !==
-        state.affiliateCodes.length
+      props.affiliateCodes.affiliate_codes !== undefined &&
+      props.referrals.referrals === undefined
     ) {
       return {
-        affiliateCodes: props.affiliateCodes.affiliate_codes,
         isShowSwitch: true,
+        affiliateCodes: props.affiliateCodes.affiliate_codes,
       };
     }
 
     if (
-      props.referrals.referrals &&
-      props.referrals.referrals.length !== state.referrals.length
+      props.referrals.referrals !== undefined &&
+      props.affiliateCodes.affiliate_codes === undefined
     ) {
-      return { referrals: props.referrals.referrals };
+      let a = props.referrals.referrals.length;
+      if (props.newReferral.created_at !== state.newReferral.created_at) {
+        a = affiliateCodesQuery + 1;
+      }
+      return {
+        referrals: props.referrals.referrals,
+        isShowSwitch: true,
+        count: a,
+      };
+    }
+
+    if (
+      props.referrals.referrals !== undefined &&
+      props.affiliateCodes.affiliate_codes !== undefined
+    ) {
+      let b = props.referrals.referrals.length;
+      if (props.newReferral.created_at !== state.newReferral.created_at) {
+        b = b + 1;
+      }
+      return {
+        referrals: props.referrals.referrals,
+        isShowSwitch: true,
+        count: b,
+        affiliateCodes: props.affiliateCodes.affiliate_codes,
+      };
+    }
+
+    if (props.newReferral.created_at !== state.newReferral.created_at) {
+      return {
+        count: props.referrals.referrals.length + 1,
+      };
+    }
+    if (
+      props.resultEnableAffiliateCode.created_at !==
+      state.resultEnableAffiliateCode.created_at
+    ) {
+      return {
+        referrals: props.referrals.referrals,
+        affiliateCodes: props.affiliateCodes.affiliate_codes,
+        isShowSwitch: true,
+        count: props.referrals.referrals.length,
+      };
     }
     return null;
   }
@@ -159,22 +198,16 @@ class MyAccount extends Component {
 
   render() {
     const { currentUser, authenticated } = this.props;
-    const { mode, selectKey, isShowSwitch, referrals } = this.state;
+    const { mode, selectKey, isShowSwitch, referrals, count } = this.state;
 
-    if (this.props.referrals.loading) {
+    if (this.props.affiliateCodes.loading || this.props.referrals.loading) {
       return (
         <Center>
           <Spin />
         </Center>
       );
     }
-    if (this.props.affiliateCodes.loading) {
-      return (
-        <Center>
-          <Spin />
-        </Center>
-      );
-    }
+
     return (
       <AccountLayout>
         {authenticated && (
@@ -202,7 +235,7 @@ class MyAccount extends Component {
                       <MyReferrals
                         createAffiliate={this.createAffiliate}
                         enable={isShowSwitch}
-                        count={referrals.length}
+                        count={count}
                       />
                     )}
                   </AccountRight>
@@ -221,6 +254,7 @@ class MyAccount extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      createAffiliateCode,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
       gotoUnbindGoogle: () => push('/unbind-google'),
@@ -231,6 +265,8 @@ const mapDispatchToProps = dispatch =>
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
   currentUser: getUser(state),
+  newReferral: getNewReferral(state),
+  resultEnableAffiliateCode: getAffiliateCode(state),
 });
 
 export default connect(
@@ -240,19 +276,9 @@ export default connect(
   compose(
     graphql(referralsQuery, {
       name: 'referrals',
-      // options: props => {
-      //   return {
-      //     pollInterval: 1000,
-      //   };
-      // },
     }),
     graphql(affiliateCodesQuery, {
       name: 'affiliateCodes',
-      // options: props => {
-      //   return {
-      //     pollInterval: 1000,
-      //   };
-      // },
     }),
     graphql(createDepositAddressMutation, {
       name: 'createDepositAddress',

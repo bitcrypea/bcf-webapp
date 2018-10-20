@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   MaxWidth,
@@ -18,15 +18,15 @@ import {
   Column2,
   Column3,
   Column4,
-} from "./styled";
-import TableETH from "./TableETH";
-import TableBTC from "./TableBTC";
-import TableUSDT from "./TableUSDT";
+} from './styled';
+import TableETH from './TableETH';
+import TableBTC from './TableBTC';
+import TableUSDT from './TableUSDT';
 
 const active = {
-  color: "#659aea",
-  fontWeight: "600",
-  borderBottom: "2px solid #659aea"
+  color: '#659aea',
+  fontWeight: '600',
+  borderBottom: '2px solid #659aea',
 };
 class HomeMarket extends Component {
   constructor(props) {
@@ -136,7 +136,7 @@ class HomeMarket extends Component {
                     onClick={this.clickTabUSDTMarket}
                     style={this.state.styleUSDTMarket}
                   >
-                    USDT Market
+                    TUSD Market
                   </Tab>
                   <Tab
                     onClick={this.clickTabBCPMarket}
@@ -176,7 +176,7 @@ class HomeMarket extends Component {
                       <span>Pair</span>
                     </Column2>
                     <Column1 />
-                    <Column2 style={{textAlign: 'center'}}>
+                    <Column2 style={{ textAlign: 'center' }}>
                       <span>Last Price</span>
                     </Column2>
                     <Column3>24h Change</Column3>
@@ -188,9 +188,9 @@ class HomeMarket extends Component {
               </Table>
             </div>
           </div>
-          {this.state.isETHClicked && (<TableETH />)}
-          {this.state.isBTCClicked && (<TableBTC />)}
-          {this.state.isUSDTClicked && (<TableUSDT />)}
+          {this.state.isETHClicked && <TableETH />}
+          {this.state.isBTCClicked && <TableBTC />}
+          {this.state.isUSDTClicked && <TableUSDT />}
         </MaxWidth>
       </Container>
     );
@@ -198,4 +198,3 @@ class HomeMarket extends Component {
 }
 
 export default HomeMarket;
-
