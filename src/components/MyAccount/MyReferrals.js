@@ -69,12 +69,12 @@ class MyReferrals extends Component {
                   <div style={{ marginTop: 10 }}>
                     <ReferralTitle>Referral Link</ReferralTitle>
                     <div>
-                      <span>
+                      <a>
                         {' '}
                         {`${env.REACT_APP_REFER_LINK}/register?ref_code=${
                           this.state.code
                         }`}
-                      </span>
+                      </a>
                     </div>
                   </div>
                 </div>
