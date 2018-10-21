@@ -21,14 +21,12 @@ import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import {
   createDepositAddressMutation,
-  affiliateCodesQuery,
   createAffiliateCodeMutation,
-  referralsQuery,
+  dataQuery,
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { Center } from '../Register/style';
 import { createAffiliateCode } from '../../redux/pusher/actions';
-import { getNewReferral, getAffiliateCode } from '../../redux/pusher/selectors';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -52,10 +50,11 @@ const menuMapSetting = {
 class MyAccount extends Component {
   constructor(props) {
     super(props);
-    const { gotoLogin, authenticated } = this.props;
+    const { gotoLogin, authenticated, data } = this.props;
     if (!authenticated) {
       gotoLogin();
     }
+    data.refetch();
 
     this.state = {
       mode: 'inline',
@@ -114,63 +113,6 @@ class MyAccount extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (
-      props.affiliateCodes.affiliate_codes !== undefined &&
-      props.referrals.referrals === undefined
-    ) {
-      return {
-        isShowSwitch: true,
-        affiliateCodes: props.affiliateCodes.affiliate_codes,
-      };
-    }
-
-    if (
-      props.referrals.referrals !== undefined &&
-      props.affiliateCodes.affiliate_codes === undefined
-    ) {
-      let a = props.referrals.referrals.length;
-      if (props.newReferral.created_at !== state.newReferral.created_at) {
-        a = affiliateCodesQuery + 1;
-      }
-      return {
-        referrals: props.referrals.referrals,
-        isShowSwitch: true,
-        count: a,
-      };
-    }
-
-    if (
-      props.referrals.referrals !== undefined &&
-      props.affiliateCodes.affiliate_codes !== undefined
-    ) {
-      let b = props.referrals.referrals.length;
-      if (props.newReferral.created_at !== state.newReferral.created_at) {
-        b = b + 1;
-      }
-      return {
-        referrals: props.referrals.referrals,
-        isShowSwitch: true,
-        count: b,
-        affiliateCodes: props.affiliateCodes.affiliate_codes,
-      };
-    }
-
-    if (props.newReferral.created_at !== state.newReferral.created_at) {
-      return {
-        count: props.referrals.referrals.length + 1,
-      };
-    }
-    if (
-      props.resultEnableAffiliateCode.created_at !==
-      state.resultEnableAffiliateCode.created_at
-    ) {
-      return {
-        referrals: props.referrals.referrals,
-        affiliateCodes: props.affiliateCodes.affiliate_codes,
-        isShowSwitch: true,
-        count: props.referrals.referrals.length,
-      };
-    }
     return null;
   }
 
@@ -197,10 +139,10 @@ class MyAccount extends Component {
   };
 
   render() {
-    const { currentUser, authenticated } = this.props;
+    const { currentUser, authenticated, data } = this.props;
     const { mode, selectKey, isShowSwitch, count } = this.state;
-
-    if (this.props.affiliateCodes.loading || this.props.referrals.loading) {
+    console.log(data);
+    if (data.loading) {
       return (
         <Center>
           <Spin />
@@ -234,8 +176,10 @@ class MyAccount extends Component {
                     {selectKey === 'myReferrals' && (
                       <MyReferrals
                         createAffiliate={this.createAffiliate}
-                        enable={isShowSwitch}
-                        count={count}
+                        enable={
+                          !data.loading && data.affiliate_codes.length !== 0
+                        }
+                        count={!data.loading ? data.referrals.length : 0}
                       />
                     )}
                   </AccountRight>
@@ -265,8 +209,6 @@ const mapDispatchToProps = dispatch =>
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
   currentUser: getUser(state),
-  newReferral: getNewReferral(state),
-  resultEnableAffiliateCode: getAffiliateCode(state),
 });
 
 export default connect(
@@ -274,12 +216,7 @@ export default connect(
   mapDispatchToProps
 )(
   compose(
-    graphql(referralsQuery, {
-      name: 'referrals',
-    }),
-    graphql(affiliateCodesQuery, {
-      name: 'affiliateCodes',
-    }),
+    graphql(dataQuery),
     graphql(createDepositAddressMutation, {
       name: 'createDepositAddress',
     }),
