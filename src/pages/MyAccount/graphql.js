@@ -12,18 +12,13 @@ export const createAffiliateCodeMutation = gql`
   }
 `;
 
-export const affiliateCodesQuery = gql`
+export const dataQuery = gql`
   {
     affiliate_codes {
       code
       created_at
       status
     }
-  }
-`;
-
-export const referralsQuery = gql`
-  {
     referrals {
       created_at
       referee {
