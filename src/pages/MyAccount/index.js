@@ -198,7 +198,7 @@ class MyAccount extends Component {
 
   render() {
     const { currentUser, authenticated } = this.props;
-    const { mode, selectKey, isShowSwitch, referrals, count } = this.state;
+    const { mode, selectKey, isShowSwitch, count } = this.state;
 
     if (this.props.affiliateCodes.loading || this.props.referrals.loading) {
       return (
