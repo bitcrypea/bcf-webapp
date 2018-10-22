@@ -36,7 +36,6 @@ import {
   getAffiliateCode,
   getLoading,
 } from '../../redux/pusher/selectors';
-import { initPusher } from '../../api';
 
 const { Item } = Menu;
 const menuMapActivity = {
