@@ -26,7 +26,16 @@ import {
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { Center } from '../Register/style';
-import { createAffiliateCode } from '../../redux/pusher/actions';
+import {
+  createAffiliateCode,
+  enableSwitch,
+  disableSwitch,
+} from '../../redux/pusher/actions';
+import {
+  getNewReferral,
+  getAffiliateCode,
+  getLoading,
+} from '../../redux/pusher/selectors';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -113,18 +122,26 @@ class MyAccount extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    props.data.refetch();
+    if (props.data.affiliate_codes && props.data.affiliate_codes.length !== 0) {
+      props.disableSwitch();
+    }
     return null;
   }
 
   createAffiliate = code => {
-    const { createAffiliateCode } = this.props;
+    const { createAffiliateCode, enableSwitch, disableSwitch } = this.props;
+
+    enableSwitch();
     createAffiliateCode({
       variables: {
         code: code,
       },
     })
       .then(({ data }) => {})
-      .catch(error => {});
+      .catch(error => {
+        disableSwitch();
+      });
   };
 
   createAddress = currency => {
@@ -139,8 +156,9 @@ class MyAccount extends Component {
   };
 
   render() {
-    const { currentUser, authenticated, data } = this.props;
-    const { mode, selectKey, isShowSwitch, count } = this.state;
+    const { currentUser, authenticated, data, loading } = this.props;
+    const { mode, selectKey } = this.state;
+
     console.log(data);
     if (data.loading) {
       return (
@@ -177,9 +195,12 @@ class MyAccount extends Component {
                       <MyReferrals
                         createAffiliate={this.createAffiliate}
                         enable={
-                          !data.loading && data.affiliate_codes.length !== 0
+                          !data.loading &&
+                          data.affiliate_codes &&
+                          data.affiliate_codes.length !== 0
                         }
                         count={!data.loading ? data.referrals.length : 0}
+                        loading={loading}
                       />
                     )}
                   </AccountRight>
@@ -198,6 +219,8 @@ class MyAccount extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      disableSwitch,
+      enableSwitch,
       createAffiliateCode,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
@@ -209,6 +232,9 @@ const mapDispatchToProps = dispatch =>
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
   currentUser: getUser(state),
+  newReferral: getNewReferral(state),
+  resultEnableAffiliateCode: getAffiliateCode(state),
+  loading: getLoading(state),
 });
 
 export default connect(

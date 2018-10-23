@@ -11,3 +11,8 @@ export const getAffiliateCode = createSelector(
   pusherSelector,
   state => state.resultCreateAffiliateCode
 );
+
+export const getLoading = createSelector(
+  pusherSelector,
+  state => state.loading
+);

@@ -22,6 +22,10 @@ import { logout } from '../../../redux/auth/actions';
 
 class Header extends Component {
   handleLogout = () => {
+    localStorage.removeItem('TOKEN_ID');
+    localStorage.removeItem('TOKEN_SECRET');
+    localStorage.removeItem('affiliate_codes');
+
     this.props.logout();
     this.props.gotoHome();
   };
