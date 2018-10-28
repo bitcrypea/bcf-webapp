@@ -3,10 +3,17 @@ import {
   CREATE_REFERRAL,
   ENABLE_LOADING_SWITCH,
   DISABLE_LOADING_SWITCH,
+  CREATE_ADDRESS,
+  SAVE_PUSHER,
 } from './types';
 
 export const createAffiliateCode = data => ({
   type: CREATE_AFFILIATE_CODE,
+  payload: data,
+});
+
+export const createNewAddress = data => ({
+  type: CREATE_ADDRESS,
   payload: data,
 });
 
@@ -21,4 +28,9 @@ export const disableSwitch = data => ({
 
 export const enableSwitch = data => ({
   type: ENABLE_LOADING_SWITCH,
+});
+
+export const savePusher = data => ({
+  type: SAVE_PUSHER,
+  payload: data,
 });

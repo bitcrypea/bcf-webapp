@@ -8,8 +8,10 @@ import {
   ReferralTitle,
   ReferralContent,
 } from './styled';
-import { Switch, Input, Badge, Icon } from 'antd';
+import { Switch, Input, Badge, Icon, message } from 'antd';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Button } from 'antd';
 
 const env = runtimeEnv();
 
@@ -27,6 +29,10 @@ class MyReferrals extends Component {
     if (checked) {
       this.props.createAffiliate(this.state.code);
     }
+  };
+
+  onCopy = () => {
+    message.success('Copied!');
   };
 
   render() {
@@ -67,13 +73,26 @@ class MyReferrals extends Component {
                   </div>
                   <div style={{ marginTop: 10 }}>
                     <ReferralTitle>Referral Link</ReferralTitle>
-                    <div>
-                      <a>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <a style={{ paddingRight: 20 }}>
                         {' '}
                         {`${env.REACT_APP_REFER_LINK}/register?ref_code=${
                           this.state.code
                         }`}
                       </a>
+                      <CopyToClipboard
+                        text={`${env.REACT_APP_REFER_LINK}/register?ref_code=${
+                          this.state.code
+                        }`}
+                        onCopy={this.onCopy}
+                      >
+                        <Button shape="circle" icon="copy" />
+                      </CopyToClipboard>
                     </div>
                   </div>
                 </div>

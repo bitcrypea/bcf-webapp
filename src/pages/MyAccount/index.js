@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../components/Common/Header/Header';
 import Footer from '../../components/Common/Footer/Footer';
-import { Menu, Spin } from 'antd';
+import { Menu, Spin, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
@@ -23,19 +23,19 @@ import {
   createDepositAddressMutation,
   createAffiliateCodeMutation,
   dataQuery,
+  updatePasswordMutation,
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { Center } from '../Register/style';
 import {
+  createReferral,
   createAffiliateCode,
   enableSwitch,
   disableSwitch,
 } from '../../redux/pusher/actions';
-import {
-  getNewReferral,
-  getAffiliateCode,
-  getLoading,
-} from '../../redux/pusher/selectors';
+import ChangePassword from '../../components/MyAccount/ChangePassword';
+import { reset } from 'redux-form';
+import { logout } from '../../redux/auth/actions';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -51,7 +51,7 @@ const menuMapAccount = {
   enableAccount: 'Enable Account',
 };
 const menuMapSetting = {
-  password: 'Password',
+  password: 'Change Password',
   authentication: 'Two-Factor Authentication',
   apiKey: 'API Key',
 };
@@ -59,11 +59,6 @@ const menuMapSetting = {
 class MyAccount extends Component {
   constructor(props) {
     super(props);
-    const { gotoLogin, authenticated, data } = this.props;
-    if (!authenticated) {
-      gotoLogin();
-    }
-    data.refetch();
 
     this.state = {
       mode: 'inline',
@@ -72,12 +67,6 @@ class MyAccount extends Component {
       menuMapAccount,
       menuMapSetting,
       selectKey: 'myActivity',
-      referrals: [],
-      affiliateCodes: [],
-      isShowSwitch: false,
-      newReferral: this.props.newReferral,
-      resultEnableAffiliateCode: this.props.resultEnableAffiliateCode,
-      count: 0,
     };
   }
 
@@ -116,6 +105,7 @@ class MyAccount extends Component {
 
   componentDidMount() {
     const { gotoLogin, authenticated } = this.props;
+
     if (!authenticated) {
       gotoLogin();
     }
@@ -123,6 +113,18 @@ class MyAccount extends Component {
 
   static getDerivedStateFromProps(props, state) {
     props.data.refetch();
+    if (props.data.error && props.data.error.graphQLErrors) {
+      props.data.error.graphQLErrors.forEach(element => {
+        message.error(element.message);
+      });
+
+      props.logout();
+      localStorage.removeItem('TOKEN_ID');
+      localStorage.removeItem('TOKEN_SECRET');
+      props.gotoLogin();
+      return null;
+    }
+
     if (props.data.affiliate_codes && props.data.affiliate_codes.length !== 0) {
       props.disableSwitch();
     }
@@ -144,6 +146,28 @@ class MyAccount extends Component {
       });
   };
 
+  changePassword = ({ currentPassword, password }) => {
+    const { updatePassword } = this.props;
+
+    updatePassword({
+      variables: {
+        currentPassword,
+        password,
+      },
+    })
+      .then(({ data }) => {
+        message.success('Change password success!');
+        this.props.dispatch(reset('modify-password'));
+      })
+      .catch(error => {
+        if (error.graphQLErrors) {
+          error.graphQLErrors.forEach(element => {
+            message.error(element.message);
+          });
+        }
+      });
+  };
+
   createAddress = currency => {
     const { createDepositAddress } = this.props;
     createDepositAddress({
@@ -159,7 +183,6 @@ class MyAccount extends Component {
     const { currentUser, authenticated, data, loading } = this.props;
     const { mode, selectKey } = this.state;
 
-    console.log(data);
     if (data.loading) {
       return (
         <Center>
@@ -203,6 +226,9 @@ class MyAccount extends Component {
                         loading={loading}
                       />
                     )}
+                    {selectKey === 'password' && (
+                      <ChangePassword onSubmit={this.changePassword} />
+                    )}
                   </AccountRight>
                 </AccountInfoMain>
                 <div style={{ height: 50 }} />
@@ -219,9 +245,12 @@ class MyAccount extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      dispatch,
       disableSwitch,
       enableSwitch,
       createAffiliateCode,
+      createReferral,
+      logout,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
       gotoUnbindGoogle: () => push('/unbind-google'),
@@ -232,9 +261,6 @@ const mapDispatchToProps = dispatch =>
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
   currentUser: getUser(state),
-  newReferral: getNewReferral(state),
-  resultEnableAffiliateCode: getAffiliateCode(state),
-  loading: getLoading(state),
 });
 
 export default connect(
@@ -248,6 +274,9 @@ export default connect(
     }),
     graphql(createAffiliateCodeMutation, {
       name: 'createAffiliateCode',
+    }),
+    graphql(updatePasswordMutation, {
+      name: 'updatePassword',
     })
   )(MyAccount)
 );
