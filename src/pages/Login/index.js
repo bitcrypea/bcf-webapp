@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { message, Spin } from 'antd';
+import React, { Component } from 'react';
+import { message } from 'antd';
 import { graphql } from 'react-apollo';
 import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
@@ -20,16 +20,13 @@ import {
 import logo from '../../assets/images/logo.png';
 import LoginForm from '../../components/Login/LoginForm';
 import { SIGNIN } from './graphql';
-import { Center } from '../Register/style';
 import { loginSuccess, loginError } from '../../redux/auth/actions';
 import { isLoggedIn } from '../../redux/auth/selectors';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: false,
-    };
+
     if (this.props.authenticated) {
       this.props.gotoHome();
     }
@@ -45,7 +42,6 @@ class Login extends Component {
       },
     })
       .then(({ data }) => {
-        this.setState({ isLoading: false });
         message.success('Login successful');
         loginSuccess(data.signin);
         localStorage.setItem('TOKEN_ID', data.signin.id);
@@ -54,7 +50,6 @@ class Login extends Component {
         gotoHome();
       })
       .catch(error => {
-        this.setState({ isLoading: false });
         error.graphQLErrors.forEach(element => {
           message.error(element.message);
         });
@@ -62,41 +57,31 @@ class Login extends Component {
   };
 
   render() {
-    const { isLoading } = this.state;
     return (
-      <Fragment>
-        {isLoading && (
-          <Center>
-            <Spin />
-          </Center>
-        )}
-        {!isLoading && (
-          <HeaderContainer>
-            <HeaderMain>
-              <HeaderLogoContainer>
-                <HeaderTagA onClick={() => this.props.gotoHome()}>
-                  <HeaderLogo src={logo} width="90" height="60" />
-                </HeaderTagA>
-              </HeaderLogoContainer>
-              <HeaderFormContainer>
-                <HeaderTitle>
-                  <HeaderSpan>Login</HeaderSpan>
-                </HeaderTitle>
-                <LoginForm onSubmit={this.onSubmit} />
-              </HeaderFormContainer>
-              <HeaderFooterContainer>
-                <HeaderLinkRegister onClick={() => this.props.gotoForgot()}>
-                  Forgot password?
-                </HeaderLinkRegister>
-                <HeaderLinkRegister onClick={() => this.props.gotoRegister()}>
-                  Register
-                </HeaderLinkRegister>
-              </HeaderFooterContainer>
-              <HeaderFormContent />
-            </HeaderMain>
-          </HeaderContainer>
-        )}
-      </Fragment>
+      <HeaderContainer>
+        <HeaderMain>
+          <HeaderLogoContainer>
+            <HeaderTagA onClick={() => this.props.gotoHome()}>
+              <HeaderLogo src={logo} width="90" height="60" />
+            </HeaderTagA>
+          </HeaderLogoContainer>
+          <HeaderFormContainer>
+            <HeaderTitle>
+              <HeaderSpan>Login</HeaderSpan>
+            </HeaderTitle>
+            <LoginForm onSubmit={this.onSubmit} />
+          </HeaderFormContainer>
+          <HeaderFooterContainer>
+            <HeaderLinkRegister onClick={() => this.props.gotoForgot()}>
+              Forgot password?
+            </HeaderLinkRegister>
+            <HeaderLinkRegister onClick={() => this.props.gotoRegister()}>
+              Register
+            </HeaderLinkRegister>
+          </HeaderFooterContainer>
+          <HeaderFormContent />
+        </HeaderMain>
+      </HeaderContainer>
     );
   }
 }

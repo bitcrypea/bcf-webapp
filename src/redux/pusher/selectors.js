@@ -16,3 +16,5 @@ export const getLoading = createSelector(
   pusherSelector,
   state => state.loading
 );
+
+export const getPusher = createSelector(pusherSelector, state => state.pusher);

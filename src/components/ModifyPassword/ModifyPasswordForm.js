@@ -33,14 +33,14 @@ const ModifyPasswordForm = props => {
     <Form onSubmit={handleSubmit}>
       <Field
         label=""
-        name="password"
+        name="currentPassword"
         component={AInput}
         type="password"
         placeholder="Old Password"
       />
       <Field
         label=""
-        name="newPassword"
+        name="password"
         component={AInput}
         type="password"
         placeholder="New Password"
@@ -68,11 +68,28 @@ const ModifyPasswordForm = props => {
 
 const validate = values => {
   const errors = {};
-  if (!values.email) {
-    errors.email = 'You need enter email';
+  if (!values.currentPassword) {
+    errors.currentPassword = 'You need enter old password';
   }
   if (!values.password) {
-    errors.password = 'You need enter password';
+    errors.password = 'You need enter new password';
+  }
+
+  if (!values.confirmPassword) {
+    errors.confirmPassword = 'You need enter confirm password';
+  }
+
+  if (values.confirmPassword !== values.password) {
+    errors.confirmPassword = 'Not match';
+  }
+
+  if (values.confirmPassword && values.confirmPassword.length < 8) {
+    errors.confirmPassword =
+      'Confirm password is too short (minimum is 8 characters)';
+  }
+
+  if (values.confirmPassword && values.password.length < 8) {
+    errors.password = 'Password is too short (minimum is 8 characters)';
   }
 
   return errors;

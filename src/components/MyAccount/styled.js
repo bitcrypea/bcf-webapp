@@ -138,3 +138,25 @@ export const ReferralTitle = styled.div`
   font-weight: bold;
   padding-bottom: 10px;
 `;
+
+export const AccountSummaryText = styled.div`
+  color: #9caac1;
+`;
+
+export const AccountContent = styled.div`
+  font-size: 14px;
+  color: #333;
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const AccountEmailChangePassword = styled.div`
+  line-height: 19px;
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  color: #000;
+  margin-bottom: 50px;
+`;

@@ -12,6 +12,12 @@ export const createAffiliateCodeMutation = gql`
   }
 `;
 
+export const updatePasswordMutation = gql`
+  mutation updatePassword($currentPassword: String!, $password: String!) {
+    updatePassword(current_password: $currentPassword, password: $password)
+  }
+`;
+
 export const dataQuery = gql`
   {
     affiliate_codes {

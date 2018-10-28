@@ -31,25 +31,9 @@ class App extends Component {
         createReferral(data);
       }
     });
-  }
 
-  componentDidUpdate() {
-    const { createAffiliateCode, createReferral } = this.props;
-    let pusher = initPusher();
-    const user_id = localStorage.getItem('affiliate_codes');
-    var channel = pusher.subscribe(`private-user_${user_id}`);
-
-    channel.bind('pusher:subscription_succeeded', function() {
-      console.log('success');
-    });
-
-    channel.bind('create', function(data) {
+    channel.bind('update', function(data) {
       console.log(data);
-      if (data.type === 'AffiliateCode') {
-        createAffiliateCode(data);
-      } else if (data.type === 'Referral') {
-        createReferral(data);
-      }
     });
   }
 
@@ -63,6 +47,7 @@ const mapDispatchToProps = dispatch =>
     {
       createAffiliateCode,
       createReferral,
+      dispatch,
     },
     dispatch
   );
