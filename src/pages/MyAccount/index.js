@@ -4,6 +4,8 @@ import Footer from '../../components/Common/Footer/Footer';
 import { Menu, Spin, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { graphql } from 'react-apollo';
+import { compose } from 'recompose';
 import { push } from 'connected-react-router';
 import LeftMenu from '../../components/MyAccount/LeftMenu';
 import {
@@ -17,8 +19,6 @@ import {
 import MyActivity from '../../components/MyAccount/MyActivity';
 import Wallets from '../../components/MyAccount/Wallets';
 import { isLoggedIn, getUser } from '../../redux/auth/selectors';
-import { graphql } from 'react-apollo';
-import { compose } from 'recompose';
 import {
   createDepositAddressMutation,
   createAffiliateCodeMutation,
