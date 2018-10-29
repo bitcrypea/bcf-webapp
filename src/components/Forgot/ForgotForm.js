@@ -1,6 +1,6 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { Form, Input, Button } from "antd";
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { Form, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
@@ -16,7 +16,7 @@ const makeField = Component => ({
   return (
     <FormItem
       label={label}
-      validateStatus={hasError ? "error" : "success"}
+      validateStatus={hasError ? 'error' : 'success'}
       hasFeedback={hasFeedback && hasError}
       help={hasError && meta.error}
     >
@@ -44,7 +44,7 @@ const RegisterForm = props => {
           type="primary"
           disabled={pristine || submitting}
           htmlType="submit"
-          style={{ width: "100%" }}
+          style={{ width: '100%' }}
         >
           Submit
         </Button>
@@ -55,14 +55,14 @@ const RegisterForm = props => {
 
 const validate = values => {
   const errors = {};
-  if (!values.firstName) {
-    errors.firstName = "Required";
+  if (!values.email) {
+    errors.email = 'Required';
   }
 
   return errors;
 };
 
 export default reduxForm({
-  form: "forgot", // a unique identifier for this form
-  validate
+  form: 'forgot', // a unique identifier for this form
+  validate,
 })(RegisterForm);

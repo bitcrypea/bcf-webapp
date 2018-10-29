@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import { compose } from 'recompose';
+import { message } from 'antd';
 import {
   Container,
   Main,
@@ -12,8 +15,27 @@ import {
 } from './style';
 import logo from '../../assets/images/logo.png';
 import ForgotForm from '../../components/Forgot/ForgotForm';
+import { resetPasswordMutation } from './graphql';
 
 class Forgot extends Component {
+  handleResetPassword = ({ email }) => {
+    const { resetPassword } = this.props;
+    debugger;
+    resetPassword({
+      variables: {
+        email,
+      },
+    })
+      .then(() => {
+        message.success('Reset successed!');
+      })
+      .catch(error => {
+        error.graphQLErrors.forEach(element => {
+          message.error(element.message);
+        });
+      });
+  };
+
   render() {
     return (
       <Container>
@@ -31,7 +53,7 @@ class Forgot extends Component {
               *For security purposes no withdrawals are permitted for 24 hours
               after modification of security methods.
             </span>
-            <ForgotForm onSubmit={() => {}} />
+            <ForgotForm onSubmit={this.handleResetPassword} />
           </FormContainer>
           <FormContent />
         </Main>
@@ -40,4 +62,8 @@ class Forgot extends Component {
   }
 }
 
-export default Forgot;
+export default compose(
+  graphql(resetPasswordMutation, {
+    name: 'resetPassword',
+  })
+)(Forgot);
