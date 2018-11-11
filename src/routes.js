@@ -10,6 +10,7 @@ import EmailVerify from './pages/EmailVerify';
 import MyAccount from './pages/MyAccount';
 import ModifyPassword from './pages/ModifyPassword';
 import UnbindGoogle from './pages/UnbindGoogle';
+import Term from './pages/Term/index';
 
 const RouterApp = () => {
   return (
@@ -24,6 +25,7 @@ const RouterApp = () => {
       <Route exact path="/my-account" component={MyAccount} />
       <Route exact path="/modify-pwd" component={ModifyPassword} />
       <Route exact path="/unbind-google" component={UnbindGoogle} />
+      <Route exact path="/terms" component={Term} />
       {/* <Route path="*" component={NoMatch} /> */}
     </Switch>
   );

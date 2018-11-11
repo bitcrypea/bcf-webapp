@@ -7,9 +7,9 @@
   // Pusher.host = 'ws-eu.pusher.com';
   // Pusher.sockjs_host = 'sockjs-eu.pusher.com';
 
-  var token_id = '89';
+  var token_id = '149';
   // var secret = 'Ve7JCHPpp0qhYC4nkECdV32tJ+88cMGV7yqW1bVi5LqMWH+BiUkNVO4DpBwBSR17Ibp8kTy19+EMG3E6hLn19Q==';
-  var secret = 'SqLvkmQLQM5529iODziWAvnyLMka+FHy1HyqGHd+no/syh77P1mAV3k4UFFZHGlCgQOQSNxYpHK+innLqxK7zQ==';
+  var secret = 'onT98QQ7GtplO8igRcOHqO305g3e6jqOHGpRTovHh7J/+Oh1r8DlE6zQ/SpdS3Qrs1ZlNJwtd7sIVweC4nUeQg==';
   var data = {
     "sub": token_id,
     "jti": Date.now()
@@ -51,7 +51,7 @@
   var signedToken = token + "." + signature;
 
 
-  var pusher = new Pusher('985e5a81255fcc7efc77', {
+  var pusher = new Pusher('112da5ecf39968cbb761', {
     authEndpoint: 'https://api.pnlex.com/pusher/auth',
     auth: {
       headers: {
@@ -59,7 +59,7 @@
       }
     }
   });
-  var channel = pusher.subscribe('private-user_13');
+  var channel = pusher.subscribe('private-user_7');
   channel.bind('create', function (data) {
     console.log(data);
   });

@@ -1,12 +1,25 @@
-import React, { Component } from 'react'
-import { Container, HomeFooter, HomeFooterT, NewFooter, Column, LinkColor, H6, Link } from './styled'
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import {
+  FooterContent,
+  FooterContainer,
+  FooterColumn,
+  NewFooter,
+  Column,
+  LinkColor,
+  H6,
+  Link
+} from './styled';
+import { push } from 'connected-react-router';
 
 class Footer extends Component {
-  render () {
+  render() {
+    const { gotoTerms } = this.props;
     return (
-      <Container>
-        <HomeFooter>
-          <HomeFooterT>
+      <FooterContainer>
+        <FooterContent>
+          <FooterColumn>
             <NewFooter>
               <Column>
                 <LinkColor>Apply For Listing</LinkColor>
@@ -17,6 +30,7 @@ class Footer extends Component {
               </Column>
               <Column>
                 <H6>COMPANY</H6>
+                <Link onClick={() => gotoTerms()}>Terms</Link>
                 <Link>News</Link>
                 <Link>Token Introduction</Link>
                 <Link>FAQ</Link>
@@ -38,11 +52,22 @@ class Footer extends Component {
                 <Link>Medium</Link>
               </Column>
             </NewFooter>
-          </HomeFooterT>
-        </HomeFooter>
-      </Container>
-    )
+          </FooterColumn>
+        </FooterContent>
+      </FooterContainer>
+    );
   }
 }
 
-export default Footer
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      gotoTerms: () => push('/terms')
+    },
+    dispatch
+  );
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Footer);
