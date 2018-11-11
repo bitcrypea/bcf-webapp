@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import Header from '../../components/Common/Header/Header'
-import socketIOClient from 'socket.io-client'
-import TradingViewWidget, { Themes } from 'react-tradingview-widget'
+import React, { Component } from 'react';
+import { Header, Footer } from '../../components/commons';
+import socketIOClient from 'socket.io-client';
+import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 import {
   Main,
   ExchangeMain,
@@ -21,32 +21,35 @@ import {
   HeaderDepth,
   ContainerPrice,
   ContainerTradeHistory
-} from './styled'
-import Footer from '../../components/Common/Footer/Footer'
-import PriceTable from '../../components/Exchange/PriceTable/PriceTable'
-import TradeHistory from '../../components/Exchange/TradeHistory/TradeHistory'
-import Trading from '../../components/Exchange/Trading/Trading'
+} from './styled';
+import PriceTable from '../../components/Exchange/PriceTable/PriceTable';
+import TradeHistory from '../../components/Exchange/TradeHistory/TradeHistory';
+import Trading from '../../components/Exchange/Trading/Trading';
 
 class Exchange extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       cartBTCUSDT: {},
       orderBook: {},
       trades: [],
       endpoint: 'https://socketbitchip.herokuapp.com/'
-    }
+    };
   }
-  componentDidMount () {
-    const { endpoint } = this.state
-    const socket = socketIOClient(endpoint)
-    socket.on('cartBTCUSDT', data => this.setState({ cartBTCUSDT: JSON.parse(data) }))
-    socket.on('orderBook', data => this.setState({ orderBook: JSON.parse(data) }))
-    socket.on('trades', data => this.setState({ trades: data.reverse() }))
+  componentDidMount() {
+    const { endpoint } = this.state;
+    const socket = socketIOClient(endpoint);
+    socket.on('cartBTCUSDT', data =>
+      this.setState({ cartBTCUSDT: JSON.parse(data) })
+    );
+    socket.on('orderBook', data =>
+      this.setState({ orderBook: JSON.parse(data) })
+    );
+    socket.on('trades', data => this.setState({ trades: data.reverse() }));
   }
-  render () {
-    const {cartBTCUSDT, orderBook, trades} = this.state
+  render() {
+    const { cartBTCUSDT, orderBook, trades } = this.state;
     return (
       <div>
         <Header />
@@ -86,9 +89,7 @@ class Exchange extends Component {
               </ExchangeHeader>
               <Content>
                 <DepthMain>
-                  <HeaderDepth>
-                    Price
-                  </HeaderDepth>
+                  <HeaderDepth>Price</HeaderDepth>
                   <ContainerPrice>
                     <PriceTable orderBook={orderBook} />
                   </ContainerPrice>
@@ -96,19 +97,17 @@ class Exchange extends Component {
                 <ChartContainer>
                   <Chart>
                     <TradingViewWidget
-                      symbol='BINANCE:BTCUSDT'
+                      symbol="BINANCE:BTCUSDT"
                       theme={Themes.DARK}
-                      locale='en'
-                      interval='1'
+                      locale="en"
+                      interval="1"
                       autosize
                     />
                   </Chart>
                   <Trading />
                 </ChartContainer>
                 <LastestPriceMain>
-                  <HeaderDepth>
-                    Trading History
-                  </HeaderDepth>
+                  <HeaderDepth>Trading History</HeaderDepth>
                   <ContainerTradeHistory>
                     <TradeHistory trades={trades} />
                   </ContainerTradeHistory>
@@ -119,8 +118,8 @@ class Exchange extends Component {
         </Main>
         <Footer />
       </div>
-    )
+    );
   }
 }
 
-export default Exchange
+export default Exchange;

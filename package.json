@@ -56,5 +56,15 @@
     "test": "react-app-rewired test --env=jsdom",
     "test:coverage": "yarn test --coverage --silent --updateSnapshot",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-15": "^1.2.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "install": "^0.12.2",
+    "jest-styled-components": "^6.3.0",
+    "npm": "^6.4.1",
+    "react-test-renderer": "^16.6.1",
+    "styled-tools": "^1.6.0"
   }
 }

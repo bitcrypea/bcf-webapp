@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../../components/Common/Header/Header';
-import Footer from '../../components/Common/Footer/Footer';
+import { Header, Footer } from '../../components/commons';
 import { Menu, Spin, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,7 +13,7 @@ import {
   AccountContentWide,
   AccountInfoMain,
   AccountRight,
-  AccountLeftMenu,
+  AccountLeftMenu
 } from './styled';
 import MyActivity from '../../components/MyAccount/MyActivity';
 import Wallets from '../../components/MyAccount/Wallets';
@@ -23,7 +22,7 @@ import {
   createDepositAddressMutation,
   createAffiliateCodeMutation,
   dataQuery,
-  updatePasswordMutation,
+  updatePasswordMutation
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { Center } from '../Register/style';
@@ -31,7 +30,7 @@ import {
   createReferral,
   createAffiliateCode,
   enableSwitch,
-  disableSwitch,
+  disableSwitch
 } from '../../redux/pusher/actions';
 import ChangePassword from '../../components/MyAccount/ChangePassword';
 import { reset } from 'redux-form';
@@ -40,20 +39,20 @@ import { logout } from '../../redux/auth/actions';
 const { Item } = Menu;
 const menuMapActivity = {
   myActivity: 'My Activity',
-  myReferrals: 'My Referrals',
+  myReferrals: 'My Referrals'
 };
 const menuMapBalance = {
-  wallets: 'Wallets',
+  wallets: 'Wallets'
 };
 const menuMapAccount = {
   myProfile: 'My Profile',
   identityVerification: 'Identity Verification',
-  enableAccount: 'Enable Account',
+  enableAccount: 'Enable Account'
 };
 const menuMapSetting = {
   password: 'Change Password',
   authentication: 'Two-Factor Authentication',
-  apiKey: 'API Key',
+  apiKey: 'API Key'
 };
 
 class MyAccount extends Component {
@@ -66,7 +65,7 @@ class MyAccount extends Component {
       menuMapBalance,
       menuMapAccount,
       menuMapSetting,
-      selectKey: 'myActivity',
+      selectKey: 'myActivity'
     };
   }
 
@@ -75,7 +74,7 @@ class MyAccount extends Component {
       menuMapActivity,
       menuMapBalance,
       menuMapAccount,
-      menuMapSetting,
+      menuMapSetting
     } = this.state;
     if (group === 'balance') {
       return Object.keys(menuMapBalance).map(item => (
@@ -99,7 +98,7 @@ class MyAccount extends Component {
 
   selectKeyMenu = ({ key }) => {
     this.setState({
-      selectKey: key,
+      selectKey: key
     });
   };
 
@@ -137,8 +136,8 @@ class MyAccount extends Component {
     enableSwitch();
     createAffiliateCode({
       variables: {
-        code: code,
-      },
+        code: code
+      }
     })
       .then(({ data }) => {})
       .catch(error => {
@@ -152,8 +151,8 @@ class MyAccount extends Component {
     updatePassword({
       variables: {
         currentPassword,
-        password,
-      },
+        password
+      }
     })
       .then(({ data }) => {
         message.success('Change password success!');
@@ -172,8 +171,8 @@ class MyAccount extends Component {
     const { createDepositAddress } = this.props;
     createDepositAddress({
       variables: {
-        currency: currency,
-      },
+        currency: currency
+      }
     })
       .then(({ data }) => {})
       .catch(error => {});
@@ -253,14 +252,14 @@ const mapDispatchToProps = dispatch =>
       logout,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
-      gotoUnbindGoogle: () => push('/unbind-google'),
+      gotoUnbindGoogle: () => push('/unbind-google')
     },
     dispatch
   );
 
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
-  currentUser: getUser(state),
+  currentUser: getUser(state)
 });
 
 export default connect(
@@ -270,13 +269,13 @@ export default connect(
   compose(
     graphql(dataQuery),
     graphql(createDepositAddressMutation, {
-      name: 'createDepositAddress',
+      name: 'createDepositAddress'
     }),
     graphql(createAffiliateCodeMutation, {
-      name: 'createAffiliateCode',
+      name: 'createAffiliateCode'
     }),
     graphql(updatePasswordMutation, {
-      name: 'updatePassword',
+      name: 'updatePassword'
     })
   )(MyAccount)
 );

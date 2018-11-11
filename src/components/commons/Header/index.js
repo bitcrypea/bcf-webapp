@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import { Menu, Dropdown, Icon } from 'antd';
+import React, { Component, Fragment } from "react";
+import { Menu, Dropdown, Icon } from "antd";
 // import { Link } from 'react-router-dom';
-import { push } from 'connected-react-router';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { push } from "connected-react-router";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import {
   HeaderContainerHeader,
   HeaderTopNavHead,
@@ -14,30 +14,36 @@ import {
   HeaderMenuTitle,
   HeaderLogo,
   HeaderLoginButton,
-  HeaderRegister,
-} from './styled';
-import logo from '../../../assets/images/logo.png';
-import { isLoggedIn } from '../../../redux/auth/selectors';
-import { logout } from '../../../redux/auth/actions';
+  HeaderRegister
+} from "./styled";
+import logo from "../../../assets/images/logo.png";
+import { isLoggedIn } from "../../../redux/auth/selectors";
+import { logout } from "../../../redux/auth/actions";
 
 class Header extends Component {
   handleLogout = () => {
-    localStorage.removeItem('TOKEN_ID');
-    localStorage.removeItem('TOKEN_SECRET');
-    localStorage.removeItem('affiliate_codes');
+    localStorage.removeItem("TOKEN_ID");
+    localStorage.removeItem("TOKEN_SECRET");
+    localStorage.removeItem("affiliate_codes");
 
     this.props.logout();
     this.props.gotoHome();
   };
 
   render() {
-    const { authenticated } = this.props;
+    const {
+      authenticated,
+      gotoHome,
+      gotoMyAccount,
+      gotoLogin,
+      gotoRegister
+    } = this.props;
     return (
       <HeaderContainerHeader>
         <HeaderTopNavHead>
           <HeaderTopNavMain>
             <HeaderTopNavLeft>
-              <HeaderTagA onClick={() => this.props.gotoHome()}>
+              <HeaderTagA onClick={() => gotoHome()}>
                 <HeaderLogo src={logo} width="90" height="60" />
               </HeaderTagA>
               {/* <Link style={{ color: 'white' }} to="/exchange">
@@ -52,7 +58,7 @@ class Header extends Component {
                       <Menu.Item
                         style={{ paddingLeft: 18, paddingRight: 18 }}
                         key="userinfo"
-                        onClick={this.props.gotoMyAccount}
+                        onClick={gotoMyAccount}
                       >
                         <Icon type="setting" />
                         My Account
@@ -69,7 +75,7 @@ class Header extends Component {
                     </Menu>
                   }
                   placement="bottomRight"
-                  trigger={['click']}
+                  trigger={["click"]}
                 >
                   <HeaderMenuTitle>
                     <Icon
@@ -82,10 +88,10 @@ class Header extends Component {
               )}
               {!authenticated && (
                 <Fragment>
-                  <HeaderLoginButton onClick={() => this.props.gotoLogin()}>
+                  <HeaderLoginButton onClick={() => gotoLogin()}>
                     Login
                   </HeaderLoginButton>
-                  <HeaderRegister onClick={() => this.props.gotoRegister()}>
+                  <HeaderRegister onClick={() => gotoRegister()}>
                     Sign up
                   </HeaderRegister>
                 </Fragment>
@@ -102,16 +108,16 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       logout,
-      gotoMyAccount: () => push('/my-account'),
-      gotoRegister: () => push('/register'),
-      gotoLogin: () => push('/login'),
-      gotoHome: () => push('/'),
+      gotoMyAccount: () => push("/my-account"),
+      gotoRegister: () => push("/register"),
+      gotoLogin: () => push("/login"),
+      gotoHome: () => push("/")
     },
     dispatch
   );
 
 const mapStateToProps = state => ({
-  authenticated: isLoggedIn(state),
+  authenticated: isLoggedIn(state)
 });
 
 export default connect(
