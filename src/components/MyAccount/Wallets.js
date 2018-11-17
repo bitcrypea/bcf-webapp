@@ -10,7 +10,7 @@ import {
   AccountWalletValue,
   AccountTable,
   DepositModal,
-  DepositTitle,
+  DepositTitle
 } from './styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Divider, Button } from 'antd';
@@ -25,15 +25,16 @@ const data = [
     pendingDeposit: '0.00000000',
     reserved: '0.00000000',
     total: '0.00000000',
-    estBtcValue: '0.00000000',
-  },
+    estBtcValue: '0.00000000'
+  }
 ];
 
 class Wallets extends Component {
-  state = { isOpenDiposit: false };
+  state = { isOpenDiposit: false, selectedSymbol: 'BTC' };
 
-  showDipositModal = () => {
-    this.setState({ isOpenDiposit: true });
+  showDipositModal = (e, text) => {
+    debugger;
+    this.setState({ isOpenDiposit: true, selectedSymbol: text.symbol });
   };
 
   handleCancel = () => {
@@ -74,49 +75,51 @@ class Wallets extends Component {
                 {
                   title: 'CURRENCY NAME',
                   dataIndex: 'currencyName',
-                  key: 'currencyName',
+                  key: 'currencyName'
                 },
                 {
                   title: 'SYMBOL',
                   dataIndex: 'symbol',
-                  key: 'symbol',
+                  key: 'symbol'
                 },
                 {
                   title: 'AVAILABLE BALANCE',
                   dataIndex: 'availableBalance',
-                  key: 'availableBalance',
+                  key: 'availableBalance'
                 },
                 {
                   title: 'PENDING DEPOSIT',
                   dataIndex: 'pendingDeposit',
-                  key: 'pendingDeposit',
+                  key: 'pendingDeposit'
                 },
                 {
                   title: 'RESERVED',
                   key: 'reserved',
-                  dataIndex: 'reserved',
+                  dataIndex: 'reserved'
                 },
                 {
                   title: 'TOTAL',
                   key: 'total',
-                  dataIndex: 'total',
+                  dataIndex: 'total'
                 },
                 {
                   title: 'EST.BTC VALUE',
                   key: 'estBtcValue',
-                  dataIndex: 'estBtcValue',
+                  dataIndex: 'estBtcValue'
                 },
                 {
                   title: 'ACTION',
                   key: 'action',
                   render: (text, record) => (
                     <span>
-                      <a onClick={this.showDipositModal}>Deposit</a>
+                      <a onClick={e => this.showDipositModal(e, text)}>
+                        Deposit
+                      </a>
                       <Divider type="vertical" />
                       <a href="">Withdrawal</a>
                     </span>
-                  ),
-                },
+                  )
+                }
               ]}
               dataSource={data}
               rowKey="key"
@@ -136,10 +139,13 @@ class Wallets extends Component {
               onClick={this.handleCancel}
             >
               Done
-            </Button>,
+            </Button>
           ]}
         >
-          <Deposit createAddress={this.props.createAddress} />
+          <Deposit
+            createAddress={this.props.createAddress}
+            selectedSymbol={this.state.selectedSymbol}
+          />
         </DepositModal>
       </Fragment>
     );

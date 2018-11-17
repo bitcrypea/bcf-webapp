@@ -11,7 +11,7 @@ import {
   DepositHeaderContent,
   DepositAddress,
   DepositSearch,
-  DepositQRCode,
+  DepositQRCode
 } from './styled';
 import { Input } from 'antd';
 
@@ -19,8 +19,9 @@ const Search = Input.Search;
 
 class Deposit extends Component {
   onSearch = () => {
-    const { createAddress } = this.props;
-    createAddress('BTC');
+    const { createAddress, selectedSymbol } = this.props;
+    debugger;
+    createAddress(selectedSymbol);
   };
   render() {
     return (

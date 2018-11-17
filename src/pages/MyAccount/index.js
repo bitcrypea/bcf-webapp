@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import { push } from 'connected-react-router';
+import qs from 'qs';
 import LeftMenu from '../../components/MyAccount/LeftMenu';
 import {
   AccountContent,
@@ -97,6 +98,9 @@ class MyAccount extends Component {
   };
 
   selectKeyMenu = ({ key }) => {
+    const { history } = this.props;
+    
+    history.push(`/my-account?tab=${key}`);
     this.setState({
       selectKey: key
     });
@@ -107,6 +111,13 @@ class MyAccount extends Component {
 
     if (!authenticated) {
       gotoLogin();
+    }
+
+    const qsParsed = qs.parse(this.props.location.search.slice(1));
+    if (qsParsed.tab !== undefined){
+      this.setState({
+        selectKey: qsParsed.tab
+      });
     }
   }
 
