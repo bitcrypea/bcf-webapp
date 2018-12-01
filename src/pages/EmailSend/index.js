@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { push } from 'connected-react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
   Container,
   Main,
@@ -12,16 +15,15 @@ import {
   Center,
   MainContent,
   SecondContent,
-  Li,
+  Li
 } from './style';
 import logo from '../../assets/images/logo.png';
-import { push } from 'connected-react-router';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { getUser } from '../../redux/auth/selectors';
 
 class EmailSend extends Component {
   render() {
+    const { user } = this.props;
+
     return (
       <div>
         <Container>
@@ -40,8 +42,8 @@ class EmailSend extends Component {
               <FormContent>
                 <MainContent>
                   We have sent a confirmation email to your registered email
-                  address. <strong>{this.props.user.email}</strong>. Please
-                  follow the instructions in the email to continue.
+                  address. <strong>{user.email}</strong>. Please follow the
+                  instructions in the email to continue.
                 </MainContent>
                 <SecondContent>
                   <strong style={{ fontWeight: 'normal', paddingBottom: 5 }}>
@@ -76,13 +78,13 @@ const mapDispatchToProps = dispatch =>
     {
       gotoForgot: () => push('/forgot'),
       gotoRegister: () => push('/register'),
-      gotoHome: () => push('/'),
+      gotoHome: () => push('/')
     },
     dispatch
   );
 
 const mapStateToProps = state => ({
-  user: getUser(state),
+  user: getUser(state)
 });
 
 export default connect(

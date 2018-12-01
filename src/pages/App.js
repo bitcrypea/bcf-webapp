@@ -1,39 +1,30 @@
 import React, { Component } from 'react';
-import './App.css';
 import RouterApp from '../routes';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { initPusher } from '../api';
+import { initPusher, pusherController } from '../api';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createAffiliateCode, createReferral } from '../redux/pusher/actions';
+import {
+  createAffiliateCode,
+  createReferral,
+  createNewAddress
+} from '../redux/pusher/actions';
 
 library.add(fab, faDollarSign);
 
 class App extends Component {
   componentDidMount() {
-    const { createAffiliateCode, createReferral } = this.props;
     let pusher = initPusher();
-    const user_id = localStorage.getItem('affiliate_codes');
-    var channel = pusher.subscribe(`private-user_${user_id}`);
+    pusherController(pusher, this.props);
+    const props = this.props;
 
-    channel.bind('pusher:subscription_succeeded', function() {
-      console.log('success');
-    });
+    pusher.connection.bind('error', function(err) {
+      pusher = initPusher();
 
-    channel.bind('create', function(data) {
-      console.log(data);
-      if (data.type === 'AffiliateCode') {
-        createAffiliateCode(data);
-      } else if (data.type === 'Referral') {
-        createReferral(data);
-      }
-    });
-
-    channel.bind('update', function(data) {
-      console.log(data);
+      pusherController(pusher, props);
     });
   }
 
@@ -45,9 +36,10 @@ class App extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      createNewAddress,
       createAffiliateCode,
       createReferral,
-      dispatch,
+      dispatch
     },
     dispatch
   );

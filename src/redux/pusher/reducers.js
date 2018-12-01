@@ -11,8 +11,8 @@ const getInitialState = () => ({
   resultCreateAffiliateCode: {},
   newReferral: {},
   loading: false,
-  address: {},
   pusher: {},
+  address: ''
 });
 
 function pusherReducer(state = getInitialState(), { type, payload }) {

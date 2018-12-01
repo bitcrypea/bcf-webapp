@@ -33,7 +33,6 @@ class Wallets extends Component {
   state = { isOpenDiposit: false, selectedSymbol: 'BTC' };
 
   showDipositModal = (e, text) => {
-    debugger;
     this.setState({ isOpenDiposit: true, selectedSymbol: text.symbol });
   };
 
@@ -145,6 +144,7 @@ class Wallets extends Component {
           <Deposit
             createAddress={this.props.createAddress}
             selectedSymbol={this.state.selectedSymbol}
+            address={this.props.address}
           />
         </DepositModal>
       </Fragment>

@@ -23,7 +23,8 @@ import {
   createDepositAddressMutation,
   createAffiliateCodeMutation,
   dataQuery,
-  updatePasswordMutation
+  updatePasswordMutation,
+  depositQuery
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { Center } from '../Register/style';
@@ -36,6 +37,9 @@ import {
 import ChangePassword from '../../components/MyAccount/ChangePassword';
 import { reset } from 'redux-form';
 import { logout } from '../../redux/auth/actions';
+import { getAddress } from '../../redux/pusher/selectors';
+import { initPusher } from './../../api';
+import { authTokenFromStorage } from '../../redux/tokens';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -109,9 +113,9 @@ class MyAccount extends Component {
   componentDidMount() {
     const { gotoLogin, authenticated } = this.props;
 
-    if (!authenticated) {
-      gotoLogin();
-    }
+    // if (!authenticated) {
+    //   gotoLogin();
+    // }
 
     const qsParsed = qs.parse(this.props.location.search.slice(1));
     if (qsParsed.tab !== undefined){
@@ -131,6 +135,7 @@ class MyAccount extends Component {
       props.logout();
       localStorage.removeItem('TOKEN_ID');
       localStorage.removeItem('TOKEN_SECRET');
+      localStorage.removeItem('auth');
       props.gotoLogin();
       return null;
     }
@@ -190,7 +195,7 @@ class MyAccount extends Component {
   };
 
   render() {
-    const { currentUser, authenticated, data, loading } = this.props;
+    const { currentUser, authenticated, data, loading, address } = this.props;
     const { mode, selectKey } = this.state;
 
     if (data.loading) {
@@ -222,7 +227,7 @@ class MyAccount extends Component {
                       <MyActivity currentUser={currentUser} />
                     )}
                     {selectKey === 'wallets' && (
-                      <Wallets createAddress={this.createAddress} />
+                      <Wallets createAddress={this.createAddress} address={address} />
                     )}
                     {selectKey === 'myReferrals' && (
                       <MyReferrals
@@ -270,7 +275,8 @@ const mapDispatchToProps = dispatch =>
 
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
-  currentUser: getUser(state)
+  currentUser: getUser(state),
+  address: getAddress(state)
 });
 
 export default connect(

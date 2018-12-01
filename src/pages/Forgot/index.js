@@ -20,7 +20,7 @@ import { resetPasswordMutation } from './graphql';
 class Forgot extends Component {
   handleResetPassword = ({ email }) => {
     const { resetPassword } = this.props;
-    debugger;
+    
     resetPassword({
       variables: {
         email,
