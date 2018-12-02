@@ -11,9 +11,7 @@ class ManualDeposit extends Component {
         currency: values.currency,
         amount: values.amount
       }
-    }).then(({ data }) => {
-      debugger;
-    });
+    }).then(({ data }) => {});
   };
   render() {
     return (

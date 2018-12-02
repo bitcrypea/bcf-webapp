@@ -207,11 +207,16 @@ class MyAccount extends Component {
     } = this.props;
 
     const { selectKey } = this.state;
+
     return (
       <AccountRight>
         {selectKey === 'myActivity' && <MyActivity currentUser={currentUser} />}
-        {selectKey === 'wallets' && (
-          <Wallets createAddress={this.createAddress} address={address} />
+        {selectKey === 'wallets' && data.accounts && (
+          <Wallets
+            createAddress={this.createAddress}
+            address={address}
+            data={data.accounts}
+          />
         )}
         {selectKey === 'myReferrals' && (
           <MyReferrals
@@ -228,7 +233,7 @@ class MyAccount extends Component {
         {selectKey === 'password' && (
           <ChangePassword onSubmit={this.changePassword} />
         )}
-        {selectKey == 'manualDeposit' && (
+        {selectKey === 'manualDeposit' && (
           <ManualDeposit
             createManualDeposit={createManualDeposit}
             data={data}
@@ -239,9 +244,8 @@ class MyAccount extends Component {
   }
 
   render() {
-    const { currentUser, authenticated, data, loading, address } = this.props;
+    const { authenticated, data } = this.props;
     const { mode, selectKey } = this.state;
-    console.log(this.props);
 
     if (data.loading) {
       return (

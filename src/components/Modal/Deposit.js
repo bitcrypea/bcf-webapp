@@ -20,7 +20,6 @@ const Search = Input.Search;
 class Deposit extends Component {
   onSearch = () => {
     const { createAddress, selectedSymbol } = this.props;
-    debugger;
     createAddress(selectedSymbol);
   };
   render() {

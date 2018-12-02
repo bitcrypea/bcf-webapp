@@ -49,6 +49,11 @@ export const dataQuery = gql`
       last_name
       id
     }
+    currencies {
+      created_at
+      currency
+      symbol
+    }
   }
 `;
 

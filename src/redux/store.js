@@ -13,13 +13,13 @@ const encryptor = createEncryptor({
   secretKey: 'my-super-secret-key',
   onError: function(error) {
     console.log(error);
-  },
+  }
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  transforms: [encryptor],
+  transforms: [encryptor]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
