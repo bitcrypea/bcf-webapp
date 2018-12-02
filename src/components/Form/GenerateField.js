@@ -1,6 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { Form, Input, Button } from 'antd';
+import { Form } from 'antd';
 
 const FormItem = Form.Item;
 

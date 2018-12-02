@@ -25,11 +25,11 @@ export function pusherController(pusher, props) {
   const channel = pusher.subscribe(`private-user_${user_id}`);
 
   channel.bind('pusher:subscription_succeeded', function() {
-    console.log('success');
+    //console.log('success');
   });
 
   channel.bind('create', function(data) {
-    console.log(data);
+    // console.log(data);
     if (data.type === 'AffiliateCode') {
       createAffiliateCode(data);
     } else if (data.type === 'Referral') {
@@ -38,9 +38,10 @@ export function pusherController(pusher, props) {
   });
 
   channel.bind('update', function(data) {
-    console.log(data);
+    // console.log(data);
     if (data.type === 'DepositAddress') {
       createNewAddress(data.address);
+    } else if (data.type === 'Account') {
     }
   });
 }

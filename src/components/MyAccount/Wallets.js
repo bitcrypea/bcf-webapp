@@ -8,27 +8,27 @@ import {
   AccountWalletsRow,
   AccountWalletsName,
   AccountWalletValue,
-  AccountTable,
   DepositModal,
   DepositTitle
 } from './styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Divider, Button } from 'antd';
+import { Button } from 'antd';
 import Deposit from '../Modal/Deposit';
-
-const data = [
-  {
-    key: '1',
-    currency: 'BTC',
-    balance: '0'
-  }
-];
+import MyTable from './../commons/MyTable';
 
 class Wallets extends Component {
-  state = { isOpenDiposit: false, selectedSymbol: 'BTC' };
+  constructor(props) {
+    super(props);
 
-  showDipositModal = (e, text) => {
-    this.setState({ isOpenDiposit: true, selectedSymbol: text.symbol });
+    this.state = {
+      isOpenDiposit: false,
+      selectedSymbol: 'BTC',
+      balance: this.props.data[0].balance
+    };
+  }
+
+  showDipositModal = currency => {
+    this.setState({ isOpenDiposit: true, selectedSymbol: currency });
   };
 
   handleCancel = () => {
@@ -63,35 +63,9 @@ class Wallets extends Component {
                 </AccountWalletsRow>
               </AccountWallets>
             </AccountEstimatedHoldings>
-            <AccountTable
-              style={{ fontSize: 10 }}
-              columns={[
-                {
-                  title: 'CURRENCY',
-                  dataIndex: 'currency',
-                  key: 'currency'
-                },
-                {
-                  title: 'BALANCE',
-                  dataIndex: 'balance',
-                  key: 'balance'
-                },
-                {
-                  title: 'ACTION',
-                  key: 'action',
-                  render: (text, record) => (
-                    <span>
-                      <a onClick={e => this.showDipositModal(e, text)}>
-                        Deposit
-                      </a>
-                      <Divider type="vertical" />
-                      <a href="">Withdrawal</a>
-                    </span>
-                  )
-                }
-              ]}
-              dataSource={data}
-              rowKey="key"
+            <MyTable
+              showDipositModal={this.showDipositModal}
+              balance={this.state.balance}
             />
           </AccountSectionWallets>
         </AccountSection>

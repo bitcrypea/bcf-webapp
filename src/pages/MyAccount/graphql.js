@@ -49,6 +49,11 @@ export const dataQuery = gql`
       last_name
       id
     }
+    currencies {
+      created_at
+      currency
+      symbol
+    }
   }
 `;
 
@@ -61,6 +66,46 @@ export const transactionsQuery = gql`
         created_for_id
         created_for_type
         currency
+        id
+      }
+      paging {
+        next
+        previous
+      }
+    }
+  }
+`;
+
+export const depositsQuery = gql`
+  query getDeposits($before: String, $after: String, $limit: Int) {
+    deposits(before: $before, after: $after, limit: $limit) {
+      data {
+        address
+        amount
+        created_at
+        ext_ref_id
+        status
+        updated_at
+        currency
+        id
+      }
+      paging {
+        next
+        previous
+      }
+    }
+  }
+`;
+
+export const depositAddressesQuery = gql`
+  query getDepositAddresses($before: String, $after: String, $limit: Int) {
+    deposit_addresses(before: $before, after: $after, limit: $limit) {
+      data {
+        address
+        currency
+        created_at
+        status
+        updated_at
         id
       }
       paging {

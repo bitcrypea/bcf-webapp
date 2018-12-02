@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Table, Modal } from 'antd';
+import { Modal } from 'antd';
 
 export const AccountGroupTitle = styled.h2`
   text-transform: uppercase;
@@ -98,12 +98,6 @@ export const AccountWalletsName = styled.b`
 export const AccountWalletValue = styled.span`
   margin-left: 16px;
   font-size: 0.8em;
-`;
-
-export const AccountTable = styled(Table)`
-  .ant-table-body {
-    font-size: 10px;
-  }
 `;
 
 export const DepositModal = styled(Modal)`
