@@ -11,7 +11,7 @@ import {
   DepositHeaderContent,
   DepositAddress,
   DepositSearch,
-  DepositQRCode,
+  DepositQRCode
 } from './styled';
 import { Input } from 'antd';
 
@@ -19,8 +19,8 @@ const Search = Input.Search;
 
 class Deposit extends Component {
   onSearch = () => {
-    const { createAddress } = this.props;
-    createAddress('BTC');
+    const { createAddress, selectedSymbol} = this.props;
+    createAddress(selectedSymbol);
   };
   render() {
     return (
@@ -35,13 +35,14 @@ class Deposit extends Component {
           <DepositContentRight>BTC</DepositContentRight>
         </DepositHeaderContent>
         <DepositQRCode>
-          <QRCode value="http://facebook.github.io/react/" />
+          <QRCode value={this.props.address} />
         </DepositQRCode>
 
         <DepositAddress>
           <DepositTitle>Address</DepositTitle>
           <DepositSearch>
             <Search
+              value={this.props.address}
               placeholder="Generate a new address"
               enterButton="New Address"
               size="large"

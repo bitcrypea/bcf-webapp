@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import { push } from 'connected-react-router';
+import qs from 'qs';
 import LeftMenu from '../../components/MyAccount/LeftMenu';
 import {
   AccountContent,
@@ -22,7 +23,9 @@ import {
   createDepositAddressMutation,
   createAffiliateCodeMutation,
   dataQuery,
-  updatePasswordMutation
+  updatePasswordMutation,
+  transactionsQuery,
+  createManualDepositMutation
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { Center } from '../Register/style';
@@ -35,6 +38,8 @@ import {
 import ChangePassword from '../../components/MyAccount/ChangePassword';
 import { reset } from 'redux-form';
 import { logout } from '../../redux/auth/actions';
+import { getAddress } from '../../redux/pusher/selectors';
+import ManualDeposit from './../../components/MyAccount/ManualDeposit';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -42,7 +47,8 @@ const menuMapActivity = {
   myReferrals: 'My Referrals'
 };
 const menuMapBalance = {
-  wallets: 'Wallets'
+  wallets: 'Wallets',
+  manualDeposit: 'Create Manual Deposit'
 };
 const menuMapAccount = {
   myProfile: 'My Profile',
@@ -97,6 +103,9 @@ class MyAccount extends Component {
   };
 
   selectKeyMenu = ({ key }) => {
+    const { history } = this.props;
+
+    history.push(`/my-account?tab=${key}`);
     this.setState({
       selectKey: key
     });
@@ -108,10 +117,17 @@ class MyAccount extends Component {
     if (!authenticated) {
       gotoLogin();
     }
+
+    const qsParsed = qs.parse(this.props.location.search.slice(1));
+    if (qsParsed.tab !== undefined) {
+      this.setState({
+        selectKey: qsParsed.tab
+      });
+    }
   }
 
   static getDerivedStateFromProps(props, state) {
-    props.data.refetch();
+    //props.data.refetch();
     if (props.data.error && props.data.error.graphQLErrors) {
       props.data.error.graphQLErrors.forEach(element => {
         message.error(element.message);
@@ -120,6 +136,7 @@ class MyAccount extends Component {
       props.logout();
       localStorage.removeItem('TOKEN_ID');
       localStorage.removeItem('TOKEN_SECRET');
+      localStorage.removeItem('auth');
       props.gotoLogin();
       return null;
     }
@@ -178,9 +195,51 @@ class MyAccount extends Component {
       .catch(error => {});
   };
 
+  renderRightContent() {
+    const {
+      currentUser,
+      data,
+      loading,
+      address,
+      createManualDeposit
+    } = this.props;
+
+    const { selectKey } = this.state;
+    return (
+      <AccountRight>
+        {selectKey === 'myActivity' && <MyActivity currentUser={currentUser} />}
+        {selectKey === 'wallets' && (
+          <Wallets createAddress={this.createAddress} address={address} />
+        )}
+        {selectKey === 'myReferrals' && (
+          <MyReferrals
+            createAffiliate={this.createAffiliate}
+            enable={
+              !data.loading &&
+              data.affiliate_codes &&
+              data.affiliate_codes.length !== 0
+            }
+            count={!data.loading ? data.referrals.length : 0}
+            loading={loading}
+          />
+        )}
+        {selectKey === 'password' && (
+          <ChangePassword onSubmit={this.changePassword} />
+        )}
+        {selectKey == 'manualDeposit' && (
+          <ManualDeposit
+            createManualDeposit={createManualDeposit}
+            data={data}
+          />
+        )}
+      </AccountRight>
+    );
+  }
+
   render() {
-    const { currentUser, authenticated, data, loading } = this.props;
+    const { currentUser, authenticated, data, loading, address } = this.props;
     const { mode, selectKey } = this.state;
+    console.log(this.props);
 
     if (data.loading) {
       return (
@@ -206,29 +265,7 @@ class MyAccount extends Component {
                       selectKeyMenu={this.selectKeyMenu}
                     />
                   </AccountLeftMenu>
-                  <AccountRight>
-                    {selectKey === 'myActivity' && (
-                      <MyActivity currentUser={currentUser} />
-                    )}
-                    {selectKey === 'wallets' && (
-                      <Wallets createAddress={this.createAddress} />
-                    )}
-                    {selectKey === 'myReferrals' && (
-                      <MyReferrals
-                        createAffiliate={this.createAffiliate}
-                        enable={
-                          !data.loading &&
-                          data.affiliate_codes &&
-                          data.affiliate_codes.length !== 0
-                        }
-                        count={!data.loading ? data.referrals.length : 0}
-                        loading={loading}
-                      />
-                    )}
-                    {selectKey === 'password' && (
-                      <ChangePassword onSubmit={this.changePassword} />
-                    )}
-                  </AccountRight>
+                  {this.renderRightContent()}
                 </AccountInfoMain>
                 <div style={{ height: 50 }} />
               </AccountContentWide>
@@ -259,7 +296,8 @@ const mapDispatchToProps = dispatch =>
 
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
-  currentUser: getUser(state)
+  currentUser: getUser(state),
+  address: getAddress(state)
 });
 
 export default connect(
@@ -268,8 +306,14 @@ export default connect(
 )(
   compose(
     graphql(dataQuery),
+    graphql(transactionsQuery, {
+      name: 'transactions'
+    }),
     graphql(createDepositAddressMutation, {
       name: 'createDepositAddress'
+    }),
+    graphql(createManualDepositMutation, {
+      name: 'createManualDeposit'
     }),
     graphql(createAffiliateCodeMutation, {
       name: 'createAffiliateCode'

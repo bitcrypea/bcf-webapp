@@ -22,6 +22,7 @@ import LoginForm from '../../components/Login/LoginForm';
 import { SIGNIN } from './graphql';
 import { loginSuccess, loginError } from '../../redux/auth/actions';
 import { isLoggedIn } from '../../redux/auth/selectors';
+import { authTokenFromStorage } from '../../redux/tokens';
 
 class Login extends Component {
   constructor(props) {
@@ -47,6 +48,8 @@ class Login extends Component {
         localStorage.setItem('TOKEN_ID', data.signin.id);
         localStorage.setItem('affiliate_codes', data.signin.user.id);
         localStorage.setItem('TOKEN_SECRET', data.signin.token);
+        const token = authTokenFromStorage();
+        localStorage.setItem('auth', token);
         gotoHome();
       })
       .catch(error => {

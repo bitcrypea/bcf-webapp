@@ -8,7 +8,7 @@ import pusherReducer from './pusher/reducers';
 export default combineReducers({
   home,
   auth,
-  pusherReducer,
+  pusher: pusherReducer,
   routing: routerReducer,
   form: formReducer,
 });

@@ -5,11 +5,11 @@ const authTokenFromStorage = () => {
   const tokenSecret = localStorage.getItem('TOKEN_SECRET');
 
   if (tokenId !== null && tokenSecret !== null) {
+    localStorage.setItem('now', Date.now())
     var payload = {
       sub: tokenId,
-      jti: Date.now(),
+      jti: Date.now()
     };
-
     var token = jwt.sign(payload, tokenSecret);
     return token;
   }
