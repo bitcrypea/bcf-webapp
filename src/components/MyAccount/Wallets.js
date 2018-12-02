@@ -28,7 +28,7 @@ class Wallets extends Component {
   state = { isOpenDiposit: false, selectedSymbol: 'BTC' };
 
   showDipositModal = (e, text) => {
-    this.setState({ isOpenDiposit: true, selectedSymbol: text.symbol });
+    this.setState({ isOpenDiposit: true, selectedSymbol: text.currency });
   };
 
   handleCancel = () => {

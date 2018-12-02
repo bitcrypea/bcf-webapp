@@ -25,7 +25,9 @@ import {
   dataQuery,
   updatePasswordMutation,
   transactionsQuery,
-  createManualDepositMutation
+  createManualDepositMutation,
+  depositsQuery,
+  depositAddressesQuery
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { Center } from '../Register/style';
@@ -308,6 +310,12 @@ export default connect(
     graphql(dataQuery),
     graphql(transactionsQuery, {
       name: 'transactions'
+    }),
+    graphql(depositsQuery, {
+      name: 'deposits'
+    }),
+    graphql(depositAddressesQuery, {
+      name: 'depositAddresses'
     }),
     graphql(createDepositAddressMutation, {
       name: 'createDepositAddress'
