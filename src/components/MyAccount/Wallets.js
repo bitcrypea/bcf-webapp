@@ -19,13 +19,8 @@ import Deposit from '../Modal/Deposit';
 const data = [
   {
     key: '1',
-    currencyName: 'Bitcoin',
-    symbol: 'BTC',
-    availableBalance: '0.00000000',
-    pendingDeposit: '0.00000000',
-    reserved: '0.00000000',
-    total: '0.00000000',
-    estBtcValue: '0.00000000'
+    currency: 'BTC',
+    balance: '0'
   }
 ];
 
@@ -72,39 +67,14 @@ class Wallets extends Component {
               style={{ fontSize: 10 }}
               columns={[
                 {
-                  title: 'CURRENCY NAME',
-                  dataIndex: 'currencyName',
-                  key: 'currencyName'
+                  title: 'CURRENCY',
+                  dataIndex: 'currency',
+                  key: 'currency'
                 },
                 {
-                  title: 'SYMBOL',
-                  dataIndex: 'symbol',
-                  key: 'symbol'
-                },
-                {
-                  title: 'AVAILABLE BALANCE',
-                  dataIndex: 'availableBalance',
-                  key: 'availableBalance'
-                },
-                {
-                  title: 'PENDING DEPOSIT',
-                  dataIndex: 'pendingDeposit',
-                  key: 'pendingDeposit'
-                },
-                {
-                  title: 'RESERVED',
-                  key: 'reserved',
-                  dataIndex: 'reserved'
-                },
-                {
-                  title: 'TOTAL',
-                  key: 'total',
-                  dataIndex: 'total'
-                },
-                {
-                  title: 'EST.BTC VALUE',
-                  key: 'estBtcValue',
-                  dataIndex: 'estBtcValue'
+                  title: 'BALANCE',
+                  dataIndex: 'balance',
+                  key: 'balance'
                 },
                 {
                   title: 'ACTION',

@@ -18,6 +18,12 @@ export const updatePasswordMutation = gql`
   }
 `;
 
+export const createManualDepositMutation = gql`
+  mutation createManualDeposit($currency: String!, $amount: String!) {
+    createManualDeposit(currency: $currency, amount: $amount)
+  }
+`;
+
 export const dataQuery = gql`
   {
     affiliate_codes {
@@ -29,6 +35,37 @@ export const dataQuery = gql`
       created_at
       referee {
         full_name
+      }
+    }
+    accounts {
+      balance
+      created_at
+      currency
+      updated_at
+    }
+    me {
+      email
+      first_name
+      last_name
+      id
+    }
+  }
+`;
+
+export const transactionsQuery = gql`
+  query getTransactions($before: String, $after: String, $limit: Int) {
+    transactions(before: $before, after: $after, limit: $limit) {
+      data {
+        amount
+        created_at
+        created_for_id
+        created_for_type
+        currency
+        id
+      }
+      paging {
+        next
+        previous
       }
     }
   }
