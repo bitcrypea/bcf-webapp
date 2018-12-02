@@ -41,8 +41,7 @@ export function pusherController(pusher, props) {
     // console.log(data);
     if (data.type === 'DepositAddress') {
       createNewAddress(data.address);
-    } else of (data.type === 'Account'){
-
+    } else if (data.type === 'Account') {
     }
   });
 }
