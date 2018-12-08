@@ -37,7 +37,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.1.1",
     "react-tradingview-widget": "^1.2.5",
     "recompose": "^0.30.0",
     "redux": "^4.0.0",
@@ -68,5 +68,11 @@
     "npm": "^6.4.1",
     "react-test-renderer": "^16.6.1",
     "styled-tools": "^1.6.0"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -4,6 +4,7 @@ import { TableContainer, TableContent, TH, TD, Divider } from './styled';
 class MyTable extends Component {
   render() {
     const { showDipositModal, balance } = this.props;
+  
     return (
       <TableContainer>
         <TableContent>
