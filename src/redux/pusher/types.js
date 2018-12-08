@@ -1,4 +1,5 @@
 export const CREATE_AFFILIATE_CODE = 'app/pusher/CREATE_AFFILIATE_CODE';
+export const CREATE_BALANCE_ACCOUNT = 'app/pusher/CREATE_BALANCE_ACCOUNT';
 export const CREATE_ADDRESS = 'app/pusher/CREATE_ADDRESS';
 export const CREATE_REFERRAL = 'app/pusher/REFERRAL';
 export const ENABLE_LOADING_SWITCH = 'app/pusher/ENABLE_LOADING_SWITCH';

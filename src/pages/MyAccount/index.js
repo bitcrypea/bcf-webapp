@@ -40,7 +40,7 @@ import {
 import ChangePassword from '../../components/MyAccount/ChangePassword';
 import { reset } from 'redux-form';
 import { logout } from '../../redux/auth/actions';
-import { getAddress } from '../../redux/pusher/selectors';
+import { getAddress, getBalanceAccount } from '../../redux/pusher/selectors';
 import ManualDeposit from './../../components/MyAccount/ManualDeposit';
 
 const { Item } = Menu;
@@ -105,8 +105,9 @@ class MyAccount extends Component {
   };
 
   selectKeyMenu = ({ key }) => {
-    const { history } = this.props;
+    const { history, data } = this.props;
 
+    data.refetch();
     history.push(`/my-account?tab=${key}`);
     this.setState({
       selectKey: key
@@ -203,7 +204,9 @@ class MyAccount extends Component {
       data,
       loading,
       address,
-      createManualDeposit
+      createManualDeposit,
+      dispatch,
+      accountBalance
     } = this.props;
 
     const { selectKey } = this.state;
@@ -216,6 +219,7 @@ class MyAccount extends Component {
             createAddress={this.createAddress}
             address={address}
             data={data.accounts}
+            accountBalance={accountBalance}
           />
         )}
         {selectKey === 'myReferrals' && (
@@ -237,6 +241,7 @@ class MyAccount extends Component {
           <ManualDeposit
             createManualDeposit={createManualDeposit}
             data={data}
+            dispatch={dispatch}
           />
         )}
       </AccountRight>
@@ -303,7 +308,8 @@ const mapDispatchToProps = dispatch =>
 const mapStateToProps = state => ({
   authenticated: isLoggedIn(state),
   currentUser: getUser(state),
-  address: getAddress(state)
+  address: getAddress(state),
+  accountBalance: getBalanceAccount(state)
 });
 
 export default connect(

@@ -5,6 +5,7 @@ import {
   DISABLE_LOADING_SWITCH,
   CREATE_ADDRESS,
   SAVE_PUSHER,
+  CREATE_BALANCE_ACCOUNT
 } from './types';
 
 const getInitialState = () => ({
@@ -12,7 +13,8 @@ const getInitialState = () => ({
   newReferral: {},
   loading: false,
   pusher: {},
-  address: ''
+  address: '',
+  newBalanceAccount: {}
 });
 
 function pusherReducer(state = getInitialState(), { type, payload }) {
@@ -20,32 +22,37 @@ function pusherReducer(state = getInitialState(), { type, payload }) {
     case CREATE_AFFILIATE_CODE:
       return {
         ...state,
-        resultCreateAffiliateCode: payload,
+        resultCreateAffiliateCode: payload
       };
     case CREATE_REFERRAL:
       return {
         ...state,
-        newReferral: payload,
+        newReferral: payload
       };
     case SAVE_PUSHER:
       return {
         ...state,
-        pusher: payload,
+        pusher: payload
       };
     case CREATE_ADDRESS:
       return {
         ...state,
-        address: payload,
+        address: payload
       };
     case ENABLE_LOADING_SWITCH:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case DISABLE_LOADING_SWITCH:
       return {
         ...state,
-        loading: false,
+        loading: false
+      };
+    case CREATE_BALANCE_ACCOUNT:
+      return {
+        ...state,
+        newBalanceAccount: payload
       };
     default:
       return state;

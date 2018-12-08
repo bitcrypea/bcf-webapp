@@ -12,14 +12,14 @@ export const getAffiliateCode = createSelector(
   state => state.resultCreateAffiliateCode
 );
 
-export const getLoading = createSelector(
-  pusherSelector,
-  state => state.loading
-);
-
 export const getAddress = createSelector(
   pusherSelector,
   state => state.address
-)
+);
+
+export const getBalanceAccount = createSelector(
+  pusherSelector,
+  state => state.newBalanceAccount
+);
 
 export const getPusher = createSelector(pusherSelector, state => state.pusher);
