@@ -2,16 +2,19 @@ import React, { Component, Fragment } from 'react';
 import { AccountSection, AccountInfoTitle } from './styled';
 import { AccountContent } from '../../pages/MyAccount/styled';
 import ManualDepositForm from '../Form/ManualDepositForm';
+import { reset } from 'redux-form';
 
 class ManualDeposit extends Component {
   onSubmit = values => {
-    const { createManualDeposit } = this.props;
+    const { createManualDeposit, dispatch } = this.props;
     createManualDeposit({
       variables: {
         currency: values.currency,
         amount: values.amount
       }
-    }).then(({ data }) => {});
+    }).then(({ data }) => {
+      dispatch(reset('manualDeposit'));
+    });
   };
   render() {
     return (

@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   createAffiliateCode,
+  createBalanceAccount,
   createReferral,
   createNewAddress
 } from '../redux/pusher/actions';
@@ -39,6 +40,7 @@ const mapDispatchToProps = dispatch =>
       createNewAddress,
       createAffiliateCode,
       createReferral,
+      createBalanceAccount,
       dispatch
     },
     dispatch

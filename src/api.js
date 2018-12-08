@@ -20,7 +20,12 @@ export const initPusher = () => {
 };
 
 export function pusherController(pusher, props) {
-  const { createAffiliateCode, createReferral, createNewAddress } = props;
+  const {
+    createAffiliateCode,
+    createReferral,
+    createNewAddress,
+    createBalanceAccount
+  } = props;
   const user_id = localStorage.getItem('affiliate_codes');
   const channel = pusher.subscribe(`private-user_${user_id}`);
 
@@ -29,7 +34,7 @@ export function pusherController(pusher, props) {
   });
 
   channel.bind('create', function(data) {
-    // console.log(data);
+    console.log(data);
     if (data.type === 'AffiliateCode') {
       createAffiliateCode(data);
     } else if (data.type === 'Referral') {
@@ -38,10 +43,11 @@ export function pusherController(pusher, props) {
   });
 
   channel.bind('update', function(data) {
-    // console.log(data);
+    console.log(data);
     if (data.type === 'DepositAddress') {
       createNewAddress(data.address);
     } else if (data.type === 'Account') {
+      createBalanceAccount(data);
     }
   });
 }
