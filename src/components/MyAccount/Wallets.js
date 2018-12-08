@@ -20,10 +20,16 @@ class Wallets extends Component {
   constructor(props) {
     super(props);
 
+    const { data } = this.props;
+    let balance = 0;
+
+    if (data && data[0]) {
+      balance = data[0].balance;
+    }
     this.state = {
       isOpenDiposit: false,
       selectedSymbol: 'BTC',
-      balance: this.props.data[0].balance
+      balance
     };
   }
 
