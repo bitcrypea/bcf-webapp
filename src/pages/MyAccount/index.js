@@ -30,18 +30,20 @@ import {
   depositAddressesQuery
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
-import { Center } from '../Register/style';
+import { RegisterCenter } from '../Register/styled';
 import {
   createReferral,
   createAffiliateCode,
   enableSwitch,
-  disableSwitch
+  disableSwitch,
+  createNewAddress
 } from '../../redux/pusher/actions';
 import ChangePassword from '../../components/MyAccount/ChangePassword';
 import { reset } from 'redux-form';
 import { logout } from '../../redux/auth/actions';
 import { getAddress, getBalanceAccount } from '../../redux/pusher/selectors';
 import ManualDeposit from './../../components/MyAccount/ManualDeposit';
+import { persistor } from '../../redux/store';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -115,7 +117,12 @@ class MyAccount extends Component {
   };
 
   componentDidMount() {
-    const { gotoLogin, authenticated } = this.props;
+    const {
+      gotoLogin,
+      authenticated,
+      depositAddresses,
+      createNewAddress
+    } = this.props;
 
     if (!authenticated) {
       gotoLogin();
@@ -130,6 +137,11 @@ class MyAccount extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    const {
+      data: { deposit_addresses },
+      createNewAddress
+    } = props;
+
     //props.data.refetch();
     if (props.data.error && props.data.error.graphQLErrors) {
       props.data.error.graphQLErrors.forEach(element => {
@@ -139,9 +151,21 @@ class MyAccount extends Component {
       props.logout();
       localStorage.removeItem('TOKEN_ID');
       localStorage.removeItem('TOKEN_SECRET');
-      localStorage.removeItem('auth');
+      localStorage.removeItem('affiliate_codes');
+      props.createNewAddress('');
+      persistor.purge();
       props.gotoLogin();
       return null;
+    }
+
+    debugger;
+    if (
+      deposit_addresses &&
+      deposit_addresses.data &&
+      deposit_addresses.data.length !== 0
+    ) {
+      const { data } = deposit_addresses;
+      createNewAddress(data[0].address);
     }
 
     if (props.data.affiliate_codes && props.data.affiliate_codes.length !== 0) {
@@ -254,9 +278,9 @@ class MyAccount extends Component {
 
     if (data.loading) {
       return (
-        <Center>
+        <RegisterCenter>
           <Spin />
-        </Center>
+        </RegisterCenter>
       );
     }
 
@@ -298,6 +322,7 @@ const mapDispatchToProps = dispatch =>
       createAffiliateCode,
       createReferral,
       logout,
+      createNewAddress,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
       gotoUnbindGoogle: () => push('/unbind-google')

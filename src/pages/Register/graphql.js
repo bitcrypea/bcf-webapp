@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const SIGNUP = gql`
+const SignUp = gql`
   mutation signup(
     $email: String!
     $first_name: String!
@@ -16,4 +16,4 @@ const SIGNUP = gql`
   }
 `;
 
-export { SIGNUP };
+export { SignUp };

@@ -13,7 +13,7 @@ import {
 } from './styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'antd';
-import Deposit from '../Modal/Deposit';
+import Deposit from '../Modal/DepositModel';
 import MyTable from './../commons/MyTable';
 
 class Wallets extends Component {

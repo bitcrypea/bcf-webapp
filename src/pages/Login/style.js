@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
+export const LoginContainer = styled.div`
   background: #f7f7f7;
   height: 100vh;
   display: flex;
@@ -8,7 +8,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
 `;
 
-export const HeaderMain = styled.div`
+export const LoginMain = styled.div`
   box-sizing: content-box;
   height: 370px;
   width: 518px;
@@ -23,23 +23,23 @@ export const HeaderMain = styled.div`
   box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 100px;
 `;
 
-export const HeaderFormContent = styled.div``;
+export const LoginFormContent = styled.div``;
 
-export const HeaderLogoContainer = styled.div`
+export const LoginLogoContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-export const HeaderTagA = styled.a`
+export const LoginTagA = styled.a`
   /* margin-right: 32px; */
   background-color: transparent;
 `;
 
-export const HeaderLogo = styled.img`
+export const LoginLogo = styled.img`
   cursor: pointer;
   border-style: none;
 `;
 
-export const HeaderTitle = styled.div`
+export const LoginTitle = styled.div`
   font-size: 16px;
   color: #666;
   text-align: center;
@@ -59,7 +59,7 @@ export const HeaderTitle = styled.div`
   }
 `;
 
-export const HeaderSpan = styled.span`
+export const LoginSpan = styled.span`
   padding: 0 30px;
   background: #fff;
   position: relative;
@@ -70,17 +70,17 @@ export const HeaderSpan = styled.span`
   font-weight: normal;
 `;
 
-export const HeaderFormContainer = styled.div`
+export const LoginFormContainer = styled.div`
   width: 330px;
 `;
 
-export const HeaderFooterContainer = styled.div`
+export const LoginFooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   width: 330px;
 `;
 
-export const HeaderLinkRegister = styled.a`
+export const LoginLinkRegister = styled.a`
   font-size: 14px;
 `;

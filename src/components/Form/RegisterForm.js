@@ -3,38 +3,13 @@ import { Field, reduxForm } from 'redux-form';
 import { Form, Input, Button } from 'antd';
 import { connect } from 'react-redux';
 import qs from 'qs';
+import { makeField } from './GenerateField';
 
 const FormItem = Form.Item;
-
-const makeField = Component => ({
-  input,
-  meta,
-  children,
-  hasFeedback,
-  label,
-  ...rest
-}) => {
-  const hasError = meta.touched && meta.invalid;
-  return (
-    <FormItem
-      style={{ textAlign: 'left' }}
-      label={label}
-      validateStatus={hasError ? 'error' : 'success'}
-      hasFeedback={hasFeedback && hasError}
-      help={hasError && meta.error}
-    >
-      <Component {...input} {...rest} children={children} />
-    </FormItem>
-  );
-};
 
 const AInput = makeField(Input);
 
 class RegisterForm extends Component {
-  componentDidMount() {
-    this.handleInitialize();
-  }
-
   handleInitialize() {
     let code;
     const qsParsed = qs.parse(this.props.location.search.slice(1));
@@ -59,10 +34,14 @@ class RegisterForm extends Component {
       }
     }
     const initData = {
-      referralId: code,
+      referralId: code
     };
 
     this.props.initialize(initData);
+  }
+
+  componentDidMount() {
+    this.handleInitialize();
   }
 
   render() {
@@ -139,7 +118,7 @@ const validate = values => {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    user: state.user
   };
 }
 
@@ -149,6 +128,6 @@ export default connect(
 )(
   reduxForm({
     form: 'registerForm', // a unique identifier for this form
-    validate,
+    validate
   })(RegisterForm)
 );

@@ -2,30 +2,30 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { message, Spin } from 'antd';
 import {
-  Container,
+  RegisterContainer,
   RegisterMain,
-  Logo,
-  FormContent,
-  LogoContainer,
-  TagA,
-  Title,
-  Span,
-  FormContainer,
-  FooterContainer,
-  LinkRegister,
-  Center,
-} from './style';
+  RegisterLogo,
+  RegisterFormContent,
+  RegisterLogoContainer,
+  RegisterTagA,
+  RegisterTitle,
+  RegisterSpan,
+  RegisterFormContainer,
+  RegisterFooterContainer,
+  RegisterLink,
+  RegisterCenter
+} from './styled';
 import logo from '../../assets/images/logo.png';
-import RegisterForm from '../../components/Register/RegisterForm';
-import { SIGNUP } from './graphql';
+import { SignUp } from './graphql';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
 import { registerUser } from '../../redux/auth/actions';
+import RegisterForm from '../../components/Form/RegisterForm';
 
 class Register extends Component {
   state = {
-    isLoading: false,
+    isLoading: false
   };
 
   onSubmit = values => {
@@ -36,26 +36,26 @@ class Register extends Component {
     let input = {
       email: values.email,
       first_name: values.firstName,
-      last_name: values.lastName,
+      last_name: values.lastName
     };
     if (values.referralId !== '') {
       input = {
         email: values.email,
         first_name: values.firstName,
         last_name: values.lastName,
-        ref_code: values.referralId,
+        ref_code: values.referralId
       };
     }
     signup({
-      variables: input,
+      variables: input
     })
       .then(({ data }) => {
         const user = {
           user: {
             email: values.email,
             first_name: values.firstName,
-            last_name: values.lastName,
-          },
+            last_name: values.lastName
+          }
         };
 
         this.setState({ isLoading: false });
@@ -80,41 +80,41 @@ class Register extends Component {
     return (
       <div>
         {isLoading && (
-          <Center>
+          <RegisterCenter>
             <Spin />
-          </Center>
+          </RegisterCenter>
         )}
         {!isLoading && (
-          <Container>
-            <Center>
+          <RegisterContainer>
+            <RegisterCenter>
               <RegisterMain>
-                <LogoContainer>
-                  <TagA onClick={this.props.gotoHome}>
-                    <Logo src={logo} width="90" height="60" />
-                  </TagA>
-                </LogoContainer>
-                <FormContainer>
-                  <Title>
-                    <Span>Register</Span>
-                  </Title>
+                <RegisterLogoContainer>
+                  <RegisterTagA onClick={this.props.gotoHome}>
+                    <RegisterLogo src={logo} width="90" height="60" />
+                  </RegisterTagA>
+                </RegisterLogoContainer>
+                <RegisterFormContainer>
+                  <RegisterTitle>
+                    <RegisterSpan>Register</RegisterSpan>
+                  </RegisterTitle>
                   <RegisterForm
                     onSubmit={this.onSubmit}
                     location={this.props.location}
                   />
-                </FormContainer>
-                <FooterContainer>
+                </RegisterFormContainer>
+                <RegisterFooterContainer>
                   Already Registered?
-                  <LinkRegister
+                  <RegisterLink
                     style={{ marginLeft: 2 }}
                     onClick={this.props.gotoLogin}
                   >
                     Login
-                  </LinkRegister>
-                </FooterContainer>
-                <FormContent />
+                  </RegisterLink>
+                </RegisterFooterContainer>
+                <RegisterFormContent />
               </RegisterMain>
-            </Center>
-          </Container>
+            </RegisterCenter>
+          </RegisterContainer>
         )}
       </div>
     );
@@ -128,13 +128,13 @@ const mapDispatchToProps = dispatch =>
       gotoEmailSend: () => push('/email-send'),
       gotoForgot: () => push('/forgot'),
       gotoLogin: () => push('/login'),
-      gotoHome: () => push('/'),
+      gotoHome: () => push('/')
     },
     dispatch
   );
 
-export default graphql(SIGNUP, {
-  name: 'signup',
+export default graphql(SignUp, {
+  name: 'signup'
 })(
   connect(
     null,
