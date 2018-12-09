@@ -43,7 +43,6 @@ import { reset } from 'redux-form';
 import { logout } from '../../redux/auth/actions';
 import { getAddress, getBalanceAccount } from '../../redux/pusher/selectors';
 import ManualDeposit from './../../components/MyAccount/ManualDeposit';
-import { persistor } from '../../redux/store';
 
 const { Item } = Menu;
 const menuMapActivity = {
@@ -152,9 +151,9 @@ class MyAccount extends Component {
       localStorage.removeItem('TOKEN_ID');
       localStorage.removeItem('TOKEN_SECRET');
       localStorage.removeItem('affiliate_codes');
-      props.createNewAddress('');
-      persistor.purge();
+      createNewAddress('');
       props.gotoLogin();
+
       return null;
     }
 
