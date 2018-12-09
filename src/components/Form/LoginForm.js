@@ -1,49 +1,28 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Form, Input, Button } from 'antd';
+import { makeField } from './GenerateField';
 
 const FormItem = Form.Item;
 
-const makeField = Component => ({
-  input,
-  meta,
-  children,
-  hasFeedback,
-  label,
-  ...rest
-}) => {
-  const hasError = meta.touched && meta.invalid;
-  return (
-    <FormItem
-      label={label}
-      validateStatus={hasError ? 'error' : 'success'}
-      hasFeedback={hasFeedback && hasError}
-      help={hasError && meta.error}
-    >
-      <Component {...input} {...rest} children={children} />
-    </FormItem>
-  );
-};
-
 const AInput = makeField(Input);
 
-const UnbindGoogleForm = props => {
-  const { handleSubmit, pristine, submitting } = props;
+const LoginForm = ({ handleSubmit, pristine, submitting }) => {
   return (
     <Form onSubmit={handleSubmit}>
+      <Field
+        label=""
+        name="email"
+        component={AInput}
+        type="email"
+        placeholder="Email"
+      />
       <Field
         label=""
         name="password"
         component={AInput}
         type="password"
-        placeholder="Login Password"
-      />
-      <Field
-        label=""
-        name="googleAuthCode"
-        component={AInput}
-        type="text"
-        placeholder="Google Authentication Code"
+        placeholder="Password"
       />
       <FormItem>
         <Button
@@ -52,7 +31,7 @@ const UnbindGoogleForm = props => {
           htmlType="submit"
           style={{ width: '100%' }}
         >
-          Submit
+          Log In
         </Button>
       </FormItem>
     </Form>
@@ -72,6 +51,6 @@ const validate = values => {
 };
 
 export default reduxForm({
-  form: 'unbind-google', // a unique identifier for this form
-  validate,
-})(UnbindGoogleForm);
+  form: 'login', // a unique identifier for this form
+  validate
+})(LoginForm);

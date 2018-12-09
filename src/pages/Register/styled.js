@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const RegisterContainer = styled.div`
   background: #f7f7f7;
   height: 100vh;
   display: flex;
@@ -23,23 +23,23 @@ export const RegisterMain = styled.div`
   box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 100px;
 `;
 
-export const FormContent = styled.div``;
+export const RegisterFormContent = styled.div``;
 
-export const LogoContainer = styled.div`
+export const RegisterLogoContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-export const TagA = styled.a`
+export const RegisterTagA = styled.a`
   /* margin-right: 32px; */
   background-color: transparent;
 `;
 
-export const Logo = styled.img`
+export const RegisterLogo = styled.img`
   cursor: pointer;
   border-style: none;
 `;
 
-export const Title = styled.div`
+export const RegisterTitle = styled.div`
   font-size: 16px;
   color: #666;
   text-align: center;
@@ -59,7 +59,7 @@ export const Title = styled.div`
   }
 `;
 
-export const Span = styled.span`
+export const RegisterSpan = styled.span`
   padding: 0 30px;
   background: #fff;
   position: relative;
@@ -70,22 +70,22 @@ export const Span = styled.span`
   font-weight: normal;
 `;
 
-export const FormContainer = styled.div`
+export const RegisterFormContainer = styled.div`
   width: 330px;
 `;
 
-export const FooterContainer = styled.div`
+export const RegisterFooterContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: row;
   width: 330px;
 `;
 
-export const LinkRegister = styled.a`
+export const RegisterLink = styled.a`
   font-size: 14px;
 `;
 
-export const Center = styled.div`
+export const RegisterCenter = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;

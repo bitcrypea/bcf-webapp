@@ -8,8 +8,6 @@ import Forgot from './pages/Forgot';
 import EmailSend from './pages/EmailSend';
 import EmailVerify from './pages/EmailVerify';
 import MyAccount from './pages/MyAccount';
-import ModifyPassword from './pages/ModifyPassword';
-import UnbindGoogle from './pages/UnbindGoogle';
 import Term from './pages/Term/index';
 
 const RouterApp = () => {
@@ -23,8 +21,6 @@ const RouterApp = () => {
       <Route exact path="/email-send" component={EmailSend} />
       <Route exact path="/forgot" component={Forgot} />
       <Route exact path="/my-account" component={MyAccount} />
-      <Route exact path="/modify-pwd" component={ModifyPassword} />
-      <Route exact path="/unbind-google" component={UnbindGoogle} />
       <Route exact path="/terms" component={Term} />
       {/* <Route path="*" component={NoMatch} /> */}
     </Switch>

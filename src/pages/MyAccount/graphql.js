@@ -26,6 +26,20 @@ export const createManualDepositMutation = gql`
 
 export const dataQuery = gql`
   {
+    deposit_addresses(limit: 1) {
+      data {
+        address
+        currency
+        created_at
+        status
+        updated_at
+        id
+      }
+      paging {
+        next
+        previous
+      }
+    }
     affiliate_codes {
       code
       created_at

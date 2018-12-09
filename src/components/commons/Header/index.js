@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from "react";
-import { Menu, Dropdown, Icon } from "antd";
+import React, { Component, Fragment } from 'react';
+import { Menu, Dropdown, Icon } from 'antd';
 // import { Link } from 'react-router-dom';
-import { push } from "connected-react-router";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { push } from 'connected-react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
   HeaderContainerHeader,
   HeaderTopNavHead,
@@ -15,16 +15,21 @@ import {
   HeaderLogo,
   HeaderLoginButton,
   HeaderRegister
-} from "./styled";
-import logo from "../../../assets/images/logo.png";
-import { isLoggedIn } from "../../../redux/auth/selectors";
-import { logout } from "../../../redux/auth/actions";
+} from './styled';
+import logo from '../../../assets/images/logo.png';
+import { isLoggedIn } from '../../../redux/auth/selectors';
+import { logout } from '../../../redux/auth/actions';
+import { persistor } from '../../../redux/store';
+import { createNewAddress } from '../../../redux/pusher/actions';
 
 class Header extends Component {
   handleLogout = () => {
-    localStorage.removeItem("TOKEN_ID");
-    localStorage.removeItem("TOKEN_SECRET");
-    localStorage.removeItem("affiliate_codes");
+    const { createNewAddress } = this.props;
+    localStorage.removeItem('TOKEN_ID');
+    localStorage.removeItem('TOKEN_SECRET');
+    localStorage.removeItem('affiliate_codes');
+    createNewAddress('');
+    persistor.purge();
 
     this.props.logout();
     this.props.gotoHome();
@@ -75,7 +80,7 @@ class Header extends Component {
                     </Menu>
                   }
                   placement="bottomRight"
-                  trigger={["click"]}
+                  trigger={['click']}
                 >
                   <HeaderMenuTitle>
                     <Icon
@@ -107,11 +112,12 @@ class Header extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      createNewAddress,
       logout,
-      gotoMyAccount: () => push("/my-account"),
-      gotoRegister: () => push("/register"),
-      gotoLogin: () => push("/login"),
-      gotoHome: () => push("/")
+      gotoMyAccount: () => push('/my-account'),
+      gotoRegister: () => push('/register'),
+      gotoLogin: () => push('/login'),
+      gotoHome: () => push('/')
     },
     dispatch
   );
