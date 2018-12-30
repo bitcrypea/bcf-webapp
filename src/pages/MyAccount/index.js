@@ -24,10 +24,7 @@ import {
   createAffiliateCodeMutation,
   dataQuery,
   updatePasswordMutation,
-  transactionsQuery,
-  createManualDepositMutation,
-  depositsQuery,
-  depositAddressesQuery
+  createManualDepositMutation
 } from './graphql';
 import MyReferrals from '../../components/MyAccount/MyReferrals';
 import { RegisterCenter } from '../Register/styled';
@@ -118,10 +115,10 @@ class MyAccount extends Component {
   componentDidMount() {
     const {
       gotoLogin,
-      authenticated,
-      depositAddresses,
-      createNewAddress
+      authenticated
     } = this.props;
+
+    console.log(this.props);
 
     if (!authenticated) {
       gotoLogin();
@@ -157,7 +154,6 @@ class MyAccount extends Component {
       return null;
     }
 
-    debugger;
     if (
       deposit_addresses &&
       deposit_addresses.data &&
@@ -274,6 +270,7 @@ class MyAccount extends Component {
   render() {
     const { authenticated, data } = this.props;
     const { mode, selectKey } = this.state;
+    console.log(data);
 
     if (data.loading) {
       return (
@@ -342,15 +339,6 @@ export default connect(
 )(
   compose(
     graphql(dataQuery),
-    graphql(transactionsQuery, {
-      name: 'transactions'
-    }),
-    graphql(depositsQuery, {
-      name: 'deposits'
-    }),
-    graphql(depositAddressesQuery, {
-      name: 'depositAddresses'
-    }),
     graphql(createDepositAddressMutation, {
       name: 'createDepositAddress'
     }),

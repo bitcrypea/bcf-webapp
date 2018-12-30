@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { TD1, TD2, TD3, TD4, Colgroup, Table, TBody, TableRow } from './styled';
 import {
   getCoinETCBTC,
@@ -10,7 +11,7 @@ import {
   getCoinXLMBTC,
   getCoinBCCBTC,
   getCoinLTCBTC,
-  getCoinADABTC,
+  getCoinADABTC
 } from '../../../redux/home/selectors';
 import {
   receiveCoinETCBTC,
@@ -21,11 +22,13 @@ import {
   receiveCoinXLMBTC,
   receiveCoinBCCBTC,
   receiveCoinLTCBTC,
-  receiveCoinADABTC,
+  receiveCoinADABTC
 } from '../../../redux/home/actions';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
+
+const env = runtimeEnv();
 
 class TableBTC extends Component {
   constructor(props) {
@@ -41,7 +44,7 @@ class TableBTC extends Component {
       coinBCCBTC: {},
       coinLTCBTC: {},
       coinADABTC: {},
-      endpoint: 'https://socketbitchip.herokuapp.com/',
+      endpoint: env.REACT_APP_SOCKET_ENDPOINT
     };
   }
   componentDidMount() {
@@ -56,7 +59,7 @@ class TableBTC extends Component {
       receiveCoinXLMBTC,
       receiveCoinBCCBTC,
       receiveCoinLTCBTC,
-      receiveCoinADABTC,
+      receiveCoinADABTC
     } = this.props;
 
     socket.on('coinETCBTC', data => receiveCoinETCBTC(JSON.parse(data)));
@@ -80,7 +83,7 @@ class TableBTC extends Component {
       coinXLMBTC,
       coinBCCBTC,
       coinLTCBTC,
-      coinADABTC,
+      coinADABTC
     } = this.props;
 
     return (
@@ -207,7 +210,7 @@ const mapDispatchToProps = dispatch =>
       receiveCoinADABTC,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
-      gotoUnbindGoogle: () => push('/unbind-google'),
+      gotoUnbindGoogle: () => push('/unbind-google')
     },
     dispatch
   );
@@ -221,7 +224,7 @@ const mapStateToProps = state => ({
   coinXLMBTC: getCoinXLMBTC(state),
   coinBCCBTC: getCoinBCCBTC(state),
   coinLTCBTC: getCoinLTCBTC(state),
-  coinADABTC: getCoinADABTC(state),
+  coinADABTC: getCoinADABTC(state)
 });
 
 export default connect(

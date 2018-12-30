@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Menu, Dropdown, Icon } from 'antd';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -51,9 +51,9 @@ class Header extends Component {
               <HeaderTagA onClick={() => gotoHome()}>
                 <HeaderLogo src={logo} width="90" height="60" />
               </HeaderTagA>
-              {/* <Link style={{ color: 'white' }} to="/exchange">
+              <Link to="/exchange"> 
                 Exchange
-              </Link> */}
+              </Link>
             </HeaderTopNavLeft>
             <HeaderTopNavRight>
               {authenticated && (
