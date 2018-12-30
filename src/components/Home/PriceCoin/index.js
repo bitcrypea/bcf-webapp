@@ -9,19 +9,20 @@ import {
   Row,
   Span1,
   Span2,
-  Volumn,
+  Volumn
 } from './styled';
 import socketIOClient from 'socket.io-client';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import {
   receiveCartETHBTC,
   receiveCartBTCUSDT,
   receiveCartETCBTC,
   receiveCartADABTC,
   receiveCartXRPBTC,
-  receiveCartBCCBTC,
+  receiveCartBCCBTC
 } from '../../../redux/home/actions';
 import {
   getCartETHBTC,
@@ -29,8 +30,10 @@ import {
   getCartETCBTC,
   getCartADABTC,
   getCartXRPBTC,
-  getCartBCCBTC,
+  getCartBCCBTC
 } from '../../../redux/home/selectors';
+
+const env = runtimeEnv();
 
 class PriceCoin extends Component {
   constructor(props) {
@@ -43,7 +46,7 @@ class PriceCoin extends Component {
       cartADABTC: {},
       cartXRPBTC: {},
       cartBCCBTC: {},
-      endpoint: 'https://socketbitchip.herokuapp.com/',
+      endpoint: env.REACT_APP_SOCKET_ENDPOINT
     };
   }
   componentDidMount() {
@@ -54,7 +57,7 @@ class PriceCoin extends Component {
       receiveCartETCBTC,
       receiveCartADABTC,
       receiveCartXRPBTC,
-      receiveCartBCCBTC,
+      receiveCartBCCBTC
     } = this.props;
     const socket = socketIOClient(endpoint);
 
@@ -73,7 +76,7 @@ class PriceCoin extends Component {
       cartETCBTC,
       cartADABTC,
       cartBCCBTC,
-      cartXRPBTC,
+      cartXRPBTC
     } = this.props;
 
     return (
@@ -193,7 +196,7 @@ const mapDispatchToProps = dispatch =>
       receiveCartBCCBTC,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
-      gotoUnbindGoogle: () => push('/unbind-google'),
+      gotoUnbindGoogle: () => push('/unbind-google')
     },
     dispatch
   );
@@ -204,7 +207,7 @@ const mapStateToProps = state => ({
   cartETCBTC: getCartETCBTC(state),
   cartADABTC: getCartADABTC(state),
   cartXRPBTC: getCartXRPBTC(state),
-  cartBCCBTC: getCartBCCBTC(state),
+  cartBCCBTC: getCartBCCBTC(state)
 });
 
 export default connect(

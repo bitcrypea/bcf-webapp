@@ -25,14 +25,44 @@ export const createManualDepositMutation = gql`
 `;
 
 export const dataQuery = gql`
-  {
-    deposit_addresses(limit: 1) {
+  query($before: String, $after: String, $limit: Int) {
+    deposit_addresses(before: $before, after: $after, limit: $limit) {
       data {
         address
         currency
         created_at
         status
         updated_at
+        id
+      }
+      paging {
+        next
+        previous
+      }
+    }
+    transactions(before: $before, after: $after, limit: $limit) {
+      data {
+        amount
+        created_at
+        created_for_id
+        created_for_type
+        currency
+        id
+      }
+      paging {
+        next
+        previous
+      }
+    }
+    deposits(before: $before, after: $after, limit: $limit) {
+      data {
+        address
+        amount
+        created_at
+        ext_ref_id
+        status
+        updated_at
+        currency
         id
       }
       paging {
@@ -67,65 +97,6 @@ export const dataQuery = gql`
       created_at
       currency
       symbol
-    }
-  }
-`;
-
-export const transactionsQuery = gql`
-  query getTransactions($before: String, $after: String, $limit: Int) {
-    transactions(before: $before, after: $after, limit: $limit) {
-      data {
-        amount
-        created_at
-        created_for_id
-        created_for_type
-        currency
-        id
-      }
-      paging {
-        next
-        previous
-      }
-    }
-  }
-`;
-
-export const depositsQuery = gql`
-  query getDeposits($before: String, $after: String, $limit: Int) {
-    deposits(before: $before, after: $after, limit: $limit) {
-      data {
-        address
-        amount
-        created_at
-        ext_ref_id
-        status
-        updated_at
-        currency
-        id
-      }
-      paging {
-        next
-        previous
-      }
-    }
-  }
-`;
-
-export const depositAddressesQuery = gql`
-  query getDepositAddresses($before: String, $after: String, $limit: Int) {
-    deposit_addresses(before: $before, after: $after, limit: $limit) {
-      data {
-        address
-        currency
-        created_at
-        status
-        updated_at
-        id
-      }
-      paging {
-        next
-        previous
-      }
     }
   }
 `;

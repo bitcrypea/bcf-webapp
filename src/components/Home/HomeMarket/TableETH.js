@@ -4,6 +4,7 @@ import { TD1, TD2, TD3, TD4, Colgroup, Table, TBody, TableRow } from './styled';
 import { bindActionCreators } from 'redux';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import {
   getCoinZILETH,
   getCoinTRXETH,
@@ -13,7 +14,7 @@ import {
   getCoinVETETH,
   getCoinETCETH,
   getCoinNASETH,
-  getCoinHOTETH,
+  getCoinHOTETH
 } from '../../../redux/home/selectors';
 import {
   receiveCoinHOTETH,
@@ -24,8 +25,10 @@ import {
   receiveCoinXRPETH,
   receiveCoinEOSETH,
   receiveCoinTRXETH,
-  receiveCoinZILETH,
+  receiveCoinZILETH
 } from '../../../redux/home/actions';
+
+const env = runtimeEnv();
 
 class TableETH extends Component {
   constructor(props) {
@@ -41,7 +44,7 @@ class TableETH extends Component {
       coinEOSETH: {},
       coinTRXETH: {},
       coinZILETH: {},
-      endpoint: 'https://socketbitchip.herokuapp.com/',
+      endpoint: env.REACT_APP_SOCKET_ENDPOINT
     };
   }
   componentDidMount() {
@@ -56,7 +59,7 @@ class TableETH extends Component {
       receiveCoinXRPETH,
       receiveCoinEOSETH,
       receiveCoinTRXETH,
-      receiveCoinZILETH,
+      receiveCoinZILETH
     } = this.props;
 
     socket.on('coinHOTETH', data => receiveCoinHOTETH(JSON.parse(data)));
@@ -79,7 +82,7 @@ class TableETH extends Component {
       coinXRPETH,
       coinEOSETH,
       coinTRXETH,
-      coinZILETH,
+      coinZILETH
     } = this.props;
     return (
       <Table>
@@ -205,7 +208,7 @@ const mapDispatchToProps = dispatch =>
       receiveCoinZILETH,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
-      gotoUnbindGoogle: () => push('/unbind-google'),
+      gotoUnbindGoogle: () => push('/unbind-google')
     },
     dispatch
   );
@@ -219,7 +222,7 @@ const mapStateToProps = state => ({
   coinXRPETH: getCoinXRPETH(state),
   coinEOSETH: getCoinEOSETH(state),
   coinTRXETH: getCoinTRXETH(state),
-  coinZILETH: getCoinZILETH(state),
+  coinZILETH: getCoinZILETH(state)
 });
 
 export default connect(
