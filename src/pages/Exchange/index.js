@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Footer } from '../../components/commons';
 import socketIOClient from 'socket.io-client';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 import {
   Main,
@@ -25,6 +26,12 @@ import {
 import PriceTable from '../../components/Exchange/PriceTable/PriceTable';
 import TradeHistory from '../../components/Exchange/TradeHistory/TradeHistory';
 import Trading from '../../components/Exchange/Trading/Trading';
+import { isLoggedIn } from '../../redux/auth/selectors';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
+
+const env = runtimeEnv();
 
 class Exchange extends Component {
   constructor(props) {
@@ -34,7 +41,7 @@ class Exchange extends Component {
       cartBTCUSDT: {},
       orderBook: {},
       trades: [],
-      endpoint: 'https://socketbitchip.herokuapp.com/'
+      endpoint: env.REACT_APP_SOCKET_ENDPOINT
     };
   }
   componentDidMount() {
@@ -122,4 +129,17 @@ class Exchange extends Component {
   }
 }
 
-export default Exchange;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      gotoLogin: () => push('/login'),
+      gotoHome: () => push('/')
+    },
+    dispatch
+  );
+
+const mapStateToProps = state => ({
+  authenticated: isLoggedIn(state)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Exchange);

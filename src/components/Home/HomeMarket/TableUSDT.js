@@ -10,7 +10,7 @@ import {
   getCoinTRXUSDT,
   getCoinXRPUSDT,
   getCoinADAUSDT,
-  getCoinNEOUSDT,
+  getCoinNEOUSDT
 } from '../../../redux/home/selectors';
 import {
   receiveCoinBTCUSDT,
@@ -21,11 +21,14 @@ import {
   receiveCoinTRXUSDT,
   receiveCoinXRPUSDT,
   receiveCoinADAUSDT,
-  receiveCoinNEOUSDT,
+  receiveCoinNEOUSDT
 } from '../../../redux/home/actions';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
+
+const env = runtimeEnv();
 
 class TableUSDT extends Component {
   constructor(props) {
@@ -41,7 +44,7 @@ class TableUSDT extends Component {
       coinXRPUSDT: {},
       coinADAUSDT: {},
       coinNEOUSDT: {},
-      endpoint: 'https://socketbitchip.herokuapp.com/',
+      endpoint: env.REACT_APP_SOCKET_ENDPOINT
     };
   }
   componentDidMount() {
@@ -56,7 +59,7 @@ class TableUSDT extends Component {
       receiveCoinTRXUSDT,
       receiveCoinXRPUSDT,
       receiveCoinADAUSDT,
-      receiveCoinNEOUSDT,
+      receiveCoinNEOUSDT
     } = this.props;
 
     socket.on('coinBTCUSDT', data => receiveCoinBTCUSDT(JSON.parse(data)));
@@ -79,7 +82,7 @@ class TableUSDT extends Component {
       coinTRXUSDT,
       coinXRPUSDT,
       coinADAUSDT,
-      coinNEOUSDT,
+      coinNEOUSDT
     } = this.props;
 
     return (
@@ -206,7 +209,7 @@ const mapDispatchToProps = dispatch =>
       receiveCoinNEOUSDT,
       gotoLogin: () => push('/login'),
       gotoChangePassword: () => push('/modify-pwd'),
-      gotoUnbindGoogle: () => push('/unbind-google'),
+      gotoUnbindGoogle: () => push('/unbind-google')
     },
     dispatch
   );
@@ -220,7 +223,7 @@ const mapStateToProps = state => ({
   coinTRXUSDT: getCoinTRXUSDT(state),
   coinXRPUSDT: getCoinXRPUSDT(state),
   coinADAUSDT: getCoinADAUSDT(state),
-  coinNEOUSDT: getCoinNEOUSDT(state),
+  coinNEOUSDT: getCoinNEOUSDT(state)
 });
 
 export default connect(
