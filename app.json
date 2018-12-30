@@ -1,0 +1,22 @@
+{
+  "name": "bcf-webapp",
+  "description": "bcf-webapp",
+  "keywords": ["reactjs", "nodejs"],
+  "success_url": "/",
+  "scripts": {},
+  "env": {},
+  "formation": {},
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "https://github.com/mars/create-react-app-buildpack.git"
+    }
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
+}
