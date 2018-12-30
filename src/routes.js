@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Exchange from './pages/Exchange';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -23,7 +22,6 @@ const RouterApp = () => {
       <Route exact path="/forgot" component={Forgot} />
       <Route exact path="/my-account" component={MyAccount} />
       <Route exact path="/terms" component={Term} />
-      {/* <Route path="*" component={NoMatch} /> */}
     </Switch>
   );
 };

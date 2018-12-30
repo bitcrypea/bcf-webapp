@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { TableContainer, TableContent, TH, TD, Divider } from './styled';
+import { CustomButton } from '../styled';
 
 class MyTable extends Component {
   render() {
     const { showDipositModal, balance } = this.props;
-  
+
     return (
       <TableContainer>
         <TableContent>
@@ -21,9 +22,11 @@ class MyTable extends Component {
               <TD>{balance}</TD>
               <TD>
                 <span>
-                  <a onClick={() => showDipositModal('BTC')}>Deposit</a>
+                  <CustomButton onClick={() => showDipositModal('BTC')}>
+                    Deposit
+                  </CustomButton>
                   <Divider />
-                  <a>Withdrawal</a>
+                  <CustomButton>Withdrawal</CustomButton>
                 </span>
               </TD>
             </tr>

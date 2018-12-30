@@ -6,12 +6,13 @@ import {
   ReferralContentRight,
   ReferralContentLeft,
   ReferralTitle,
-  ReferralContent,
+  ReferralContent
 } from './styled';
 import { Switch, Input, Badge, Icon, message } from 'antd';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button } from 'antd';
+import { CustomButton } from '../commons/styled';
 
 const env = runtimeEnv();
 
@@ -21,7 +22,7 @@ class MyReferrals extends Component {
 
     this.state = {
       enable: this.props.enable,
-      code: localStorage.getItem('affiliate_codes'),
+      code: localStorage.getItem('affiliate_codes')
     };
   }
 
@@ -76,15 +77,15 @@ class MyReferrals extends Component {
                     <div
                       style={{
                         display: 'flex',
-                        alignItems: 'center',
+                        alignItems: 'center'
                       }}
                     >
-                      <a style={{ paddingRight: 20 }}>
+                      <CustomButton style={{ paddingRight: 20 }}>
                         {' '}
                         {`${env.REACT_APP_REFER_LINK}/register?ref_code=${
                           this.state.code
                         }`}
-                      </a>
+                      </CustomButton>
                       <CopyToClipboard
                         text={`${env.REACT_APP_REFER_LINK}/register?ref_code=${
                           this.state.code
