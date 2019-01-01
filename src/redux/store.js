@@ -19,6 +19,7 @@ const encryptor = createEncryptor({
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['form'],
   transforms: [encryptor]
 };
 
