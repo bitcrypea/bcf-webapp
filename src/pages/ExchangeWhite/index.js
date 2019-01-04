@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 import { Header, Footer } from '../../components/commons';
 import { Container } from './../../components/commons/styled';
 import { EXMain, EXContainer } from './styled';
@@ -9,9 +10,12 @@ import {
   EXUpdown,
   EXBuySell
 } from '../../components/ExchangeWhite';
+import { CreateOrder } from './graphql';
 
 class ExchangeWhite extends Component {
   render() {
+    const { createOrder } = this.props;
+
     return (
       <Container>
         <Header />
@@ -25,7 +29,7 @@ class ExchangeWhite extends Component {
 
             <EXUpdown />
 
-            <EXBuySell />
+            <EXBuySell createOrder={createOrder} />
           </EXContainer>
         </EXMain>
         <Footer />
@@ -34,4 +38,4 @@ class ExchangeWhite extends Component {
   }
 }
 
-export default ExchangeWhite;
+export default graphql(CreateOrder, { name: 'createOrder' })(ExchangeWhite);

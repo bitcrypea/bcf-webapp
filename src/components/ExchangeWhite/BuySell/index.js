@@ -7,18 +7,22 @@ import SellForm from './SellForm';
 const TabPane = Tabs.TabPane;
 
 class EXBuySell extends Component {
-  callback(key) {
-    console.log(key);
-  }
+  handleSell = values => {
+    console.log(values);
+  };
+
+  handleBuy = values => {
+    console.log(values);
+  };
   render() {
     return (
       <BuySellContainer>
         <Tabs defaultActiveKey="1" onChange={() => this.callback}>
           <TabPane tab="Buy" key="1">
-            <BuyForm />
+            <BuyForm onSubmit={this.handleBuy} />
           </TabPane>
           <TabPane tab="Sell" key="2">
-            <SellForm />
+            <SellForm onSubmit={this.handleSell} />
           </TabPane>
         </Tabs>
       </BuySellContainer>

@@ -12,7 +12,7 @@ export const BuySellContainer = styled.div`
 `;
 
 export const FormItem = styled.div`
-  margin-top: 7px;
+  margin-top: 20px;
   padding-bottom: 0;
 `;
 
@@ -20,9 +20,7 @@ export const Label = styled.label`
   padding-bottom: 0;
   display: block;
   color: #a5a5a5;
-  margin-bottom: 5px;
   box-sizing: border-box;
-  padding: 5px 0;
   vertical-align: middle;
 `;
 
@@ -79,11 +77,10 @@ export const InputGroupAddon = styled.span`
   box-sizing: border-box;
   text-align: center;
   padding: 10px;
-  border-left-width: 0 !important;
   border: 1px solid #dbdbdb;
   border-radius: 0 !important;
   border: 1px solid #dbdbdb;
-  border-right-width: 0;
+  border-left-width: 0;
 `;
 
 export const ButtonPlus = styled.button`
