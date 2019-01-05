@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Button } from 'antd';
 import { connect } from 'react-redux';
-import { FormItem, ButtonGroup, Button, Input } from './styled';
-import CustomInput from './makeField';
+import { FormItem, ButtonGroup, Input } from './styled';
 import normalizeNumber from './normalizeNumber';
 import makeField from './makeField';
 
@@ -21,6 +21,8 @@ class SellForm extends Component {
           'total',
           parseFloat(values.amount) * parseFloat(value)
         );
+      } else {
+        this.props.change('total', '');
       }
     }
 
@@ -30,12 +32,14 @@ class SellForm extends Component {
           'total',
           parseFloat(values.price) * parseFloat(value)
         );
+      } else {
+        this.props.change('total', '');
       }
     }
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, isLogin, submitting } = this.props;
 
     return (
       <form
@@ -45,7 +49,7 @@ class SellForm extends Component {
       >
         <Field
           label="Price"
-          symbol="ETH"
+          symbol="BTC"
           name="price"
           type="text"
           component={AInput}
@@ -55,7 +59,7 @@ class SellForm extends Component {
 
         <Field
           label="Amount"
-          symbol="BTC"
+          symbol="ETH"
           name="amount"
           type="text"
           component={AInput}
@@ -75,8 +79,19 @@ class SellForm extends Component {
 
         <FormItem>
           <ButtonGroup>
-            <Button type="submit" style={{ backgroundColor: '#d24339' }}>
-              Sell
+            <Button
+              type="primary"
+              disabled={pristine || submitting || !isLogin}
+              htmlType="submit"
+              style={{
+                backgroundColor: '#d24339',
+                color: 'white',
+                height: 44,
+                width: '100%',
+                fontWeight: 'bold'
+              }}
+            >
+              {isLogin ? 'Sell' : 'Please Login'}
             </Button>
           </ButtonGroup>
         </FormItem>

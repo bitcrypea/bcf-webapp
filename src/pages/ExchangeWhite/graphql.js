@@ -20,7 +20,7 @@ export const CreateOrder = gql`
       quantity
       side
       status
-      update_at
+      updated_at
     }
   }
 `;

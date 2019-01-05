@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { connect } from 'react-redux';
 import { Header, Footer } from '../../components/commons';
 import { Container } from './../../components/commons/styled';
 import { EXMain, EXContainer } from './styled';
@@ -11,11 +12,15 @@ import {
   EXBuySell
 } from '../../components/ExchangeWhite';
 import { CreateOrder } from './graphql';
+import { setLoading } from '../../redux/exchange/actions';
+import { bindActionCreators } from 'redux';
+import { getLoadingStatus } from '../../redux/exchange/selectors';
+import { isLoggedIn } from '../../redux/auth/selectors';
 
 class ExchangeWhite extends Component {
   render() {
-    const { createOrder } = this.props;
-
+    const { createOrder, isLoading, authenticated, setLoading } = this.props;
+    console.log(isLoading);
     return (
       <Container>
         <Header />
@@ -29,7 +34,12 @@ class ExchangeWhite extends Component {
 
             <EXUpdown />
 
-            <EXBuySell createOrder={createOrder} />
+            <EXBuySell
+              isLogin={authenticated}
+              isLoading={isLoading}
+              createOrder={createOrder}
+              setLoading={setLoading}
+            />
           </EXContainer>
         </EXMain>
         <Footer />
@@ -38,4 +48,22 @@ class ExchangeWhite extends Component {
   }
 }
 
-export default graphql(CreateOrder, { name: 'createOrder' })(ExchangeWhite);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      setLoading
+    },
+    dispatch
+  );
+
+const mapStateToProps = state => ({
+  isLoading: getLoadingStatus(state),
+  authenticated: isLoggedIn(state)
+});
+
+export default graphql(CreateOrder, { name: 'createOrder' })(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ExchangeWhite)
+);

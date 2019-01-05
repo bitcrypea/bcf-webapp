@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { FormItem, ButtonGroup, Button, Input } from './styled';
-import CustomInput from './makeField';
+import { Button } from 'antd';
+import { FormItem, ButtonGroup, Input } from './styled';
 import normalizeNumber from './normalizeNumber';
 import makeField from './makeField';
 
@@ -21,21 +21,29 @@ class BuyForm extends Component {
           'total',
           parseFloat(values.amount) * parseFloat(value)
         );
+      } else {
+        this.props.change('total', '');
       }
-    }
-
-    if (name === 'amount' && values && values.price) {
+    } else if (name === 'amount' && values && values.price) {
       if (!isNaN(parseFloat(values.price)) && !isNaN(parseFloat(value))) {
         this.props.change(
           'total',
           parseFloat(values.price) * parseFloat(value)
         );
+      } else {
+        this.props.change('total', '');
       }
     }
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const {
+      handleSubmit,
+      pristine,
+      isLoading,
+      isLogin,
+      submitting
+    } = this.props;
 
     return (
       <form
@@ -45,7 +53,7 @@ class BuyForm extends Component {
       >
         <Field
           label="Price"
-          symbol="ETH"
+          symbol="BTC"
           name="price"
           type="text"
           component={AInput}
@@ -55,7 +63,7 @@ class BuyForm extends Component {
 
         <Field
           label="Amount"
-          symbol="BTC"
+          symbol="ETH"
           name="amount"
           type="text"
           component={AInput}
@@ -75,8 +83,20 @@ class BuyForm extends Component {
 
         <FormItem>
           <ButtonGroup>
-            <Button type="submit" style={{ backgroundColor: '#00a56a' }}>
-              Buy
+            <Button
+              type="primary"
+              disabled={pristine || submitting || !isLogin}
+              htmlType="submit"
+              loading={isLoading}
+              style={{
+                backgroundColor: '#00a56a',
+                color: 'white',
+                height: 44,
+                width: '100%',
+                fontWeight: 'bold'
+              }}
+            >
+              {isLogin ? 'Buy' : 'Please Login'}
             </Button>
           </ButtonGroup>
         </FormItem>
