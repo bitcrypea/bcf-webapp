@@ -19,7 +19,13 @@ import { isLoggedIn } from '../../redux/auth/selectors';
 
 class ExchangeWhite extends Component {
   render() {
-    const { createOrder, isLoading, authenticated, setLoading } = this.props;
+    const {
+      createOrder,
+      isLoading,
+      authenticated,
+      setLoading,
+      dispatch
+    } = this.props;
     console.log(isLoading);
     return (
       <Container>
@@ -35,6 +41,7 @@ class ExchangeWhite extends Component {
             <EXUpdown />
 
             <EXBuySell
+              dispatch={dispatch}
               isLogin={authenticated}
               isLoading={isLoading}
               createOrder={createOrder}
@@ -51,7 +58,8 @@ class ExchangeWhite extends Component {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      setLoading
+      setLoading,
+      dispatch
     },
     dispatch
   );

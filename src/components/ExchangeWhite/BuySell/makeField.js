@@ -4,8 +4,6 @@ import {
   Label,
   InputGroup,
   InputGroupAddon,
-  ButtonPlus,
-  ButtonMinus,
   Message
 } from './styled';
 

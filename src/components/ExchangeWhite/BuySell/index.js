@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs, message } from 'antd';
+import { reset } from 'redux-form';
 import { BuySellContainer } from './styled';
 import BuyForm from './BuyForm';
 import SellForm from './SellForm';
@@ -8,21 +9,22 @@ const TabPane = Tabs.TabPane;
 
 class EXBuySell extends Component {
   handleSell = values => {
-    const { createOrder, setLoading } = this.props;
+    const { createOrder, setLoading, dispatch } = this.props;
     const { price, amount } = values;
 
     setLoading(true);
     createOrder({
       variables: {
-        currency_pair: 'ETH/BTC',
-        side: 'Sell',
+        currency_pair: 'ETH_BTC',
+        side: 'sell',
         quantity: amount,
         price
       }
     })
       .then(({ data }) => {
-        debugger;
+        dispatch(reset('sellForm'));
         setLoading(false);
+        message.success('Sell success!');
       })
       .catch(error => {
         setLoading(false);
@@ -33,22 +35,22 @@ class EXBuySell extends Component {
   };
 
   handleBuy = values => {
-    const { createOrder, setLoading } = this.props;
+    const { createOrder, setLoading, dispatch } = this.props;
     const { price, amount } = values;
 
     setLoading(true);
-    debugger;
     createOrder({
       variables: {
-        currency_pair: 'BTC',
-        side: 'Buy',
+        currency_pair: 'ETH_BTC',
+        side: 'buy',
         quantity: amount,
         price
       }
     })
       .then(({ data }) => {
-        debugger;
+        dispatch(reset('buyForm'));
         setLoading(false);
+        message.success('Buy success!');
       })
       .catch(error => {
         setLoading(false);
