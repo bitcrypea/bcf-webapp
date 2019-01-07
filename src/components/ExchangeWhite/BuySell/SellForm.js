@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Button } from 'antd';
 import { connect } from 'react-redux';
-import {
-  FormItem,
-  Label,
-  InputGroup,
-  InputGroupAddon,
-  ButtonPlus,
-  ButtonMinus,
-  ButtonGroup,
-  Button
-} from './styled';
-import CustomInput from './CustomInput';
+import { FormItem, ButtonGroup, Input } from './styled';
 import normalizeNumber from './normalizeNumber';
+import makeField from './makeField';
+
+const AInput = makeField(Input);
 
 class SellForm extends Component {
   onFormChange = e => {
@@ -27,6 +21,8 @@ class SellForm extends Component {
           'total',
           parseFloat(values.amount) * parseFloat(value)
         );
+      } else {
+        this.props.change('total', '');
       }
     }
 
@@ -36,12 +32,14 @@ class SellForm extends Component {
           'total',
           parseFloat(values.price) * parseFloat(value)
         );
+      } else {
+        this.props.change('total', '');
       }
     }
   };
 
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
+    const { handleSubmit, pristine, isLogin, submitting } = this.props;
 
     return (
       <form
@@ -49,68 +47,51 @@ class SellForm extends Component {
         onSubmit={handleSubmit}
         style={{ fontSize: 13 }}
       >
-        <FormItem>
-          <Label>Price</Label>
-          <InputGroup>
-            <Field
-              name="price"
-              type="text"
-              component={CustomInput}
-              placeholder="Price"
-              normalize={normalizeNumber}
-            />
-            <InputGroupAddon>ETH</InputGroupAddon>
-            <ButtonMinus>-</ButtonMinus>
-            <ButtonPlus>+</ButtonPlus>
-          </InputGroup>
-        </FormItem>
+        <Field
+          label="Price"
+          symbol="BTC"
+          name="price"
+          type="text"
+          component={AInput}
+          placeholder="Price"
+          normalize={normalizeNumber}
+        />
 
-        <FormItem>
-          <Label>Amount</Label>
-          <InputGroup>
-            <Field
-              name="amount"
-              type="text"
-              component={CustomInput}
-              placeholder="Amount"
-              normalize={normalizeNumber}
-            />
-            <InputGroupAddon>BTC</InputGroupAddon>
-            <ButtonMinus>-</ButtonMinus>
-            <ButtonPlus>+</ButtonPlus>
-          </InputGroup>
-        </FormItem>
+        <Field
+          label="Amount"
+          symbol="ETH"
+          name="amount"
+          type="text"
+          component={AInput}
+          placeholder="Amount"
+          normalize={normalizeNumber}
+        />
 
-        <FormItem>
-          <Label>Total</Label>
-          <InputGroup>
-            <Field
-              disabled
-              type="text"
-              name="total"
-              component={CustomInput}
-              placeholder="Min 0.0001"
-            />
-            <InputGroupAddon
-              disabled
-              style={{
-                borderRightWidth: 1,
-                backgroundColor: 'rgb(235, 235, 228)'
-              }}
-            >
-              BTC
-            </InputGroupAddon>
-          </InputGroup>
-        </FormItem>
+        <Field
+          disabled
+          label="Total"
+          symbol="BTC"
+          type="text"
+          name="total"
+          component={AInput}
+          placeholder="Min 0.0001"
+        />
 
         <FormItem>
           <ButtonGroup>
             <Button
-              type="submit"
-              disabled={pristine || submitting}
-              style={{ backgroundColor: '#d24339' }}
+              type="primary"
+              disabled={pristine || submitting || !isLogin}
+              htmlType="submit"
+              style={{
+                backgroundColor: '#d24339',
+                color: 'white',
+                height: 44,
+                width: '100%',
+                fontWeight: 'bold'
+              }}
             >
-              Sell
+              {isLogin ? 'Sell' : 'Please Login'}
             </Button>
           </ButtonGroup>
         </FormItem>
@@ -122,10 +103,10 @@ class SellForm extends Component {
 const validate = values => {
   const errors = {};
   if (!values.price) {
-    errors.price = 'You need enter price';
+    errors.price = 'Enter a price.';
   }
   if (!values.amount) {
-    errors.amount = 'You need enter amount';
+    errors.amount = 'Enter a amount.';
   }
 
   return errors;
@@ -137,6 +118,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(mapStateToProps)(
   reduxForm({
-    form: 'sellForm' // a unique identifier for this form
+    form: 'sellForm', // a unique identifier for this form
+    validate
   })(SellForm)
 );
